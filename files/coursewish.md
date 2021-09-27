@@ -93,6 +93,8 @@ Here is a list of courses I want to take:
 
 - [ ]  EE 221A Linear System Theory
 
+- [ ]  CS 164 Programming Languages and Compilers
+
 - Spring
 
 - [ ]  EE 120 Signals and Systems (both fall and spring)
@@ -114,6 +116,14 @@ Here is a list of courses I want to take:
 - [ ]  CS 280 Computer Vision
 
 - [ ]  CS 288 Natural Language Processing
+
+- [ ]  CS 61 Great Ideas of Computer Architecture (Machine Structures) (Both fall and spring)
+
+- [ ]  CS 152 Computer Architecture and Engineering
+
+- [ ]  CS 162 Operating Systems and System Programming(both spring and fall)
+
+
 
 #### IEOR
 
