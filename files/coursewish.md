@@ -41,6 +41,8 @@ Here is a list of courses I want to take:
 
 - [x] STAT 210B Theoretical Statistics, by Martin Wainwright.
 
+- [ ] STAT 155 Game theory
+
 - [ ] STAT 205B Probability Theory
 
 - [ ] STAT 215B Statistical Models: Theory and Application
