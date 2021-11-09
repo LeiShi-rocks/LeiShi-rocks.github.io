@@ -9,6 +9,7 @@ An Introduction. By Sutton & Barto](http://incompleteideas.net/book/the-book-2nd
 ### Coding
 
 - [Inference-bias-t-test-lambda](https://www.pnas.org/content/118/15/e2014602118.short) with [R file](https://leishi-rocks.github.io/courses/ph240c/notes/Inference-bias-t-test-lambda.r)
+
 - [Multi-Armed Bandits as an A/B Testing Solution](https://www.r-bloggers.com/2019/09/multi-armed-bandits-as-an-a-b-testing-solution/)
 - [Multi-Armed Bandit with Thompson Sampling](https://www.r-bloggers.com/2020/09/multi-armed-bandit-with-thompson-sampling/)
 - [Exploration & Exploitation & Multi-armed bandits](https://rpubs.com/OttoP/478713)
