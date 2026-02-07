@@ -40,3 +40,17 @@ Edit `config.json`:
 - Popularity signal is currently source-based (e.g., Hugging Face Daily Papers).
 - Sources can specify `auth_env` in `config.json` to inject a bearer token from your environment.
 - If you want richer popularity signals (Papers with Code trends, GitHub stars, etc.), we can add source-specific enrichers.
+
+## Import Curated Sources
+
+You can bootstrap candidate feed URLs from [`foorilla/allainews_sources`](https://github.com/foorilla/allainews_sources):
+
+```bash
+python scripts/import_allainews_sources.py \
+  --output output/allainews_candidates.json
+```
+
+Useful options:
+- `--include-non-feed-looking`: validate every URL in the README.
+- `--max-urls 200`: cap validation count for faster iteration.
+- `--readme-url ...`: use a fork/custom source list.
