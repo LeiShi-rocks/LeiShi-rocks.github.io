@@ -88,6 +88,9 @@ def fetch_github_search(query: str, per_page: int, token: Optional[str], timeout
     url = "https://api.github.com/search/repositories"
     params = {"q": query, "sort": "updated", "order": "desc", "per_page": per_page}
     resp = requests.get(url, params=params, headers=github_headers(token), timeout=timeout_s)
+    # If token is missing/invalid, fallback to anonymous API instead of hard-failing.
+    if resp.status_code == 401 and token:
+        resp = requests.get(url, params=params, headers=github_headers(None), timeout=timeout_s)
     resp.raise_for_status()
     payload = resp.json()
     return payload.get("items", []) or []
@@ -447,6 +450,26 @@ def apply_caps(
     return out
 
 
+def fill_to_target(
+    selected: List[Tuple[Entry, float, Dict[str, float]]],
+    scored: List[Tuple[Entry, float, Dict[str, float]]],
+    target: int,
+) -> List[Tuple[Entry, float, Dict[str, float]]]:
+    if len(selected) >= target:
+        return selected[:target]
+    existing = {extract_id(e.title, e.link, e.summary) for e, _, _ in selected}
+    out = list(selected)
+    for e, score, breakdown in scored:
+        if len(out) >= target:
+            break
+        uid = extract_id(e.title, e.link, e.summary)
+        if uid in existing:
+            continue
+        out.append((e, score, breakdown))
+        existing.add(uid)
+    return out
+
+
 def write_rss(
     items: List[Tuple[Entry, float, Dict[str, float]]],
     output_path: Path,
@@ -650,6 +673,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     selected_nonpapers = apply_caps(
         nonpapers, nonpaper_max_items, nonpaper_per_source_cap, nonpaper_per_tag_cap, keyword_tags
     )
+    selected_papers = fill_to_target(selected_papers, papers, paper_max_items)
+    selected_nonpapers = fill_to_target(selected_nonpapers, nonpapers, nonpaper_max_items)
 
     combined = selected_papers + selected_nonpapers
     combined = sorted(combined, key=lambda x: x[1], reverse=True)[:max_items]
