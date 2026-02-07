@@ -23,6 +23,14 @@
     return (div.textContent || div.innerText || '').trim();
   }
 
+  function truncateSentences(text, maxSentences) {
+    if (!text) return '';
+    var matches = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+    var cleaned = matches.map(function (s) { return s.trim(); }).filter(Boolean);
+    if (cleaned.length <= maxSentences) return text.trim();
+    return cleaned.slice(0, maxSentences).join(' ').trim();
+  }
+
   function buildItem(item) {
     var title = item.querySelector('title');
     var link = item.querySelector('link');
@@ -48,6 +56,8 @@
 
     if (description && description.textContent) {
       var summaryText = textFromHtml(description.textContent);
+      summaryText = summaryText.replace(/\\s*Score:\\s*.+$/i, '').trim();
+      summaryText = truncateSentences(summaryText, 6);
       if (summaryText) {
         var summary = document.createElement('div');
         summary.className = 'ai-feed-item-summary';

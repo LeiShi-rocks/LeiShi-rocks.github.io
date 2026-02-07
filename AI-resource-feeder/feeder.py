@@ -33,6 +33,8 @@ ARXIV_ID_RE = re.compile(r"arxiv.org/abs/([\w.\-]+)")
 DOI_RE = re.compile(r"10\.\d{4,9}/[-._;()/:A-Za-z0-9]+")
 WHITESPACE_RE = re.compile(r"\s+")
 NON_ALNUM_RE = re.compile(r"[^a-z0-9\s]")
+HTML_TAG_RE = re.compile(r"<[^>]+>")
+SENTENCE_RE = re.compile(r"[^.!?]+[.!?]+|[^.!?]+$")
 
 
 def load_config(path: Path) -> Dict[str, Any]:
@@ -61,6 +63,21 @@ def normalize_text(text: str) -> str:
     text = NON_ALNUM_RE.sub(" ", text)
     text = WHITESPACE_RE.sub(" ", text).strip()
     return text
+
+
+def strip_html(text: str) -> str:
+    text = HTML_TAG_RE.sub(" ", text)
+    text = WHITESPACE_RE.sub(" ", text).strip()
+    return text
+
+
+def truncate_sentences(text: str, max_sentences: int) -> str:
+    if max_sentences <= 0:
+        return ""
+    sentences = [s.strip() for s in SENTENCE_RE.findall(text) if s.strip()]
+    if len(sentences) <= max_sentences:
+        return text.strip()
+    return " ".join(sentences[:max_sentences]).strip()
 
 
 def extract_id(title: str, link: str, summary: str) -> str:
@@ -240,9 +257,9 @@ def write_rss(
     ]
 
     for e, score, breakdown in items:
-        desc = e.summary or ""
-        score_note = f"Score: {score:.3f} (recency={breakdown['recency']:.3f}, source={breakdown['source']:.3f}, keyword={breakdown['keyword']:.3f}, popularity={breakdown['popularity']:.3f})"
-        full_desc = f"{desc}\n\n{score_note}"
+        raw_desc = e.summary or ""
+        clean_desc = strip_html(raw_desc)
+        short_desc = truncate_sentences(clean_desc, 6)
         parts.extend(
             [
                 "<item>",
@@ -250,7 +267,7 @@ def write_rss(
                 f"<link>{esc(e.link)}</link>",
                 f"<guid>{esc(extract_id(e.title, e.link, e.summary))}</guid>",
                 f"<pubDate>{format_datetime(e.published)}</pubDate>",
-                f"<description>{esc(full_desc)}</description>",
+                f"<description>{esc(short_desc)}</description>",
                 "</item>",
             ]
         )
