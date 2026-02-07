@@ -2342,7 +2342,6 @@
     "Anthropic News",
     "NVIDIA Developer Blog",
     "Google Research Blog",
-    "LessWrong",
     "Hugging Face Daily Papers"
   ],
   "weights": {
@@ -2361,7 +2360,7 @@
     "BAIR Blog": 1.1,
     "Stanford AI Lab Blog": 1.1,
     "Hugging Face Blog": 1.0,
-    "LessWrong": 1.1,
+    "LessWrong": 0.35,
     "Alignment Forum": 1.2,
     "Google Research Blog": 1.3,
     "Simon Willison": 1.1,
@@ -2422,7 +2421,9 @@
     "OpenAI News": {
       "exclude_url_substrings": [
         "/policies/",
-        "/index/"
+        "/index/",
+        "/terms/",
+        "/privacy/"
       ],
       "include_keywords": [
         "model",
@@ -2437,14 +2438,17 @@
     },
     "LessWrong": {
       "exclude_url_substrings": [
-        "voting-results"
+        "voting-results",
+        "/allposts",
+        "/newcomments"
       ],
       "exclude_keywords": [
         "voting results",
         "open thread",
         "book review",
         "meetup",
-        "contest"
+        "contest",
+        "infrared camera"
       ],
       "include_keywords": [
         "ai",
@@ -2455,6 +2459,18 @@
         "transformer",
         "inference",
         "safety"
+      ],
+      "title_include_keywords": [
+        "ai",
+        "alignment",
+        "llm",
+        "language model",
+        "agent",
+        "transformer",
+        "inference",
+        "safety",
+        "eval",
+        "benchmark"
       ]
     }
   },
@@ -2490,5 +2506,12 @@
   "min_score": 0.0,
   "dedupe_similarity": 0.9,
   "half_life_days": 6,
-  "timeout_s": 10
+  "timeout_s": 10,
+  "source_caps": {
+    "LessWrong": 1,
+    "OpenAI News": 2,
+    "Google DeepMind Blog": 2,
+    "Google AI Blog": 2,
+    "GitHub Trending AI": 4
+  }
 }

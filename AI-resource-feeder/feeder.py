@@ -418,8 +418,10 @@ def is_ai_relevant(
 
     src_rule = source_rules.get(e.source, {})
     src_include = [normalize_text(x) for x in src_rule.get("include_keywords", [])]
+    src_title_include = [normalize_text(x) for x in src_rule.get("title_include_keywords", [])]
     src_exclude = [normalize_text(x) for x in src_rule.get("exclude_keywords", [])]
     src_exclude_urls = [x.lower() for x in src_rule.get("exclude_url_substrings", [])]
+    title_blob = normalize_text(e.title or "")
 
     if any(x in (e.link or "").lower() for x in src_exclude_urls):
         return False
@@ -429,6 +431,8 @@ def is_ai_relevant(
         return False
 
     effective_include = src_include or [normalize_text(k) for k in include_keywords]
+    if src_title_include and not any(k and k in title_blob for k in src_title_include):
+        return False
     if not effective_include:
         return True
     return any(k and k in text_blob for k in effective_include)
@@ -466,6 +470,7 @@ def apply_caps(
     per_source_cap: int,
     per_tag_cap: int,
     keyword_tags: Dict[str, str],
+    source_caps: Optional[Dict[str, int]] = None,
 ) -> List[Tuple[Entry, float, Dict[str, float]]]:
     out: List[Tuple[Entry, float, Dict[str, float]]]
     out = []
@@ -475,7 +480,10 @@ def apply_caps(
     for e, score, breakdown in scored:
         if len(out) >= max_items:
             break
-        if by_source.get(e.source, 0) >= per_source_cap:
+        source_cap = per_source_cap
+        if source_caps and e.source in source_caps:
+            source_cap = max(1, int(source_caps[e.source]))
+        if by_source.get(e.source, 0) >= source_cap:
             continue
         tags = set(compute_tags(e, keyword_tags))
         if any(by_tag.get(t, 0) >= per_tag_cap for t in tags):
@@ -586,6 +594,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     source_weights = config.get("source_weights", {})
     keyword_tags = config.get("keyword_tags", {})
     popular_sources = config.get("popular_sources", [])
+    source_caps = dict(config.get("source_caps", {}) or {})
+    paper_source_caps = dict(config.get("paper_source_caps", {}) or {})
     include_keywords = list(config.get("ai_include_keywords", []) or [])
     exclude_keywords = list(config.get("ai_exclude_keywords", []) or [])
     source_rules = dict(config.get("source_relevance_rules", {}) or {})
@@ -710,10 +720,15 @@ def main(argv: Optional[List[str]] = None) -> int:
     nonpapers.sort(key=lambda x: x[1], reverse=True)
 
     selected_papers = apply_caps(
-        papers, paper_max_items, paper_per_source_cap, paper_per_tag_cap, keyword_tags
+        papers, paper_max_items, paper_per_source_cap, paper_per_tag_cap, keyword_tags, paper_source_caps
     )
     selected_nonpapers = apply_caps(
-        nonpapers, nonpaper_max_items, nonpaper_per_source_cap, nonpaper_per_tag_cap, keyword_tags
+        nonpapers,
+        nonpaper_max_items,
+        nonpaper_per_source_cap,
+        nonpaper_per_tag_cap,
+        keyword_tags,
+        source_caps,
     )
     selected_papers = fill_to_target(selected_papers, papers, paper_max_items)
     selected_nonpapers = fill_to_target(selected_nonpapers, nonpapers, nonpaper_max_items)
