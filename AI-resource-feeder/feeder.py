@@ -396,6 +396,44 @@ def compute_tags(e: Entry, keyword_tags: Dict[str, str]) -> List[str]:
     return sorted(tags)
 
 
+def is_ai_relevant(
+    e: Entry,
+    include_keywords: List[str],
+    exclude_keywords: List[str],
+    source_rules: Dict[str, Dict[str, List[str]]],
+) -> bool:
+    if e.kind == "paper":
+        return True
+
+    text_blob = normalize_text(
+        " ".join(
+            [
+                e.title or "",
+                e.summary or "",
+                e.link or "",
+                " ".join(e.tags or []),
+            ]
+        )
+    )
+
+    src_rule = source_rules.get(e.source, {})
+    src_include = [normalize_text(x) for x in src_rule.get("include_keywords", [])]
+    src_exclude = [normalize_text(x) for x in src_rule.get("exclude_keywords", [])]
+    src_exclude_urls = [x.lower() for x in src_rule.get("exclude_url_substrings", [])]
+
+    if any(x in (e.link or "").lower() for x in src_exclude_urls):
+        return False
+    if any(x and x in text_blob for x in src_exclude):
+        return False
+    if any(x and x in text_blob for x in [normalize_text(k) for k in exclude_keywords]):
+        return False
+
+    effective_include = src_include or [normalize_text(k) for k in include_keywords]
+    if not effective_include:
+        return True
+    return any(k and k in text_blob for k in effective_include)
+
+
 def dedupe_entries(entries: List[Entry], sim_threshold: float) -> List[Entry]:
     seen_ids: Dict[str, Entry] = {}
     unique: List[Entry] = []
@@ -548,6 +586,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     source_weights = config.get("source_weights", {})
     keyword_tags = config.get("keyword_tags", {})
     popular_sources = config.get("popular_sources", [])
+    include_keywords = list(config.get("ai_include_keywords", []) or [])
+    exclude_keywords = list(config.get("ai_exclude_keywords", []) or [])
+    source_rules = dict(config.get("source_relevance_rules", {}) or {})
 
     entries: List[Entry] = []
 
@@ -642,6 +683,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     now = datetime.now(timezone.utc)
     entries = [e for e in entries if (now - e.published).total_seconds() / 86400.0 <= max_age_days]
+    entries = [e for e in entries if is_ai_relevant(e, include_keywords, exclude_keywords, source_rules)]
 
     entries = dedupe_entries(entries, sim_threshold)
 
