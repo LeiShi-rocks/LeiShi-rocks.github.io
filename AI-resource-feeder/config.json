@@ -4,62 +4,166 @@
     "link": "https://example.com/ai-trend-feed",
     "description": "Top daily AI papers/blogs ranked by recency + popularity + relevance"
   },
-  "sources": [
-    {
-      "name": "OpenAI News",
-      "url": "https://openai.com/news/rss.xml"
-    },
-    {
-      "name": "Google AI Blog",
-      "url": "https://blog.google/technology/ai/rss/"
-    },
-    {
-      "name": "Google DeepMind Blog",
-      "url": "https://deepmind.google/blog/rss.xml"
-    },
-    {
-      "name": "Microsoft AI Blog",
-      "url": "https://www.microsoft.com/en-us/ai/blog/feed/"
-    },
-    {
-      "name": "NVIDIA Developer Blog",
-      "url": "https://developer.nvidia.com/blog/feed"
-    },
-    {
-      "name": "Salesforce AI Research",
-      "url": "https://www.salesforce.com/blog/category/ai-research/feed/"
-    },
-    {
-      "name": "Hugging Face Blog",
-      "url": "https://huggingface.co/blog/feed.xml"
-    },
-    {
-      "name": "Hugging Face Daily Papers",
-      "url": "https://papers.takara.ai/api/feed"
-    },
-    {
-      "name": "Simon Willison",
-      "url": "https://simonwillison.net/atom/everything/"
-    },
+  "paper_channel": {
+    "title": "AI Papers",
+    "link": "https://example.com/ai-trend-feed",
+    "description": "Top daily AI papers"
+  },
+  "nonpaper_channel": {
+    "title": "AI News & Posts",
+    "link": "https://example.com/ai-trend-feed",
+    "description": "Top daily AI labs, blogs, and project updates"
+  },
+  "paper_sources": [
     {
       "name": "arXiv cs.AI",
-      "url": "https://rss.arxiv.org/rss/cs.AI"
+      "url": "https://rss.arxiv.org/rss/cs.AI",
+      "source_tag": "arxiv",
+      "topics": ["papers", "research", "ai"]
     },
     {
       "name": "arXiv cs.LG",
-      "url": "https://rss.arxiv.org/rss/cs.LG"
+      "url": "https://rss.arxiv.org/rss/cs.LG",
+      "source_tag": "arxiv",
+      "topics": ["papers", "ml", "learning"]
     },
     {
       "name": "arXiv cs.CL",
-      "url": "https://rss.arxiv.org/rss/cs.CL"
+      "url": "https://rss.arxiv.org/rss/cs.CL",
+      "source_tag": "arxiv",
+      "topics": ["papers", "nlp", "language"]
     },
     {
       "name": "arXiv cs.CV",
-      "url": "https://rss.arxiv.org/rss/cs.CV"
+      "url": "https://rss.arxiv.org/rss/cs.CV",
+      "source_tag": "arxiv",
+      "topics": ["papers", "vision"]
     },
     {
       "name": "arXiv stat.ML",
-      "url": "https://rss.arxiv.org/rss/stat.ML"
+      "url": "https://rss.arxiv.org/rss/stat.ML",
+      "source_tag": "arxiv",
+      "topics": ["papers", "statistics", "ml"]
+    },
+    {
+      "name": "Hugging Face Daily Papers",
+      "url": "https://papers.takara.ai/api/feed",
+      "source_tag": "huggingface",
+      "topics": ["papers", "daily", "ml"]
+    }
+  ],
+  "nonpaper_sources": [
+    {
+      "name": "OpenAI News",
+      "url": "https://openai.com/news/rss.xml",
+      "source_tag": "openai",
+      "topics": ["lab", "models", "product", "safety"]
+    },
+    {
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "source_tag": "google",
+      "topics": ["lab", "research", "product"]
+    },
+    {
+      "name": "Google DeepMind Blog",
+      "url": "https://deepmind.google/blog/feed/basic/",
+      "source_tag": "deepmind",
+      "topics": ["lab", "research", "science"]
+    },
+    {
+      "name": "Microsoft AI Blog",
+      "url": "https://blogs.microsoft.com/ai/feed/",
+      "source_tag": "microsoft",
+      "topics": ["lab", "product", "enterprise"],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "name": "Meta AI Blog",
+      "url": "https://ai.facebook.com/blog/rss/",
+      "source_tag": "meta",
+      "topics": ["lab", "research", "opensource"]
+    },
+    {
+      "name": "NVIDIA Developer Blog",
+      "url": "https://developer.nvidia.com/blog/feed",
+      "source_tag": "nvidia",
+      "topics": ["hardware", "infra", "training"]
+    },
+    {
+      "name": "BAIR Blog",
+      "url": "https://bair.berkeley.edu/blog/feed.xml",
+      "source_tag": "bair",
+      "topics": ["academia", "research"]
+    },
+    {
+      "name": "Stanford AI Lab Blog",
+      "url": "https://ai.stanford.edu/blog/feed.xml",
+      "source_tag": "stanford",
+      "topics": ["academia", "research"]
+    },
+    {
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "source_tag": "huggingface",
+      "topics": ["opensource", "models", "tools"]
+    },
+    {
+      "name": "LMCache Releases",
+      "url": "https://github.com/LMCache/LMCache/releases.atom",
+      "source_tag": "github",
+      "topics": ["infra", "cache", "serving"]
+    },
+    {
+      "name": "Agent Reinforcement Trainer (ART) Releases",
+      "url": "https://github.com/OpenPipe/ART/releases.atom",
+      "source_tag": "github",
+      "topics": ["agents", "reinforcement", "training"]
+    },
+    {
+      "name": "Robotic World Model Releases",
+      "url": "https://github.com/leggedrobotics/robotic_world_model/releases.atom",
+      "source_tag": "github",
+      "topics": ["robotics", "world-models"]
+    }
+  ],
+  "github_token_env": "GITHUB_TOKEN",
+  "github_search": [
+    {
+      "name": "GitHub Trending AI",
+      "query": "(topic:ai OR topic:machine-learning OR topic:llm OR topic:agents OR topic:robotics) created:>={date30} stars:>=100",
+      "per_page": 20,
+      "kind": "nonpaper",
+      "source_tag": "github",
+      "topics": ["github", "projects", "trending"]
+    }
+  ],
+  "web_sources": [
+    {
+      "name": "Anthropic Research",
+      "url": "https://www.anthropic.com/research",
+      "include_paths": ["/research"],
+      "max_items": 8,
+      "kind": "nonpaper",
+      "source_tag": "anthropic",
+      "topics": ["lab", "research", "models"],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+      }
+    },
+    {
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news",
+      "include_paths": ["/news"],
+      "max_items": 8,
+      "kind": "nonpaper",
+      "source_tag": "anthropic",
+      "topics": ["lab", "safety", "product"],
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+      }
     }
   ],
   "popular_sources": [
@@ -67,6 +171,8 @@
     "Google AI Blog",
     "Google DeepMind Blog",
     "Microsoft AI Blog",
+    "Meta AI Blog",
+    "Anthropic News",
     "NVIDIA Developer Blog",
     "Hugging Face Daily Papers"
   ],
@@ -81,11 +187,16 @@
     "Google AI Blog": 1.3,
     "Google DeepMind Blog": 1.3,
     "Microsoft AI Blog": 1.2,
+    "Meta AI Blog": 1.2,
+    "Anthropic News": 1.3,
     "NVIDIA Developer Blog": 1.1,
-    "Salesforce AI Research": 1.1,
+    "BAIR Blog": 1.1,
+    "Stanford AI Lab Blog": 1.1,
     "Hugging Face Blog": 1.0,
     "Hugging Face Daily Papers": 1.4,
-    "Simon Willison": 1.0,
+    "LMCache Releases": 1.0,
+    "Agent Reinforcement Trainer (ART) Releases": 1.0,
+    "Robotic World Model Releases": 1.0,
     "arXiv cs.AI": 1.0,
     "arXiv cs.LG": 1.0,
     "arXiv cs.CL": 1.0,
@@ -103,14 +214,26 @@
     "vision": "vision",
     "language model": "llm",
     "large language model": "llm",
-    "llm": "llm"
+    "llm": "llm",
+    "robot": "robotics",
+    "robotic": "robotics",
+    "world model": "world-models",
+    "cache": "serving",
+    "inference": "serving",
+    "quantization": "efficiency"
   },
   "max_items": 30,
+  "paper_max_items": 10,
+  "nonpaper_max_items": 20,
   "per_source_cap": 5,
   "per_tag_cap": 6,
-  "max_age_days": 7,
+  "paper_per_source_cap": 3,
+  "paper_per_tag_cap": 4,
+  "nonpaper_per_source_cap": 5,
+  "nonpaper_per_tag_cap": 6,
+  "max_age_days": 14,
   "min_score": 0.0,
   "dedupe_similarity": 0.9,
-  "half_life_days": 5,
+  "half_life_days": 6,
   "timeout_s": 10
 }

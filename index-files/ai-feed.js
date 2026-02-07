@@ -36,6 +36,8 @@
     var link = item.querySelector('link');
     var pubDate = item.querySelector('pubDate') || item.querySelector('updated');
     var description = item.querySelector('description') || item.querySelector('summary');
+    var source = item.querySelector('source');
+    var categories = item.querySelectorAll('category');
 
     var li = document.createElement('li');
     li.className = 'ai-feed-item';
@@ -51,7 +53,10 @@
     meta.className = 'ai-feed-item-meta';
     meta.textContent = formatDate(pubDate ? pubDate.textContent.trim() : '');
 
-    li.appendChild(a);
+    var topRow = document.createElement('div');
+    topRow.className = 'ai-feed-item-top';
+    topRow.appendChild(a);
+    li.appendChild(topRow);
     li.appendChild(meta);
 
     if (description && description.textContent) {
@@ -64,6 +69,31 @@
         summary.textContent = summaryText;
         li.appendChild(summary);
       }
+    }
+
+    var tagWrap = document.createElement('div');
+    tagWrap.className = 'ai-feed-tags';
+
+    if (source && source.textContent) {
+      var sourceTag = document.createElement('span');
+      sourceTag.className = 'ai-feed-tag ai-feed-tag-source';
+      sourceTag.textContent = source.textContent.trim();
+      tagWrap.appendChild(sourceTag);
+    }
+
+    if (categories && categories.length) {
+      categories.forEach(function (cat) {
+        var t = cat.textContent.trim();
+        if (!t) return;
+        var tag = document.createElement('span');
+        tag.className = 'ai-feed-tag';
+        tag.textContent = t;
+        tagWrap.appendChild(tag);
+      });
+    }
+
+    if (tagWrap.childNodes.length) {
+      li.appendChild(tagWrap);
     }
 
     return li;
@@ -82,13 +112,13 @@
     var lastBuild = channel ? channel.querySelector('lastBuildDate') : null;
     var updated = channel ? channel.querySelector('pubDate') : null;
 
-    var meta = $('#ai-feed-meta', container);
+    var meta = $('.ai-feed-meta', container);
     if (meta) {
       var dateText = (lastBuild && lastBuild.textContent) || (updated && updated.textContent) || '';
       meta.textContent = dateText ? 'Last updated ' + formatDate(dateText) : 'Latest updates';
     }
 
-    var list = $('#ai-feed-list', container);
+    var list = $('.ai-feed-list', container);
     if (!list) return;
 
     list.innerHTML = '';
@@ -108,33 +138,39 @@
   }
 
   function showError(container, message) {
-    var error = $('#ai-feed-error', container);
+    var error = $('.ai-feed-error', container);
     if (!error) return;
     error.style.display = 'block';
     error.textContent = message;
   }
 
   function init() {
-    var container = document.querySelector('.ai-feed');
-    if (!container) return;
+    var containers = document.querySelectorAll('.ai-feed');
+    if (!containers.length) return;
 
-    var feedUrl = container.getAttribute('data-feed-url');
-    if (!feedUrl) {
-      showError(container, 'Feed URL is missing.');
-      return;
-    }
+    containers.forEach(function (container) {
+      var feedUrl = container.getAttribute('data-feed-url');
+      var title = container.getAttribute('data-title');
+      var titleEl = $('.ai-feed-title', container);
+      if (title && titleEl) titleEl.textContent = title;
 
-    fetch(feedUrl, { cache: 'no-store' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('Failed to load feed');
-        return res.text();
-      })
-      .then(function (text) {
-        renderFeed(text, container);
-      })
-      .catch(function () {
-        showError(container, 'Unable to load the AI feed right now.');
-      });
+      if (!feedUrl) {
+        showError(container, 'Feed URL is missing.');
+        return;
+      }
+
+      fetch(feedUrl, { cache: 'no-store' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Failed to load feed');
+          return res.text();
+        })
+        .then(function (text) {
+          renderFeed(text, container);
+        })
+        .catch(function () {
+          showError(container, 'Unable to load the AI feed right now.');
+        });
+    });
   }
 
   if (document.readyState === 'loading') {

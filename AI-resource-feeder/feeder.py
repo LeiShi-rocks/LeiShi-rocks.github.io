@@ -9,13 +9,15 @@ import os
 import re
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from email.utils import format_datetime
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, Tuple
+from urllib.parse import urljoin, urlparse
 
 import feedparser
 import requests
+from bs4 import BeautifulSoup
 
 
 @dataclass
@@ -26,6 +28,9 @@ class Entry:
     summary: str
     published: datetime
     tags: List[str]
+    kind: str
+    source_tag: str
+    topics: List[str]
     raw: Dict[str, Any]
 
 
@@ -56,6 +61,157 @@ def parse_datetime(entry: feedparser.FeedParserDict) -> datetime:
         )
     # Fallback: now
     return datetime.now(timezone.utc)
+
+
+def parse_iso_datetime(value: str) -> datetime:
+    if not value:
+        return datetime.now(timezone.utc)
+    if value.endswith("Z"):
+        value = value.replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(value).astimezone(timezone.utc)
+    except ValueError:
+        return datetime.now(timezone.utc)
+
+
+def github_headers(token: Optional[str]) -> Dict[str, str]:
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    return headers
+
+
+def fetch_github_search(query: str, per_page: int, token: Optional[str], timeout_s: int) -> List[Dict[str, Any]]:
+    url = "https://api.github.com/search/repositories"
+    params = {"q": query, "sort": "updated", "order": "desc", "per_page": per_page}
+    resp = requests.get(url, params=params, headers=github_headers(token), timeout=timeout_s)
+    resp.raise_for_status()
+    payload = resp.json()
+    return payload.get("items", []) or []
+
+
+def build_github_summary(repo: Dict[str, Any]) -> str:
+    desc = (repo.get("description") or "").strip()
+    stars = repo.get("stargazers_count")
+    forks = repo.get("forks_count")
+    language = repo.get("language")
+    bits = []
+    if stars is not None:
+        bits.append(f"Stars: {stars}")
+    if forks is not None:
+        bits.append(f"Forks: {forks}")
+    if language:
+        bits.append(f"Language: {language}")
+    meta = " · ".join(bits)
+    if desc and meta:
+        return f"{desc} ({meta})"
+    if desc:
+        return desc
+    return meta or "GitHub repository."
+
+
+def fetch_html(url: str, timeout_s: int, headers: Optional[Dict[str, str]] = None) -> str:
+    resp = requests.get(url, timeout=timeout_s, headers=headers)
+    resp.raise_for_status()
+    return resp.text
+
+
+def extract_links(base_url: str, html: str, include_paths: List[str]) -> List[str]:
+    soup = BeautifulSoup(html, "html.parser")
+    links: List[str] = []
+    base = urlparse(base_url)
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if href.startswith("#"):
+            continue
+        full = urljoin(base_url, href)
+        parsed = urlparse(full)
+        if parsed.netloc != base.netloc:
+            continue
+        if include_paths:
+            if not any(parsed.path.startswith(p) for p in include_paths):
+                continue
+        links.append(full)
+    # De-dupe while preserving order
+    seen = set()
+    uniq = []
+    for u in links:
+        if u in seen:
+            continue
+        seen.add(u)
+        uniq.append(u)
+    return uniq
+
+
+def extract_article_content(html: str) -> Tuple[str, str, List[str]]:
+    soup = BeautifulSoup(html, "html.parser")
+    title = ""
+    h1 = soup.find("h1")
+    if h1:
+        title = h1.get_text(" ", strip=True)
+
+    date = ""
+    time_tag = soup.find("time")
+    if time_tag:
+        date = time_tag.get("datetime") or time_tag.get_text(" ", strip=True)
+    if not date:
+        meta = soup.find("meta", attrs={"property": "article:published_time"})
+        if meta and meta.get("content"):
+            date = meta["content"]
+
+    content = []
+    article = soup.find("article")
+    if article:
+        paras = article.find_all("p")
+        content = [p.get_text(" ", strip=True) for p in paras if p.get_text(strip=True)]
+    if not content:
+        paras = soup.find_all("p")
+        content = [p.get_text(" ", strip=True) for p in paras if p.get_text(strip=True)]
+    return title, date, content
+
+
+def web_entries(
+    name: str,
+    url: str,
+    include_paths: List[str],
+    per_source_items: int,
+    timeout_s: int,
+    headers: Optional[Dict[str, str]],
+    kind: str,
+    source_tag: str,
+    topics: List[str],
+) -> List[Entry]:
+    html = fetch_html(url, timeout_s, headers=headers)
+    links = extract_links(url, html, include_paths)
+    out: List[Entry] = []
+    for link in links[:per_source_items]:
+        try:
+            page = fetch_html(link, timeout_s, headers=headers)
+        except Exception:
+            continue
+        title, date, paras = extract_article_content(page)
+        if not title:
+            continue
+        summary = " ".join(paras[:3]).strip()
+        published = parse_iso_datetime(date)
+        out.append(
+            Entry(
+                source=name,
+                title=title,
+                link=link,
+                summary=summary,
+                published=published,
+                tags=[],
+                kind=kind,
+                source_tag=source_tag,
+                topics=topics,
+                raw={"feed_url": url},
+            )
+        )
+    return out
 
 
 def normalize_text(text: str) -> str:
@@ -107,7 +263,13 @@ def entry_tags(entry: feedparser.FeedParserDict) -> List[str]:
     return tags
 
 
-def normalize_entries(feed_name: str, feed: feedparser.FeedParserDict) -> List[Entry]:
+def normalize_entries(
+    feed_name: str,
+    feed: feedparser.FeedParserDict,
+    kind: str,
+    source_tag: str,
+    topics: List[str],
+) -> List[Entry]:
     out: List[Entry] = []
     for e in feed.get("entries", []) or []:
         title = e.get("title", "").strip()
@@ -123,7 +285,50 @@ def normalize_entries(feed_name: str, feed: feedparser.FeedParserDict) -> List[E
                 summary=summary,
                 published=published,
                 tags=tags,
+                kind=kind,
+                source_tag=source_tag,
+                topics=topics,
                 raw=dict(e),
+            )
+        )
+    return out
+
+
+def github_entries(
+    name: str,
+    query: str,
+    per_page: int,
+    timeout_s: int,
+    token: Optional[str],
+    kind: str,
+    source_tag: str,
+    topics: List[str],
+) -> List[Entry]:
+    repos = fetch_github_search(query, per_page, token, timeout_s)
+    out: List[Entry] = []
+    for repo in repos:
+        title = repo.get("full_name", "").strip()
+        link = repo.get("html_url", "").strip()
+        summary = build_github_summary(repo)
+        published = parse_iso_datetime(repo.get("pushed_at") or repo.get("created_at") or "")
+        tags = []
+        language = repo.get("language")
+        if language:
+            tags.append(language.lower())
+        for t in repo.get("topics", []) or []:
+            tags.append(t.lower())
+        out.append(
+            Entry(
+                source=name,
+                title=title,
+                link=link,
+                summary=summary,
+                published=published,
+                tags=tags,
+                kind=kind,
+                source_tag=source_tag,
+                topics=topics,
+                raw=dict(repo),
             )
         )
     return out
@@ -176,6 +381,18 @@ def score_entry(
     return score, breakdown
 
 
+def compute_tags(e: Entry, keyword_tags: Dict[str, str]) -> List[str]:
+    tags = set()
+    tags.update(t.lower() for t in e.tags if t)
+    tags.update(build_keyword_tags(e.title, e.summary, keyword_tags))
+    tags.update(t.lower() for t in e.topics if t)
+    if e.kind:
+        tags.add(e.kind.lower())
+    if e.source_tag:
+        tags.add(e.source_tag.lower())
+    return sorted(tags)
+
+
 def dedupe_entries(entries: List[Entry], sim_threshold: float) -> List[Entry]:
     seen_ids: Dict[str, Entry] = {}
     unique: List[Entry] = []
@@ -219,7 +436,7 @@ def apply_caps(
             break
         if by_source.get(e.source, 0) >= per_source_cap:
             continue
-        tags = set(e.tags) | set(build_keyword_tags(e.title, e.summary, keyword_tags))
+        tags = set(compute_tags(e, keyword_tags))
         if any(by_tag.get(t, 0) >= per_tag_cap for t in tags):
             continue
 
@@ -234,6 +451,7 @@ def write_rss(
     items: List[Tuple[Entry, float, Dict[str, float]]],
     output_path: Path,
     channel: Dict[str, str],
+    keyword_tags: Dict[str, str],
 ) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
     now = datetime.now(timezone.utc)
@@ -260,6 +478,7 @@ def write_rss(
         raw_desc = e.summary or ""
         clean_desc = strip_html(raw_desc)
         short_desc = truncate_sentences(clean_desc, 6)
+        tags = compute_tags(e, keyword_tags)
         parts.extend(
             [
                 "<item>",
@@ -268,9 +487,12 @@ def write_rss(
                 f"<guid>{esc(extract_id(e.title, e.link, e.summary))}</guid>",
                 f"<pubDate>{format_datetime(e.published)}</pubDate>",
                 f"<description>{esc(short_desc)}</description>",
-                "</item>",
+                f"<source url=\"{esc(e.raw.get('feed_url', ''))}\">{esc(e.source_tag or e.source)}</source>",
             ]
         )
+        for tag in tags:
+            parts.append(f"<category>{esc(tag)}</category>")
+        parts.append("</item>")
 
     parts.extend(["</channel>", "</rss>"])
     output_path.write_text("\n".join(parts), encoding="utf-8")
@@ -288,6 +510,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     max_items = int(config.get("max_items", 10))
     per_source_cap = int(config.get("per_source_cap", 3))
     per_tag_cap = int(config.get("per_tag_cap", 3))
+    paper_max_items = int(config.get("paper_max_items", 10))
+    nonpaper_max_items = int(config.get("nonpaper_max_items", 20))
+    paper_per_source_cap = int(config.get("paper_per_source_cap", per_source_cap))
+    nonpaper_per_source_cap = int(config.get("nonpaper_per_source_cap", per_source_cap))
+    paper_per_tag_cap = int(config.get("paper_per_tag_cap", per_tag_cap))
+    nonpaper_per_tag_cap = int(config.get("nonpaper_per_tag_cap", per_tag_cap))
     max_age_days = float(config.get("max_age_days", 10))
     min_score = float(config.get("min_score", 0.0))
     sim_threshold = float(config.get("dedupe_similarity", 0.9))
@@ -299,9 +527,25 @@ def main(argv: Optional[List[str]] = None) -> int:
     popular_sources = config.get("popular_sources", [])
 
     entries: List[Entry] = []
-    for src in config.get("sources", []):
+
+    sources = []
+    for src in config.get("paper_sources", []):
+        s = dict(src)
+        s["kind"] = "paper"
+        sources.append(s)
+    for src in config.get("nonpaper_sources", []):
+        s = dict(src)
+        s["kind"] = "nonpaper"
+        sources.append(s)
+    if not sources:
+        sources = config.get("sources", [])
+
+    for src in sources:
         name = src["name"]
         url = src["url"]
+        kind = src.get("kind", "nonpaper")
+        source_tag = src.get("source_tag", name)
+        topics = list(src.get("topics", []) or [])
         headers = dict(src.get("headers", {}) or {})
         auth_env = src.get("auth_env")
         if auth_env:
@@ -310,7 +554,66 @@ def main(argv: Optional[List[str]] = None) -> int:
                 headers.setdefault("Authorization", f"Bearer {token}")
         try:
             feed = fetch_feed(url, timeout_s, headers=headers)
-            entries.extend(normalize_entries(name, feed))
+            for item in feed.get("entries", []) or []:
+                item["feed_url"] = url
+            entries.extend(normalize_entries(name, feed, kind=kind, source_tag=source_tag, topics=topics))
+        except Exception as exc:
+            print(f"WARN: failed to fetch {name}: {exc}", file=sys.stderr)
+
+    github_cfg = config.get("github_search") or []
+    if github_cfg:
+        token_env = config.get("github_token_env", "GITHUB_TOKEN")
+        token = os.environ.get(token_env)
+        date_30 = (datetime.now(timezone.utc) - timedelta(days=30)).date().isoformat()
+        date_14 = (datetime.now(timezone.utc) - timedelta(days=14)).date().isoformat()
+        for gh in github_cfg:
+            name = gh.get("name", "GitHub Search")
+            query = gh.get("query", "")
+            query = query.replace("{date30}", date_30).replace("{date14}", date_14)
+            per_page = int(gh.get("per_page", 20))
+            kind = gh.get("kind", "nonpaper")
+            source_tag = gh.get("source_tag", "github")
+            topics = list(gh.get("topics", []) or [])
+            try:
+                entries.extend(
+                    github_entries(
+                        name=name,
+                        query=query,
+                        per_page=per_page,
+                        timeout_s=timeout_s,
+                        token=token,
+                        kind=kind,
+                        source_tag=source_tag,
+                        topics=topics,
+                    )
+                )
+            except Exception as exc:
+                print(f"WARN: failed to fetch {name}: {exc}", file=sys.stderr)
+
+    web_cfg = config.get("web_sources") or []
+    for src in web_cfg:
+        name = src.get("name", "Web Source")
+        url = src.get("url", "")
+        include_paths = list(src.get("include_paths", []) or [])
+        per_items = int(src.get("max_items", 10))
+        kind = src.get("kind", "nonpaper")
+        source_tag = src.get("source_tag", name)
+        topics = list(src.get("topics", []) or [])
+        headers = dict(src.get("headers", {}) or {})
+        try:
+            entries.extend(
+                web_entries(
+                    name=name,
+                    url=url,
+                    include_paths=include_paths,
+                    per_source_items=per_items,
+                    timeout_s=timeout_s,
+                    headers=headers,
+                    kind=kind,
+                    source_tag=source_tag,
+                    topics=topics,
+                )
+            )
         except Exception as exc:
             print(f"WARN: failed to fetch {name}: {exc}", file=sys.stderr)
 
@@ -334,11 +637,46 @@ def main(argv: Optional[List[str]] = None) -> int:
             scored.append((e, score, breakdown))
 
     scored.sort(key=lambda x: x[1], reverse=True)
-    selected = apply_caps(scored, max_items, per_source_cap, per_tag_cap, keyword_tags)
 
-    write_rss(selected, Path(args.output), config.get("channel", {}))
+    papers = [(e, s, b) for (e, s, b) in scored if e.kind == "paper"]
+    nonpapers = [(e, s, b) for (e, s, b) in scored if e.kind != "paper"]
 
-    print(f"Fetched {len(entries)} entries, scored {len(scored)}, selected {len(selected)}")
+    papers.sort(key=lambda x: x[1], reverse=True)
+    nonpapers.sort(key=lambda x: x[1], reverse=True)
+
+    selected_papers = apply_caps(
+        papers, paper_max_items, paper_per_source_cap, paper_per_tag_cap, keyword_tags
+    )
+    selected_nonpapers = apply_caps(
+        nonpapers, nonpaper_max_items, nonpaper_per_source_cap, nonpaper_per_tag_cap, keyword_tags
+    )
+
+    combined = selected_papers + selected_nonpapers
+    combined = sorted(combined, key=lambda x: x[1], reverse=True)[:max_items]
+
+    output_path = Path(args.output)
+    write_rss(combined, output_path, config.get("channel", {}), keyword_tags)
+    write_rss(
+        selected_papers,
+        output_path.with_name("papers.xml"),
+        config.get("paper_channel", config.get("channel", {})),
+        keyword_tags,
+    )
+    write_rss(
+        selected_nonpapers,
+        output_path.with_name("nonpapers.xml"),
+        config.get("nonpaper_channel", config.get("channel", {})),
+        keyword_tags,
+    )
+
+    print(
+        "Fetched {total} entries, scored {scored}, selected {papers} papers + {nonpapers} nonpapers".format(
+            total=len(entries),
+            scored=len(scored),
+            papers=len(selected_papers),
+            nonpapers=len(selected_nonpapers),
+        )
+    )
     return 0
 
 
