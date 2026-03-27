@@ -5,8 +5,8 @@ const images = [
     "index-files/DSC02026.JPG",
     "index-files/DSC01882.JPG",
     "index-files/DSC01790.JPG",
+    "index-files/IMG-0001.JPG",
     "index-files/DSC01792.JPG",
-    "index-files/DSC01795.JPG",
 //    "index-files/IMG-00130.JPG",
 //    "index-files/IMG-0852.JPG",
     "index-files/DSC01795.JPG"
