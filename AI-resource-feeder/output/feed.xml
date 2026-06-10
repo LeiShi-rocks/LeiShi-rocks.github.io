@@ -4,53 +4,38 @@
 <title>AI Trend Feed</title>
 <link>https://example.com/ai-trend-feed</link>
 <description>Top daily AI papers/blogs ranked by recency + popularity + relevance</description>
-<lastBuildDate>Tue, 09 Jun 2026 11:27:37 +0000</lastBuildDate>
+<lastBuildDate>Wed, 10 Jun 2026 11:47:51 +0000</lastBuildDate>
 <item>
-<title>Latent Spatial Memory for Video World Models</title>
-<link>https://tldr.takara.ai/p/2606.09828</link>
-<guid>title:latent spatial memory for video world models</guid>
-<pubDate>Mon, 08 Jun 2026 17:59:54 +0000</pubDate>
-<description>Video world models that maintain 3D spatial consistency across generated frames typically rely on explicit point cloud memory constructed in RGB space. This design is both computationally expensive, requiring repeated rendering and VAE encoding, and inherently lossy, as the round trip through pixel space discards rich features of the learned latent representation. In this paper, we introduce \emph{latent spatial memory} for video world models, a persistent 3D cache that stores scene information directly in the diffusion latent space, avoiding pixel-space reconstruction. Building on this, we propose Mirage, a latent-space spatial memory framework that constructs the memory by lifting latent tokens into 3D via depth-guided back-projection and queries it by synthesizing novel views through direct latent-space warping. This unified formulation eliminates both the information loss of pixel-space reconstruction and the computational burden of repeated encoding and rendering. Experiments show that latent spatial memory achieves up to \textbf{10.</description>
+<title>Next Forcing: Causal World Modeling with Multi-Chunk Prediction</title>
+<link>https://tldr.takara.ai/p/2606.11187</link>
+<guid>title:next forcing causal world modeling with multi chunk prediction</guid>
+<pubDate>Tue, 09 Jun 2026 17:59:22 +0000</pubDate>
+<description>Autoregressive video generation has emerged as a powerful paradigm for World Action Models (WAMs). However, existing approaches suffer from slow training convergence and limited converged accuracy, particularly at high frame rates, as the training supervision is confined to the current chunk without explicit signals about future dynamics; they also suffer from slow inference due to iterative video denoising. In this paper, we present Next Forcing, a multi-chunk prediction (MCP) framework for causal world modeling that enables faster training, higher accuracy, and accelerated inference. Inspired by multi-token prediction in large language models, Next Forcing introduces an MCP training objective that augments the main model with lightweight auxiliary MCP modules to simultaneously denoise video chunks at multiple future temporal horizons (next$^1$, next$^2$, next$^3$ chunks). These MCP modules form a causal chain across prediction depths, where intermediate features fused from multiple layers of the main model are leveraged to predict future dynamics, allowing near-future predictions to inform farther-future ones and providing dense multi-scale temporal supervision back to the main model. During training, the MCP modules significantly accelerate convergence and improve converged accuracy, especially at high frame rates: at 50 fps, Next Forcing achieves a 93.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
-<category>diffusion</category>
 <category>huggingface</category>
+<category>llm</category>
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
 <category>rl</category>
+<category>robotics</category>
 <category>serving</category>
+<category>vision</category>
 <category>world-models</category>
 </item>
 <item>
-<title>AGENTSERVESIM: A Hardware-aware Simulator for Multi-Turn LLM Agent Serving</title>
-<link>https://tldr.takara.ai/p/2606.09613</link>
-<guid>title:agentservesim a hardware aware simulator for multi turn llm agent serving</guid>
-<pubDate>Mon, 08 Jun 2026 15:20:23 +0000</pubDate>
-<description>Multi-turn LLM agents interleave model calls with external tool invocations, shifting serving from stateless request processing to stateful program execution. Serving these workloads requires scheduling, KV-cache management, and routing policies that use program-level context, including turn dependencies, tool-induced gaps, and reusable KV state. Evaluating such policies directly on real systems is costly, since each design point may require dedicated accelerator time across arrival rates, model scales, serving-instance counts, and memory hierarchies. Simulation offers a scalable alternative, but existing LLM serving simulators target stateless request-level workloads and therefore omit the core dynamics of agent serving: multi-turn program execution, cross-turn cache locality, and KV-cache residency during tool gaps. We present AGENTSERVESIM, a hardware-aware simulator for multi-turn LLM agent serving. AGENTSERVESIM evaluates serving policies at program granularity through composable modules: a Program Orchestrator preserves program identity and turn order, a Tool Simulator materializes tool-induced gaps, a Session-Aware Router maintains program-to-instance affinity for cache-aware dispatch, and a KV Residency Model tracks policy-defined KV placement across HBM, host DRAM/CXL, and eviction.</description>
+<title>Geometric Coastline Localization using Vision-Language Models</title>
+<link>https://tldr.takara.ai/p/2606.10468</link>
+<guid>title:geometric coastline localization using vision language models</guid>
+<pubDate>Tue, 09 Jun 2026 06:37:37 +0000</pubDate>
+<description>Coastline detection in remote sensing imagery is commonly formulated as a pixel-wise segmentation problem, where the final coastline is extracted from a predicted mask through post-processing. This formulation relegates coastline geometry, the primary representation used in coastal change analysis, to a secondary artifact rather than the learning objective. In practice, coastlines are defined by geomorphic proxies such as vegetation lines, dune toes, or cliff edges, rather than an instantaneous land-water boundary often used in pixel-based segmentation approaches. In this work, we revisit coastline extraction from a representation perspective and formulate the task as geometric boundary localization. We use the New Zealand Coastal Change Dataset (NZCCD) and high-resolution aerial imagery from Land Information New Zealand (LINZ) to develop CoastlineVLM-7B, a vision-language model (VLM) built on the GeoChat-7B/LLaVA-1. 5 architecture that jointly performs coastline presence detection, proxy-type classification, and coastline grounding.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
+<category>alignment</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
 <category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>ChinaHeritaQA: A Culturally-Grounded Visual Question Answering Dataset for World Heritage Sites in China</title>
-<link>https://tldr.takara.ai/p/2606.08959</link>
-<guid>title:chinaheritaqa a culturally grounded visual question answering dataset for world heritage sites in china</guid>
-<pubDate>Mon, 08 Jun 2026 03:00:45 +0000</pubDate>
-<description>We introduce ChinaHeritaQA, a multimodal benchmark dataset for evaluating the cultural reasoning abilities of vision-language models (VLMs) on UNESCO World Heritage sites in China. The dataset comprises 2,279 in-the-wild images paired with 14,133 bilingual (Chinese/English) multiple-choice QA pairs spanning seven cognitive dimensions, from basic identity recognition to historical periodization and architectural analysis. Guided by a UNESCO-aligned heritage ontology and verified through rigorous human annotation, the dataset ensures linguistic quality and factual consistency. Evaluations of state-of-the-art VLMs reveal that while top models exceed human performance on average, substantial task-level variation emerges: models excel at visual recognition but struggle with culturally grounded reasoning. Performance also varies by dynasty and region. ChinaHeritaQA reveals that strong visual retrieval does not extend to cultural and historical understanding.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>multimodal</category>
 <category>paper</category>
 <category>papers</category>
 <category>reasoning</category>
@@ -58,95 +43,13 @@
 <category>vision</category>
 </item>
 <item>
-<title>H2HMem: A Multimodal Memory Benchmark for Agents in Human-Human Interactions</title>
-<link>https://tldr.takara.ai/p/2606.09461</link>
-<guid>title:h2hmem a multimodal memory benchmark for agents in human human interactions</guid>
-<pubDate>Mon, 08 Jun 2026 13:17:16 +0000</pubDate>
-<description>Large language model agents are increasingly deployed in human-human interaction settings, such as meeting assistants and clinical documentation systems, where they must observe conversations and retain information for downstream queries. Unlike traditional human-assistant settings, these environments are inherently multimodal, involve complex discourse phenomena such as anaphora and deixis, and contain asynchronous or conflicting information from multiple participants. However, existing memory benchmarks largely focus on single-user, text-only interactions, failing to capture these challenges. To address this gap, we introduce H2HMem, a Human-to-Human Multimodal Memory Benchmark for evaluating memory capabilities in complex human-human interactions. H2HMem includes both dyadic and multi-party conversations with multimodal information streams, and evaluates agents along three dimensions: memory recall, reasoning, and application. Experiments with advanced agents reveal substantial limitations in constructing, retaining, and utilizing memories across modalities, participants, and sessions, highlighting substantial room for improvement in next-generation LLM agents.</description>
+<title>When to Align, When to Predict: A Phase Diagram for Multimodal Learning</title>
+<link>https://tldr.takara.ai/p/2606.11190</link>
+<guid>title:when to align when to predict a phase diagram for multimodal learning</guid>
+<pubDate>Tue, 09 Jun 2026 17:59:58 +0000</pubDate>
+<description>Cross-modal alignment (CA) and cross-modal prediction (CP) are the dominant paradigms for multimodal representation learning, yet there is no systematic understanding of when each succeeds, when each fails, and when cross-modal training helps at all -- a gap that leaves practitioners, especially in scientific domains like biomedicine or astrophysics, with heterogeneous instruments and multiple levels of organization and measurement, unable to diagnose why standard methods underperform the best single modality. We develop a unified linear framework that addresses both questions. Under a spiked signal-plus-noise model with structured cross-modal nuisance correlation, we derive separation ratios for both objectives that expose complementary failure modes: alignment whitens each modality and fails when nuisance is strongly correlated across views; prediction encodes whatever is cross-predictable through a one-sided whitening, with recovery governed by source-modality quality. The resulting phase diagram partitions multimodal problems into four regimes: Both, CA only, CP only, and Neither. We present a data-driven procedure to locate real-world datasets in this diagram using a small labeled subsample, identifying the preferred objective and prediction direction before any cross-modal training. Experiments on synthetic data, stereo-vision benchmarks, image-caption pairs, and real astrophysical data validate the predictions in the nonlinear regime, including the Neither regime where cross-modal training is actively harmful.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>Guide Me Out: A Framework to Benchmark VLM Operators Communication in Crisis Scenarios</title>
-<link>https://tldr.takara.ai/p/2606.09428</link>
-<guid>title:guide me out a framework to benchmark vlm operators communication in crisis scenarios</guid>
-<pubDate>Mon, 08 Jun 2026 12:40:26 +0000</pubDate>
-<description>Effective crisis response requires spatially grounded communication that bridges linguistic guidance of civilians with the physical environment, accounting for structural bottlenecks, evolving threats, and agent-specific contexts. Yet, current NLP research in crisis communication remains mainly limited to static, text-only classification settings, overlooking the critical communicative role of AI operators in dynamic, embodied scenarios. We address this gap with a novel benchmarking framework for evaluating Vision-Language Models (VLMs) tasked with guiding civilian agents through simulated evacuations. We test two communication strategies (narrowcast vs. broadcast), two environment representations (visual vs. graph-based), and two threat behaviors (static vs.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>vision</category>
-</item>
-<item>
-<title>One Model, Multiple Goals: Adaptive Multi-Objective Learning for E-commerce Dialogue Systems</title>
-<link>https://tldr.takara.ai/p/2606.09293</link>
-<guid>title:one model multiple goals adaptive multi objective learning for e commerce dialogue systems</guid>
-<pubDate>Mon, 08 Jun 2026 10:01:07 +0000</pubDate>
-<description>Dialogue systems in e-commerce scenarios often need to satisfy multiple objectives: accurately reasoning over user profiles (e. g. , eligibility, credit limit) to ensure correct decision-making and user state interpretation, while also generating natural and faithful responses. These goals are complementary but not identical. In this work, we propose MORE, an adaptive Multi-Objective REinforcement learning framework that jointly optimizes reasoning accuracy and linguistic naturalness. Our preliminary experiments show that directly mixing rewards with diverging optimization dynamics can cause oscillations and unstable learning.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>Visual Prompting Meets Feature Reconstruction-Based Anomaly Detection with Dual-Teacher Supervision</title>
-<link>https://tldr.takara.ai/p/2606.09670</link>
-<guid>title:visual prompting meets feature reconstruction based anomaly detection with dual teacher supervision</guid>
-<pubDate>Mon, 08 Jun 2026 15:52:05 +0000</pubDate>
-<description>Recent Anomaly Detection methods achieve perfect detection and segmentation scores on well-established datasets, such as MVTec. However, many of these methods face challenges when foundational assumptions - such as consistent object scale, viewpoint, background, illumination, and centered placement - are violated. Those variations that occur render anomaly detection methods unusable in many real-world scenarios. To address these limitations, we introduce three key contributions: (1) a visual prompting pipeline that isolates objects using foreground-background masking; (2) a mechanism for unfreezing the teacher in student-teacher models to improve domain adaptability; and (3) a data augmentation strategy leveraging diffusion-generated synthetic images to enhance anomaly detection performance. We achieve a 3.5 percentage point improvement over the previous state-of-the-art on the challenging AeBAD dataset by using the Masked Multiscale Reconstruction (MMR) model as our backbone.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>vision</category>
-</item>
-<item>
-<title>End-to-End Context Compression at Scale</title>
-<link>https://tldr.takara.ai/p/2606.09659</link>
-<guid>title:end to end context compression at scale</guid>
-<pubDate>Mon, 08 Jun 2026 15:43:16 +0000</pubDate>
-<description>Long-context language model inference is bottlenecked by memory, as the KV cache grows with context length. Recent techniques to compress the KV cache fall short: they either degrade model quality substantially or require considerable time and compute to compress a single long prompt. Furthermore, many methods require the input to fit within the target model's context window, and are generally incompatible with modern production inference engines. Encoder-decoder compressors, which map a long token sequence to a shorter sequence of latent embeddings consumed by a decoder, are an appealing alternative in principle. However, existing approaches are not competitive with KV cache compression on the accuracy-efficiency frontier. In this work, we revisit encoder-decoder compression and close this gap.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>serving</category>
-</item>
-<item>
-<title>ATN3D: Density-Aware LiDAR-Radar Early 3D Object Detection Under Extreme Sparsity</title>
-<link>https://tldr.takara.ai/p/2606.09634</link>
-<guid>title:atn3d density aware lidar radar early 3d object detection under extreme sparsity</guid>
-<pubDate>Mon, 08 Jun 2026 15:32:29 +0000</pubDate>
-<description>3D object detection is the backbone of perception for automated vehicles (AV) and broader intelligent transportation systems applications. Long-range detection is challenging because sensing evidence is sparse; yet this ``long-range'' scenario is routine in traffic. Although &gt;30m is often labeled long-range in computer vision, on roadways it affords only approx. 1-2s for perception and decision-making. Under such extreme sparsity, two core challenges arise. First, early multimodal fusion tends to discard sparsity information and inject noise from empty or falsely occupied cells, degrading long-range recall.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>ml</category>
@@ -157,11 +60,47 @@
 <category>vision</category>
 </item>
 <item>
-<title>Automated IEP Generation from Traditional Chinese Parent-Teacher Interviews via Corpus-Grounded Feature Diffusion</title>
-<link>https://tldr.takara.ai/p/2606.09603</link>
-<guid>title:automated iep generation from traditional chinese parent teacher interviews via corpus grounded feature diffusion</guid>
-<pubDate>Mon, 08 Jun 2026 15:13:45 +0000</pubDate>
-<description>Writing Individualized Education Programs (IEPs) is a high-labor, knowledge-intensive document burden; English-language research has demonstrated that generative AI can significantly reduce drafting time, yet automated IEP generation in Traditional Chinese remains virtually unexplored due to domain data scarcity, strict privacy regulations, and the absence of local evaluation benchmarks. We propose a low-resource fine-tuning pipeline centered on Corpus-Grounded Feature Diffusion (CGFD): (1) 25 dual-expert high-score seed transcripts are selected via a tau threshold with flag-aware score caps; (2) a FeatureProfile (sentence length, structure, quantification templates) is extracted from seeds and injected into LLM prompts alongside Verbalized-Sampling-style diversity control to drive diffusion; (3) 15 expert gold seeds are used as diffusion anchors, targeting 585 samples; 567 valid diffusion samples are obtained, yielding a 582-sample training set used to fine-tune Breeze-7B with QLoRA; (4) schema-constrained inference via Grammar-Constrained Decoding (GCD) enforces a hierarchical SMART Goal Ladder schema at inference time. Ablation results on a 55-sample schema stress set reveal an unexpected finding: GCD is counterproductive under Traditional Chinese token budgets -- the no-GCD path achieves 100% schema pass rate at 34% lower median latency, outperforming GCD on both reliability and speed. On the n=10 formal hold-out, the no-GCD inference path achieves BERTScore F1 = 0. 779, exceeding GPT-5. 4 (0.</description>
+<title>Early-Token Confidence Predicts Reasoning Quality in Multi-Agent LLM Debate</title>
+<link>https://tldr.takara.ai/p/2606.10307</link>
+<guid>title:early token confidence predicts reasoning quality in multi agent llm debate</guid>
+<pubDate>Tue, 09 Jun 2026 01:52:59 +0000</pubDate>
+<description>Evaluating reasoning quality in multi-agent LLM systems is challenging, especially for open-ended tasks without reference answers. We investigate whether intrinsic confidence signals, token-level log-probabilities from decoding, can predict reasoning quality as assessed by LLM-as-judge evaluation. Using a debate-based essay scoring framework, we compare confidence proxies against rubric-based judge scores across two ASAP essay sets. We find that early-token confidence, particularly within the first few generated tokens, is consistently the strongest predictor of reasoning quality, outperforming full-sequence statistics. Analysis of log-probability trajectories shows that the opening phase of generation is the most heterogeneous and therefore most informative. We also observe a systematic asymmetry between agent roles, with stronger alignment between confidence and quality for supportive reasoning than for adversarial critique.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>rl</category>
+</item>
+<item>
+<title>Supervised Fine-tuning with Synthetic Rationale Data Hurts Real-World Disease Prediction</title>
+<link>https://tldr.takara.ai/p/2606.10279</link>
+<guid>title:supervised fine tuning with synthetic rationale data hurts real world disease prediction</guid>
+<pubDate>Tue, 09 Jun 2026 01:00:04 +0000</pubDate>
+<description>Supervised fine-tuning with synthetic rationale data is widely assumed to improve language model performance on clinical prediction tasks by teaching models not just what to predict but why. We test this assumption on five-year Alzheimer's disease and related dementias (ADRD) prediction from longitudinal health histories. Across a large-scale controlled experiment of 504 configurations, we find that rationale-based SFT consistently and substantially hurts prediction performance relative to label-only fine-tuning. The degradation persists across model families and data scales, and is not resolved by using a reasoning-oriented base model. Crucially, the failure is not explained by poor rationale quality: human expert annotation confirms that the generated rationales are medically accurate and faithfully grounded in patient-specific evidence, and few-shot experiments show that the same rationales improve performance when used as inference-time demonstrations rather than training targets. We identify the root cause as a structural conflict between narrative plausibility and discriminative optimization.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>rl</category>
+<category>serving</category>
+<category>vision</category>
+</item>
+<item>
+<title>K-Forcing: Joint Next-K-Token Decoding via Push-Forward Language Modeling</title>
+<link>https://tldr.takara.ai/p/2606.10820</link>
+<guid>title:k forcing joint next k token decoding via push forward language modeling</guid>
+<pubDate>Tue, 09 Jun 2026 13:02:00 +0000</pubDate>
+<description>Autoregressive (AR) language modeling is the dominant paradigm for text generation, yet its sequential token-by-token decoding makes inference memory-bound and inefficient. Existing acceleration approaches, such as speculative decoding and diffusion language models, can yield speedups under certain conditions but do not directly address high-load batch serving--the scenario most critical for industrial-scale deployment. We introduce K-Forcing, a push-forward language modeling paradigm for joint next-k-token decoding. K-Forcing distills an existing AR model into a conditional push-forward mapping--one that transforms independent uniform noise variables into a joint sample of multiple future tokens in a single forward pass. This design preserves fixed-length outputs, reuses the AR teacher backbone, and remains compatible with standard AR serving infrastructure. We train this mapping via progressive self-forcing distillation, which gradually expands the prediction window while enabling the student to closely match the sequence distribution of the AR teacher.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>diffusion</category>
@@ -170,13 +109,80 @@
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
+<category>rl</category>
 <category>serving</category>
+</item>
+<item>
+<title>Beyond APIs: Probing the Limits of MLLMs in Physical Tool Use</title>
+<link>https://tldr.takara.ai/p/2606.10803</link>
+<guid>title:beyond apis probing the limits of mllms in physical tool use</guid>
+<pubDate>Tue, 09 Jun 2026 12:49:11 +0000</pubDate>
+<description>Multimodal Large Language Models (MLLMs) excel at utilizing digital APIs and increasingly serve as the &quot;brain&quot; of embodied AI, instructing robots to interact with the physical world. In such embodied settings, a central capability is the use of physical tools, which underpins MLLMs' ability to assist humans in real-world tasks. Despite the importance, MLLMs' proficiency in physical tool use remains largely unexplored. To address this gap, we introduce PhysTool-Bench, the first physical tool-use benchmark designed to evaluate MLLMs' ability to comprehend real-world scenarios, identify physical tools, and plan their use. PhysTool-Bench comprises 2,510 queries over 2,678 real-world physical tools spanning diverse domains, including manufacturing, electrical work, agriculture, and healthcare. Concretely, models are evaluated along two primary dimensions: 1) recognizing all physical tools present in the scene, and 2) planning the tool selection and use sequence based on the instruction and visual context.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>robotics</category>
+</item>
+<item>
+<title>ManiSplat: Manipulation Trajectory Synthesis from Monocular Video via Decoupled 3D Gaussian Splatting</title>
+<link>https://tldr.takara.ai/p/2606.10645</link>
+<guid>title:manisplat manipulation trajectory synthesis from monocular video via decoupled 3d gaussian splatting</guid>
+<pubDate>Tue, 09 Jun 2026 09:55:58 +0000</pubDate>
+<description>Reconstructing dynamic and interactive 3D scenes from real-world observations remains a fundamental challenge in computer vision and robotics. While recent advances in 3D Gaussian Splatting have enabled high-fidelity static reconstruction, extending it to interactive environments with articulated robots and manipulable objects remains difficult due to complex contact interactions and abrupt pose changes. To address these challenges, we introduce ManiSplat, a unified framework that reconstructs controllable and decoupled Gaussian digital twins directly from monocular ego-view robotic videos. Our method introduces a Graph-Structured Disentangled Representation that separates the robot, objects, and background into independently optimizable Gaussian subfields organized within a scene graph. To ensure stability, we propose a Task-Oriented Spatio-Temporal Alignment module that leverages the inherent logic of manipulation tasks-alternating between Motion and Skill phases-to construct accurate pseudo-ground-truth trajectories. Finally, a joint photometric-geometric optimization ensures the reconstructed scenes are temporally coherent, physically consistent, and simulation-ready.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>robotics</category>
+<category>vision</category>
+</item>
+<item>
+<title>ReasonAlloc: Hierarchical Decoding-Time KV Cache Budget Allocation for Reasoning Models</title>
+<link>https://tldr.takara.ai/p/2606.11164</link>
+<guid>title:reasonalloc hierarchical decoding time kv cache budget allocation for reasoning models</guid>
+<pubDate>Tue, 09 Jun 2026 17:44:23 +0000</pubDate>
+<description>Long chain-of-thought (CoT) trajectories in large language model (LLM) reasoning cause severe inference bottlenecks due to rapid key-value (KV) cache growth. Current decoding-time compression methods mitigate this issue via token eviction, but typically assume a uniform budget distribution across all layers and heads. In contrast, existing non-uniform budget allocation methods are predominantly designed for the static prompt prefill phase, and they do not capture the stepwise context demands of autoregressive reasoning. To bridge this gap, we propose ReasonAlloc, a training-free framework that recasts decoding-time KV compression as a hierarchical budget allocation problem. ReasonAlloc operates at two complementary levels: an offline layer-wise preallocation strategy captures an architecture-driven demand pattern which we call ``\textit{Reasoning Wave}'', while an online head-wise strategy reallocates resources during decoding to information-rich heads based on real-time utility. Evaluations on mathematical reasoning benchmarks (MATH-500, AIME~2024) using DeepSeek-R1-Distill-Llama-8B, DeepSeek-R1-Distill-Qwen-14B, and AceReason-14B show that ReasonAlloc outperforms uniform-budget R-KV, SnapKV, and Pyramid-RKV (a baseline enforcing a static, monotonically decreasing layer budget), with the largest gains at small budgets (128-512 tokens).</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>serving</category>
+</item>
+<item>
+<title>Null-Space Constrained Low-Rank Adaptation for Response-Specified Large Language Model Unlearning</title>
+<link>https://tldr.takara.ai/p/2606.10989</link>
+<guid>title:null space constrained low rank adaptation for response specified large language model unlearning</guid>
+<pubDate>Tue, 09 Jun 2026 15:26:36 +0000</pubDate>
+<description>Large language model unlearning aims to suppress designated undesirable knowledge while preserving benign capabilities. Many unlearning objectives focus on suppressing undesired answers, while recent target-guided variants specify replacement behavior but still leave update locality largely unconstrained. This paper introduces \emph{Null-Space Constrained Response-Specified Unlearning} (NSRU), a projection-constrained low-rank framework for controlled LLM unlearning. NSRU uses an explicitly structured safe target response to specify the desired behavior for each forget query, while suppressing the original undesired content. To localize adaptation, NSRU estimates per-module retain subspaces from benign hidden representations and uses an orthogonal-projected low-rank parameterization to confine LoRA updates to the null space of the retain subspace. The resulting objective jointly optimizes safe-target learning, undesired-response suppression, and retention preservation under this constrained parameterization.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>vision</category>
 </item>
 <item>
 <title>Introducing the Services Track and Partner Hub of the Claude Partner Network</title>
 <link>https://www.anthropic.com/news/services-track-partner-hub</link>
 <guid>title:introducing the services track and partner hub of the claude partner network</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:24 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:41 +0000</pubDate>
 <description>Almost every large enterprise is moving AI into production, and many have discovered something important: a successful pilot is not the same as a system a business can run on. The real work—and the real opportunity—is in the integration, the evaluation, and the way people's work evolves. That's why the companies getting AI integration right are doing it with partners who have done it before. In March, we launched the Claude Partner Network—a program, backed by a $100 million investment in partner training, technical support, and shared marketing, for the firms that help enterprises put Claude into production. Since then, more than 40,000 firms have applied to join and more than 10,000 consultants have earned a Claude certification—a credential, held by an individual, that signals they've been trained to build and deploy Claude in production. The largest professional-services firms in the world are building their own practices around Claude — putting it into production for clients while getting it into the hands of their own people.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>agents</category>
@@ -191,7 +197,7 @@
 <title>Widening the conversation on frontier AI</title>
 <link>https://www.anthropic.com/news/widening-conversation-ai</link>
 <guid>title:widening the conversation on frontier ai</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:13 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:35 +0000</pubDate>
 <description>At Anthropic, we want to build AI systems that advance humanity and act for the global good. To do so, we need to engage with those who see the world from a variety of different perspectives. Over the past several months, we’ve been organizing dialogues with groups whose work and traditions bear on the questions raised by AI. Our first round of discussions has been with wisdom traditions—including scholars, clergy, philosophers, and ethicists from more than 15 religious and cross-cultural groups—and we look forward to engaging with a broader range of people going forward. Building safe, beneficial AI models requires deep technical work on alignment, interpretability, safeguards, evaluations, and more. But that work isn’t conducted—nor is AI deployed—in a vacuum.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>alignment</category>
@@ -206,7 +212,7 @@
 <title>Introducing Claude Opus 4.8</title>
 <link>https://www.anthropic.com/news/claude-opus-4-8</link>
 <guid>title:introducing claude opus 4 8</guid>
-<pubDate>Tue, 09 Jun 2026 11:26:58 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:25 +0000</pubDate>
 <description>We’re upgrading Claude Opus to a new version: Claude Opus 4. 8. It builds on Opus 4. 7 with improvements across benchmarks, and is a more effective collaborator. It’s available today for the same price. Opus 4.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>agents</category>
@@ -218,105 +224,11 @@
 <category>safety</category>
 </item>
 <item>
-<title>TheoremBench: Evaluating LLMs on Theorem Proving in Formal Mathematics</title>
-<link>https://tldr.takara.ai/p/2606.09450</link>
-<guid>title:theorembench evaluating llms on theorem proving in formal mathematics</guid>
-<pubDate>Mon, 08 Jun 2026 12:57:18 +0000</pubDate>
-<description>LLMs have recently achieved strong results on formal proving benchmarks. However, existing evaluations remain heavily concentrated on competition-style problems and often fail to capture how models behave on longer, more dependency-rich mathematical developments. We introduce TheoremBench, a Lean4 benchmark designed to evaluate theorem provers beyond contest settings. The benchmark is built from nearly one hundred classical theorems and is released in two complementary forms: a plain main version containing one target theorem per instance, and a premised version that expands each theorem into a structured family of related proving tasks consisting of the main theorem together with automatically extracted supporting subtheorems. This design enables evaluation of not only whether the final theorem was proved from scratch, but also of partial progress through the internal proof structure of a theorem. Our experiments show that explicit premises substantially improve performance for Lean4-capable prover models.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-<category>rl</category>
-</item>
-<item>
-<title>Temporal-Aware Reasoning Optimization for Video Temporal Grounding</title>
-<link>https://tldr.takara.ai/p/2606.09248</link>
-<guid>title:temporal aware reasoning optimization for video temporal grounding</guid>
-<pubDate>Mon, 08 Jun 2026 09:21:01 +0000</pubDate>
-<description>Multi-modal Large Language Models (MLLMs) have achieved remarkable progress in video temporal grounding with reinforcement learning for generating reasoning paths. However, existing models often produce superficial reasoning, which offers limited guidance for precise temporal localization. This limitation stems from (1) inefficient random exploration and (2) reward functions that focus solely on the answer correctness while ignoring reasoning quality. To address these issues, we propose TaRO (Temporal-Aware Reasoning Optimization), a framework that explicitly enhances the model's ability of thinking with time. First, we introduce a Constructive Reasoning Exploration that leverages pre-generated dense captions to construct reasoning paths grounded in explicit visual cues and timestamps, enabling efficient exploration of high-quality time-aware reasoning. Second, to evaluate reasoning quality, we design a Temporal-Sensitivity Reward.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-<category>rl</category>
-</item>
-<item>
-<title>Decoding Pedestrian Crossing Intention from Egocentric Vision via Vision Language Models</title>
-<link>https://tldr.takara.ai/p/2606.09142</link>
-<guid>title:decoding pedestrian crossing intention from egocentric vision via vision language models</guid>
-<pubDate>Mon, 08 Jun 2026 07:39:42 +0000</pubDate>
-<description>Egocentric vision offers a first-person view of human perception and decision making, yet its potential for traffic-safety prediction remains underexplored. In this work, we study the decoding of pedestrian crossing intentions from short egocentric video clips. We approach this by formulating the task as a closed-ended visual question answering (VQA) problem and leveraging vision language models (VLMs) to predict the pedestrians' intent. We first benchmark three families of state-of-the-art VLMs in a zero-shot setting, finding that they achieve moderate gains over random guessing but exhibit limited higher-level traffic reasoning. Motivated by these findings, we further adapt VLMs to the target task using parameter-efficient fine-tuning. Our results show that the fine-tuned models substantially outperform their zero-shot counterparts and achieve a 9\% accuracy improvement over a specialized transformer-based baseline.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-<category>vision</category>
-</item>
-<item>
-<title>Context-Fractured Decomposition Attacks on Tool-Using LLM Agents: Exploiting Artifact Provenance Gaps</title>
-<link>https://tldr.takara.ai/p/2606.09084</link>
-<guid>title:context fractured decomposition attacks on tool using llm agents exploiting artifact provenance gaps</guid>
-<pubDate>Mon, 08 Jun 2026 06:29:42 +0000</pubDate>
-<description>Tool-using LLM agents interact with the world through actions that persist state in artifacts (e. g. , workspace files or logs). Consequently, jailbreak defenses must reason about cross-step composition rather than isolated text. Yet most existing attacks and defenses, including ``multi-turn'' jailbreaks such as Crescendo and Tree of Attacks,still assume a single contiguous conversation visible to the defender. This assumption breaks down in real agent pipelines, where enforcement is fragmented across tools, modules, and time, and where artifact provenance is often not tracked.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Transition-Based Digital Twin Modelling for Alzheimer's Disease under Sparse Longitudinal Data</title>
-<link>https://tldr.takara.ai/p/2606.09671</link>
-<guid>title:transition based digital twin modelling for alzheimer s disease under sparse longitudinal data</guid>
-<pubDate>Mon, 08 Jun 2026 15:54:10 +0000</pubDate>
-<description>Alzheimer's disease (AD) progression is highly heterogeneous and is typically observed through sparse and irregular longitudinal data, posing challenges for prediction and personalised monitoring. Existing machine learning approaches have improved AD prediction using multimodal data, yet often focus on static classification or cohort-level risk estimation, providing limited support for subject-specific modelling and uncertainty-aware reasoning. To address these limitations, we present a personalised digital twin framework for AD prediction and scenario-based analysis using multimodal longitudinal data. The proposed approach integrates complementary modelling strategies to capture clinical transitions and temporal dependencies across visits. Using data from the Alzheimer's Disease Neuroimaging Initiative (ADNI), including cognitive assessments, clinical variables, and MRI-derived phenotypes, the framework predicts cognitive status and diagnostic categories while quantifying predictive uncertainty and enabling patient-specific what-if trajectory analysis. Evaluation on leak-free subject-level splits demonstrates strong performance in score forecasting and diagnosis classification.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>TUDSR: Twice Upsampling-Diffusion for Higher Super-Resolution</title>
-<link>https://tldr.takara.ai/p/2606.09608</link>
-<guid>title:tudsr twice upsampling diffusion for higher super resolution</guid>
-<pubDate>Mon, 08 Jun 2026 15:18:04 +0000</pubDate>
-<description>Diffusion-based generative models have achieved remarkable success in real-world image super-resolution (SR). With tiled diffusion techniques, these models can produce high-resolution images that exceed their native-supported resolution. However, the quality of such high-resolution (e. g $2048^2$) outputs often remains extremely poor, primarily due to two factors we consider: the image upsampling ratio (e. g $\times8$) exceeding the model's native-supported upsampling ratio (e. g $\times4$), and the model's native-supported resolution.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>An update on our election safeguards</title>
-<link>https://www.anthropic.com/news/election-safeguards-update</link>
-<guid>title:an update on our election safeguards</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:19 +0000</pubDate>
-<description>People around the world turn to Claude for information about political parties, candidates, and the issues at stake during election time—as well as to answer simpler questions like when, where, and how to vote. In our view, if AI models can answer these questions well (that is, accurately and impartially), they can be a positive force for the democratic process. Here, we explain what we’re doing to help Claude meet the mark ahead of the US midterms and other major elections around the world this year. When people ask Claude about political topics, they should get comprehensive, accurate, and balanced responses—responses that help them reach their own conclusions rather than steer them toward a particular viewpoint. That’s why we train Claude to treat different political viewpoints with equal depth, engagement, and analytical rigor—a principle set out in Claude’s constitution . This is built into the model through character training (where we reward the model for producing responses that reflect a set of values and traits), and then reinforced through our system prompts , which carry explicit instructions on political neutrality into every conversation on Claude.</description>
+<title>Claude Fable 5 and Claude Mythos 5</title>
+<link>https://www.anthropic.com/news/claude-fable-5-mythos-5</link>
+<guid>title:claude fable 5 and claude mythos 5</guid>
+<pubDate>Wed, 10 Jun 2026 11:47:21 +0000</pubDate>
+<description>Today we’re launching Claude Fable 5 : a Mythos-class 1 model that we’ve made safe for general use. Fable 5’s capabilities exceed those of any model we’ve ever made generally available. It is state-of-the-art on nearly all tested benchmarks of AI capability, showing exceptional performance in software engineering, knowledge work, vision, scientific research, and many other areas. The longer and more complex the task, the larger Fable 5’s lead over our other models. Releasing a model this capable comes with risks. Without safeguards, Fable 5’s capabilities in areas like cybersecurity could be misused to cause serious damage.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>anthropic</category>
 <category>lab</category>
@@ -324,12 +236,154 @@
 <category>product</category>
 <category>rl</category>
 <category>safety</category>
+<category>vision</category>
+</item>
+<item>
+<title>Closing the Modality Gap in Zero-Shot HAR: Contrastive Training and Separability-Optimized Prototypes on IMU Data</title>
+<link>https://tldr.takara.ai/p/2606.10789</link>
+<guid>title:closing the modality gap in zero shot har contrastive training and separability optimized prototypes on imu data</guid>
+<pubDate>Tue, 09 Jun 2026 12:39:41 +0000</pubDate>
+<description>Zero-shot learning (ZSL) for inertial measurement unit (IMU)-based human activity recognition (HAR) faces a central challenge: bridging the gap between sensor embeddings and semantic class representations. We systematically evaluate seven configurations combining three inference methods with two training pipelines on the PAMAP2 dataset, using 14 seen and 4 unseen activity classes with subjects 108 and 109 held out for testing. We find that the modality gap is a training-time phenomenon governed by the encoder objective. A temporal convolutional network (TCN) trained with cross-entropy over label-name Sentence- BERT prototypes yields sensor embeddings with a mean cosine similarity of 0. 30 to the corresponding text prototypes, while replacing the label-name prototype targets with discriminative activity descriptions raises this to 0. 69.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>GaussTrace: Provenance Analysis of 3D Gaussian Splatting Models with Evidence-based LLM Reasoning</title>
+<link>https://tldr.takara.ai/p/2606.10612</link>
+<guid>title:gausstrace provenance analysis of 3d gaussian splatting models with evidence based llm reasoning</guid>
+<pubDate>Tue, 09 Jun 2026 09:11:57 +0000</pubDate>
+<description>3D Gaussian Splatting (3DGS) is a powerful technique for creating high-fidelity 3D assets. However, the widespread sharing and iterative modification of 3DGS models across digital platforms create pressing challenges for intellectual property protection and forensic traceability. To address this, we propose GaussTrace, a novel framework for constructing directed provenance graphs for 3DGS models. GaussTrace formulates provenance analysis as an evidence-based reasoning problem. It builds upon attribute-wise statistical profiling of 3DGS parameters to capture intrinsic properties. Moreover, we introduce hypothesis-driven editing simulations of common operations to provide auxiliary evidence for plausible transformation pathways.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>serving</category>
+</item>
+<item>
+<title>Globally Localizing Lunar Rover in Pixels via Graph Alignment</title>
+<link>https://tldr.takara.ai/p/2606.10602</link>
+<guid>title:globally localizing lunar rover in pixels via graph alignment</guid>
+<pubDate>Tue, 09 Jun 2026 09:04:54 +0000</pubDate>
+<description>Precise rover localization is a prerequisite for autonomous lunar exploration, yet the absence of Global Navigation Satellite System (GNSS) signals and the cumulative drift of local localization methods severely constrain long-range missions. Cross-view localization provides a promising drift-free global solution by matching rover-view and satellite-view imagery. However, the lunar environment poses unique challenges for correspondence alignment, including inter-entity entanglement, inter-viewpoint divergence, and simulation-to-real domain shift. To address these challenges, we propose Warped Alignment of Reprojected Graphs (WARG), a framework that leverages unified graph learning and reprojected graph matching for robust cross-view alignment. Pretrained on the synthetic LuSNAR dataset, WARG achieves an average test error of 0. 32 m and demonstrates robust zero-shot generalization to the synthetic lunar south pole region with an error of 3.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>rl</category>
+</item>
+<item>
+<title>One Token per Multimodal Evidence: Latent Memory for Resource-Constrained QA</title>
+<link>https://tldr.takara.ai/p/2606.10572</link>
+<guid>title:one token per multimodal evidence latent memory for resource constrained qa</guid>
+<pubDate>Tue, 09 Jun 2026 08:36:08 +0000</pubDate>
+<description>External memory effectively grounds large language models (LLMs) and vision-language models (VLMs)-based question answering (QA) in relevant multimodal evidence. However, existing memory paradigms represent each memory item in raw text and image forms, so retrieval-based systems must pass the retrieved text or images to the generation LLMs/VLMs, resulting in high token consumption and storage pressure, making it unaffordable for resource-constrained applications. We propose Latent Memory, a latent-space memory paradigm that replaces each raw text or image evidence item with a single high-dimensional latent token produced by a small compressor LLM/VLM. Rather than retrieving raw evidence for generation, Latent Memory operates in a unified latent representation space: the query is embedded into this space to retrieve relevant latent tokens, and the retrieved latent tokens are directly prompted to a pretrained LLM or VLM for answer generation. To make each latent token simultaneously informative for reconstruction, retrieval, and generation, we train the compressor with reconstruction, contrastive, and distillation objectives in a unified end-to-end manner. Latent Memory is evaluated on seven text-only QA benchmarks (e.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+<category>vision</category>
+</item>
+<item>
+<title>Prefilling-dLLM: Predictive Prefilling for Long-Context Inference in Diffusion Language Models</title>
+<link>https://tldr.takara.ai/p/2606.10537</link>
+<guid>title:prefilling dllm predictive prefilling for long context inference in diffusion language models</guid>
+<pubDate>Tue, 09 Jun 2026 08:06:22 +0000</pubDate>
+<description>Diffusion large language models (dLLMs) re-encode the entire prefix at every denoising step, causing recomputation that scales quadratically with context length and becomes prohibitive for long-context scenarios. We propose Prefilling-dLLM, a training-free prefill-decode disaggregation framework for dLLMs that partitions the prefix into N chunks, caches their KV representations once, and selects the top-K most relevant chunks with intra-chunk token sparsity for decoding, showing that sparse prefilling can outperform dense attention while reducing per-step complexity from quadratic in the full sequence length to quadratic only in the decode length. On LongBench and InfiniteBench, Prefilling-dLLM achieves state-of-the-art quality among dLLM acceleration methods, and an attention kernel that parallelizes decoding over the non-contiguously cached chunk KV yields 9. 1--28. 0x speedup at 8K--32K contexts. We further show that beginning-of-sequence tokens prepended to each chunk act as periodic attention anchors that eliminate the lost-in-the-middle phenomenon.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>diffusion</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>SpenseGPT: Practical One-shot Pruning Enabling Sparse and Dense GEMMs for LLM Inference</title>
+<link>https://tldr.takara.ai/p/2606.10445</link>
+<guid>title:spensegpt practical one shot pruning enabling sparse and dense gemms for llm inference</guid>
+<pubDate>Tue, 09 Jun 2026 05:48:31 +0000</pubDate>
+<description>Semi-structured 2:4 sparsity is widely supported by modern accelerators, providing up to a 2x theoretical speedup. However, its strict 50% sparsity constraint often causes non-negligible accuracy degradation under post-training pruning. Meanwhile, existing relaxed sparsity formats either require specialized compiler support or introduce runtime overheads that limit end-to-end speedup. We propose Spense, a practical hybrid sparse-dense format that splits each weight matrix into a 2:4 sparse region and a dense region. This design relaxes the effective sparsity constraint while remaining compatible with existing high-performance sparse and dense GEMM libraries, avoiding both custom compiler support and input activation expansion. Building on this format, we introduce SpenseGPT, a one-shot post-training pruning method that produces sparse and dense regions.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>serving</category>
+</item>
+<item>
+<title>IDEAL: In-DEpth ALignment Makes A Discrete Representation AutoEncoder</title>
+<link>https://tldr.takara.ai/p/2606.11096</link>
+<guid>title:ideal in depth alignment makes a discrete representation autoencoder</guid>
+<pubDate>Tue, 09 Jun 2026 16:53:30 +0000</pubDate>
+<description>Built on pretrained vision foundation models (VFMs), representation autoencoders (RAEs) have recently emerged as a promising approach for constructing semantically rich latent spaces for image generation. However, their reconstruction quality often remains suboptimal, largely because deep VFM representations do not preserve sufficient fine-grained visual detail. This limitation becomes even more severe after discretization, where missing low-level information is difficult to recover. In fact, we observe that shallow VFM features retain considerably richer local appearance and structural detail, which complements the high-level semantics carried by deep features used in existing RAEs. Motivated by this complementary property, we propose Ideal, an In-depth Alignment framework for discrete representation autoencoding. By jointly aligning quantized tokens with both shallow and deep VFM features, Ideal enables the resulting discrete visual tokens to preserve both visual fidelity and rich semantics.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>vision</category>
+</item>
+<item>
+<title>Generative Archetype-Grounded Item Representations for Sequential Recommendation</title>
+<link>https://tldr.takara.ai/p/2606.11023</link>
+<guid>title:generative archetype grounded item representations for sequential recommendation</guid>
+<pubDate>Tue, 09 Jun 2026 15:59:14 +0000</pubDate>
+<description>Sequential recommendation aims to predict users' next interaction with items by analyzing their historical behavior. However, the limited quality of item representations remains a critical bottleneck. While pre-trained large language models (LLMs) can provide rich semantic representations, existing approaches only rely on static encoding of fixed attributes, overlooking the crucial role of target audiences in defining item identity. Moreover, the semantic space struggles to reflect actual user behavior, resulting in a significant gap between semantic representations and behavioral patterns. To address these limitations, we propose GenAIR, a general framework that empowers sequential recommendation with Generative Archetype-grounded Item Representations. Specifically, we first leverage an LLM to analyze item metadata and infer textual description of the Archetype, which represents the conceptual profile of the item's ideal target audience.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+</item>
+<item>
+<title>Diffusion Forcing Planner: History-Annealed Planning with Time-Dependent Guidance for Autonomous Driving</title>
+<link>https://tldr.takara.ai/p/2606.11019</link>
+<guid>title:diffusion forcing planner history annealed planning with time dependent guidance for autonomous driving</guid>
+<pubDate>Tue, 09 Jun 2026 15:56:41 +0000</pubDate>
+<description>Learning-based motion planners, despite recent progress, often suffer from temporal inconsistency. Small perturbations across frames can accumulate into unstable trajectories, degrading comfort and safety in closed-loop driving. Several methods attempt to inject history as a static conditioning signal to stabilize outputs, only to induce the planner to copy historical patterns instead of adapting to environment contexts. To address this limitation, we propose Diffusion Forcing Planner (DFP), a diffusion-based planning framework driven by history-guided control. Specifically, DFP decomposes the full trajectory into history, current and future segments, and assign independent noise levels to each segment. The model jointly denoises the historical and the future segments, enforcing a heterogeneous joint diffusion process.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>diffusion</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
 </item>
 <item>
 <title>Expanding Project Glasswing</title>
 <link>https://www.anthropic.com/news/expanding-project-glasswing</link>
 <guid>title:expanding project glasswing</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:03 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:25 +0000</pubDate>
 <description>Project Glasswing is our collaborative effort to secure the world’s most important software. In early April, we announced that roughly 50 initial partners had access to Claude Mythos Preview, and since then, they’ve been deploying the model to scan their codebases for vulnerabilities. We recently described how these partners have so far found more than 10,000 high- or critical-severity security flaws. We’re now expanding Project Glasswing. Following several weeks of close collaboration with our Project Glasswing partners, the security industry, open-source software maintainers, and the US government, we’re extending the partnership to approximately 150 new organizations. Each one will need to meet our security requirements before they gain access.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>anthropic</category>
@@ -343,8 +397,8 @@
 <title>Newsroom</title>
 <link>https://www.anthropic.com/news</link>
 <guid>title:newsroom</guid>
-<pubDate>Tue, 09 Jun 2026 11:26:55 +0000</pubDate>
-<description>An upgrade to our Opus class of models, with stronger performance across coding, agentic tasks, and professional work, and the consistency to handle long-running work. We’re extending Project Glasswing to approximately 150 new organizations in more than fifteen countries. The full text of Chris Olah's remarks on the Pope's encyclical on AI.</description>
+<pubDate>Wed, 10 Jun 2026 11:47:16 +0000</pubDate>
+<description>Our next generation of intelligence for the hardest knowledge work and coding problems. We’re extending Project Glasswing to approximately 150 new organizations in more than fifteen countries. An upgrade to our Opus class of models, with stronger performance across coding, agentic tasks, and professional work, and the consistency to handle long-running work.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>agents</category>
 <category>anthropic</category>
@@ -354,26 +408,27 @@
 <category>safety</category>
 </item>
 <item>
-<title>SwiftVR: Real-Time One-Step Generative Video Restoration</title>
-<link>https://tldr.takara.ai/p/2606.09516</link>
-<guid>title:swiftvr real time one step generative video restoration</guid>
-<pubDate>Mon, 08 Jun 2026 14:07:29 +0000</pubDate>
-<description>Real-time video restoration (VR) for live streams requires high-resolution outputs under strict per-frame latency constraints. Existing one-step diffusion-based VR models remain difficult to deploy on consumer-grade GPUs due to two main bottlenecks: quadratic spatial attention at high resolutions and the latency-memory overhead of large video autoencoders. We present SwiftVR, a streaming one-step generative VR framework that reduces both bottlenecks under a causal chunk-wise protocol. For attention, mask-free shifted-window self-attention gathers each spatial window into a dense tensor via deterministic indexing, keeping all attention calls on the dense scaled dot-product attention path without masks, cyclic shifts, padding, or hardware-specific sparse kernels. Because SwiftVR uses only standard dense SDPA calls, the trained model transfers to consumer GPUs without retraining or custom kernels. For autoencoding, a lightweight Restoration-aware Autoencoder enables fast chunk-wise decoding while preserving reconstruction quality.</description>
+<title>TabClaw: An Interactive and Self-Evolving Agent for Spreadsheet Manipulation and Table Reasoning</title>
+<link>https://tldr.takara.ai/p/2606.10316</link>
+<guid>title:tabclaw an interactive and self evolving agent for spreadsheet manipulation and table reasoning</guid>
+<pubDate>Tue, 09 Jun 2026 02:11:16 +0000</pubDate>
+<description>Spreadsheets and tables are widely used representations for structured data analysis, but effective analysis still requires substantial manual effort and domain expertise. Recent large language model (LLM) agents can automate parts of this process, but they often provide limited transparency into intermediate decisions, rely on implicit assumptions, struggle with multi-table comparison, and repeat similar workflows without adapting to a user's preferences. This paper presents TabClaw, an open-source interactive AI agent for spreadsheet manipulation and table reasoning. Users upload CSV or Excel files and issue natural-language requests; TabClaw clarifies ambiguous intent, exposes an editable execution plan, streams a ReAct-style tool-using analysis loop, dispatches specialist agents for parallel multi-table reasoning, and synthesizes findings with explicit consensus and uncertainty markers. Beyond one-off analysis, TabClaw records completed workflows, extracts persistent user memory, distills reusable skills from repeated tool-use patterns, supports package-style skill import, and upgrades skills from negative feedback. Experiments on spreadsheet manipulation and table reasoning benchmarks show that TabClaw improves executable task completion and reasoning performance while preserving an inspectable user workflow.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
 <category>daily</category>
-<category>diffusion</category>
 <category>huggingface</category>
+<category>llm</category>
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
-<category>serving</category>
+<category>reasoning</category>
 </item>
 <item>
-<title>LLM-Orchestrated Conformance Checking in Stroke Care Without Computer-Interpretable Guidelines</title>
-<link>https://tldr.takara.ai/p/2606.09489</link>
-<guid>title:llm orchestrated conformance checking in stroke care without computer interpretable guidelines</guid>
-<pubDate>Mon, 08 Jun 2026 13:44:03 +0000</pubDate>
-<description>Objective: Conformance checking in healthcare seeks to assess whether patient care pathways adhere to clinical guidelines. However, its practical application often depends on the availability of formal, machine-interpretable representations of guidelines, such as Computer-Interpretable Guidelines (CIGs), which are seldom available in real-world clinical settings. Methods: This work introduces a modular framework based on the orchestration of Large Language Models (LLMs) to support medical conformance checking directly from unstructured clinical and guideline texts, without requiring predefined CIGs. The proposed architecture integrates multiple LLMs and supporting components to extract patient traces from clinical discharge letters, identify normative rules from textual clinical guidelines, translate these rules into executable scripts, and compute a Trace Conformance Indicator to quantify compliance within the event log. Results: The framework was implemented and evaluated in the stroke care domain at the neurological ward of Alessandria Hospital. Hundreds of patient traces were automatically extracted from hospital data and assessed against 50 rules derived from the reference guideline.</description>
+<title>Continual LLM Upcycling: A Predictor-Gated Bank-Wise Sparsity Training Recipe for Dense-to-Sparse LLMs</title>
+<link>https://tldr.takara.ai/p/2606.10722</link>
+<guid>title:continual llm upcycling a predictor gated bank wise sparsity training recipe for dense to sparse llms</guid>
+<pubDate>Tue, 09 Jun 2026 11:32:58 +0000</pubDate>
+<description>We study dense-to-sparse continual training as a way to construct channel-sparse large language models from dense checkpoints. Starting from a Qwen2. 5-8B dense backbone, we continue training at 32K context and introduce a predictor-gated sparse SwiGLU FFN in the 32K stage. For each token and layer, we use a low-rank predictor to produce FFN-channel routing logits. We then apply a bank-wise top-k rule to retain 16 channels in every 64-channel bank, yielding 4x sparsity in the FFN intermediate activation. Unlike post-hoc sparse inference methods, the routing module is placed on the main language modeling path and optimized during continual training, enabling the dense model to be upcycled into a hardware-oriented sparse model.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
@@ -381,14 +436,29 @@
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
-<category>rl</category>
+<category>serving</category>
 </item>
 <item>
-<title>Experience Makes Skillful: Enabling Generalizable Medical Agent Reasoning via Self-Evolving Skill Memory</title>
-<link>https://tldr.takara.ai/p/2606.09365</link>
-<guid>title:experience makes skillful enabling generalizable medical agent reasoning via self evolving skill memory</guid>
-<pubDate>Mon, 08 Jun 2026 11:37:01 +0000</pubDate>
-<description>Medical agent systems are increasingly expected to support interactive clinical decision making rather than only static question answering. In such settings, effective agents must reuse prior experience across evolving cases, yet existing memory mechanisms often retain raw historical traces that are redundant, noisy, and difficult to govern. More importantly, they rarely distinguish which memories are truly useful for future reasoning. This limits their ability to accumulate compact and reliable experience for long-horizon clinical reasoning. To close this gap, we propose SkeMex, a post-deployment self-evolution framework that improves medical agents through a skill-based memory without updating model weights. SkeMex distills informative interaction trajectories into structured skills that encode reusable procedural knowledge, and organizes them into a multi-branch repository spanning general, task-specific, and action-level experience.</description>
+<title>Dynamic Linear Attention</title>
+<link>https://tldr.takara.ai/p/2606.10650</link>
+<guid>title:dynamic linear attention</guid>
+<pubDate>Tue, 09 Jun 2026 09:57:48 +0000</pubDate>
+<description>The scalability of Large Language Models (LLMs) to long contexts is fundamentally constrained by the quadratic complexity of standard attention, motivating the adoption of linear attention mechanisms with sub-quadratic cost. To improve representation capacity under long contexts, recent approaches organize memory in a multi-state manner. However, existing multi-state linear attention methods rely on fixed state merging policies that cannot adapt to dynamically varying token importance, irreversibly obscuring critical tokens and causing severe error accumulation over long sequences. To address this limitation, we propose DLA, a dynamic memory modeling framework for multi-state linear attention. DLA introduces (i) Information-Aware Dynamic State Merging, which adaptively determines state boundaries based on token-level information variation, preserving high-resolution representations around semantic transitions while aggressively summarizing stable regions, and (ii) Capacity-Bounded Memory Modeling, which maintains a fixed-size, chronologically ordered state cache by selectively merging adjacent low-information states to control memory growth with minimal information loss. We pre-train DLA on two different linear attention models and evaluate on 16 datasets across three categories.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>Geometry-Aware Reinforcement Learning for 2D Irregular Nesting</title>
+<link>https://tldr.takara.ai/p/2606.10611</link>
+<guid>title:geometry aware reinforcement learning for 2d irregular nesting</guid>
+<pubDate>Tue, 09 Jun 2026 09:11:36 +0000</pubDate>
+<description>Traditional heuristic solvers for the 2D irregular nesting problem share a fundamental limitation: they are blind to polygon geometry, relying on guided brute-force to navigate the continuous placement space with minimal geometrical guidance. In this paper, we argue that Reinforcement Learning is uniquely positioned to overcome this bottleneck. By pairing an optimization policy with a geometry-aware neural encoder, an agent can automatically discover rich geometric priors directly from data, utilizing these learned intuitions to strategically guide exploration. To realize this, we introduce the Polygons Transformer (PoT), a novel architecture that encodes 2D continuous vector geometries while allowing cross-polygons attention. We couple this novel architecture with a Combinatorial Optimization Reinforcement Learning (CORL) training framework to find optimal solutions. To support this paradigm, we release an open-source training dataset derived from complex geographic contours alongside a dedicated evaluation benchmark.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>agents</category>
 <category>daily</category>
@@ -396,44 +466,44 @@
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
-<category>reasoning</category>
+<category>rl</category>
 </item>
 <item>
-<title>Multi-Hop Knowledge Composition is Bound by Pretraining Exposure</title>
-<link>https://tldr.takara.ai/p/2606.09338</link>
-<guid>title:multi hop knowledge composition is bound by pretraining exposure</guid>
-<pubDate>Mon, 08 Jun 2026 11:05:17 +0000</pubDate>
-<description>Large Language Models fail at implicit multi-hop reasoning: a model answers &quot;When was $X$ born? &quot; and &quot;Who is $Y$'s closest friend? &quot; correctly but fails on &quot;When was $Y$'s closest friend born? &quot; in a single forward pass, even when both facts are perfectly memorized and individually retrievable. We study this failure in a controlled natural language setting with a strict separation between individuals exposed to compositional contexts during pretraining and those that never appear in any such context. We confirm that compositional failure persists even at 97% 1-hop accuracy, establishing the gap as a pretraining failure rather than a knowledge absence.</description>
+<title>Dmsh: A Multi-Agent Reinforcement Learning Framework for All-Quad Mesh Generation</title>
+<link>https://tldr.takara.ai/p/2606.10601</link>
+<guid>title:dmsh a multi agent reinforcement learning framework for all quad mesh generation</guid>
+<pubDate>Tue, 09 Jun 2026 09:04:32 +0000</pubDate>
+<description>Generating high-quality meshes for arbitrary geometries remains a fundamental bottleneck in computational engineering, often demanding heuristic tuning and semi-manual workflows. In this paper, we introduce Dmsh, a first fully automated reinforcement learning pipeline that unifies geometric decomposition and quadrilateral mesh generation within a single learning-based framework. Dmsh decomposes the problem through three coordinated agents handling topology simplification, geometric regularization, and mesh generation. The meshing process is formulated as a Markov Decision Process and solved using a parametric Soft Actor-Critic architecture with decoupled critics, enabling efficient exploration of a hybrid discrete-continuous action space. A curriculum learning strategy ensures scalability from simple domains to highly complex geometries, suppressing seed variance. By design, the recursive decomposition enables parallel meshing of subregions, yielding globally conforming all-quadrilateral meshes without post hoc correction.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
 <category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>EditSSC: Toward Editable Semantic Occupancy Scenes with Unconditional Diffusion Models</title>
-<link>https://tldr.takara.ai/p/2606.09273</link>
-<guid>title:editssc toward editable semantic occupancy scenes with unconditional diffusion models</guid>
-<pubDate>Mon, 08 Jun 2026 09:41:37 +0000</pubDate>
-<description>3D semantic scene generation is crucial for autonomous driving applications, yet most methods rely on complex 3D-specific architectures such as triplane encoders and adapted diffusion networks, limiting both their simplicity and their editing capabilities. We propose EditSSC, an editing-ready method for 3D semantic scene generation using 2D Bird's Eye View (BEV) representations and off-the-shelf latent diffusion network. Our approach reshapes 3D semantic occupancy grids into multi-channel BEV images and leverages the quantized autoencoder and UNet from Stable Diffusion with minimal modifications. We perform diffusion on the latents after quantization, which enables training-free editing capabilities. By exploiting class-to-code correspondences in the codebook, our method supports sketch-guided generation, inpainting, and outpainting without any retraining. On SemanticKITTI, EditSSC outperforms existing 3D-specific baselines on unconditional generation, demonstrating that well-established 2D architectures can be effectively repurposed for 3D scene generation and editing.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>efficiency</category>
 <category>huggingface</category>
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
+<category>rl</category>
 </item>
 <item>
-<title>See More, Match Better: Multi-Source Feature Fusion for Two-View Correspondence Learning</title>
-<link>https://tldr.takara.ai/p/2606.09262</link>
-<guid>title:see more match better multi source feature fusion for two view correspondence learning</guid>
-<pubDate>Mon, 08 Jun 2026 09:33:01 +0000</pubDate>
-<description>Two-view correspondence learning aims to distinguish true correspondences (inliers) from false ones (outliers) in image pairs by leveraging their underlying differences. Existing methods mainly rely on coordinate-based geometric consistency. However, they often struggle with pseudo-consistent outliers in scenes containing repetitive structures, textureless regions, or locally similar geometric patterns. To address this limitation, we propose TriMatch, a multi-source feature fusion framework for two-view correspondence learning, which consists of two parts: feature extraction and feature refinement. In feature extraction, TriMatch jointly extracts geometric, texture semantic, and structural semantic features to provide complementary evidence for correspondence discrimination. To bridge the gap between semantic and geometric features, texture and structural semantic features are aligned with geometric features through dedicated Texture-Geometric Alignment and Structural-Geometric Alignment modules, respectively.</description>
+<title>Cross-Modal Knowledge Distillation without Paired Data: Theoretical Foundation and Algorithm</title>
+<link>https://tldr.takara.ai/p/2606.10504</link>
+<guid>title:cross modal knowledge distillation without paired data theoretical foundation and algorithm</guid>
+<pubDate>Tue, 09 Jun 2026 07:29:12 +0000</pubDate>
+<description>Cross-modal knowledge distillation (CMKD) studies how a (large) teacher model trained on one type of data (e. g. , images) can guide a (smaller) student model building on another type of data (e. g. , text/audio). Existing CMKD methods often require paired multi-modal data with aligned semantics, but obtaining such paired data are often costly and impractical.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>UniPET: a universal network for high-quality PET image denoising across varied dose reduction factors</title>
+<link>https://tldr.takara.ai/p/2606.11131</link>
+<guid>title:unipet a universal network for high quality pet image denoising across varied dose reduction factors</guid>
+<pubDate>Tue, 09 Jun 2026 17:25:02 +0000</pubDate>
+<description>Most existing deep learning-based PET image denoising methods assume a fixed and known dose reduction factor (DRF) for low-dose PET images. However, these methods encounter significant performance degradation when the DRF varies beyond the assumed one in practical applications. To address the challenge posed by varied DRFs, several preliminary studies focus on the task of universal PET image denoising, aiming to train a universal model over low-dose data across DRFs. Nonetheless, these vanilla universal models often struggle with misaligned styles present in different DRF data, leading to the \textit{style elimination issue} with a significant over-smoothing effect. To deal with this issue, we innovatively introduce domain generalization to PET image denoising and propose a universal PET image denoising network (UniPET) to achieve high-quality PET image denoising across diverse DRFs. UniPET comprises two primary innovations: a style alignment network (SAN) and a region-aware learning strategy (RALS).</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>alignment</category>
 <category>daily</category>
@@ -441,14 +511,13 @@
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
-<category>rl</category>
 </item>
 <item>
-<title>Pretrained, Frozen, Still Leaking: Auditing Cross-Encoder Attribute Transfer in EEG Foundation Models</title>
-<link>https://tldr.takara.ai/p/2606.09189</link>
-<guid>title:pretrained frozen still leaking auditing cross encoder attribute transfer in eeg foundation models</guid>
-<pubDate>Mon, 08 Jun 2026 08:24:03 +0000</pubDate>
-<description>EEG foundation-model releases are usually audited one endpoint at a time: raw-reconstruction, membership inference, identity linkage, or DP-SGD on the downstream head. We audit the same released embeddings under all four endpoints jointly, on BIOT, LaBraM, and EEGPT, and show that each single-endpoint audit clears releases that still leak spectral attributes. The decisive evidence is a cross-encoder transfer audit: a single ridge attribute decoder learned from one frozen encoder transfers, via a fitted linear bridge, to held-out-subject test splits of every other encoder, with subject-disjoint matched-control 95% CI lower bound at least 0. 081 across all six BIOT/LaBraM/EEGPT directions. We prove a sufficient condition: two encoders sharing a nontrivial attribute-coordinate projector overlap beta admit a chained ridge bridge attacker with centered-gain lower bound sqrt(beta/(1+tau^2)) - eps_br - rho_0, and back-solve beta in [0. 008, 0.</description>
+<title>Vision-Assisted Foundation Model for Solving Multi-Task Vehicle Routing Problems</title>
+<link>https://tldr.takara.ai/p/2606.10431</link>
+<guid>title:vision assisted foundation model for solving multi task vehicle routing problems</guid>
+<pubDate>Tue, 09 Jun 2026 05:15:25 +0000</pubDate>
+<description>Multi-task vehicle routing problems play a critical role in enhancing efficiency across various industries and service sectors. These problems consist of multiple variants that optimize routing costs while meeting diverse customer constraints. Existing multi-task VRP solvers solely utilize a graph-based modality, limiting their ability to address variants with multiple constraints. As a format to represent complex semantics, vision modality shows great potential for encoding diverse VRP constraints. This motivates us to learn patch-level semantics from the vision images, and then integrate them into a graph-based model to solve various VRP variants simultaneously. However, directly applying this approach to multi-task VRPs presents three challenges: 1) existing VRP images lack constraint representations, which are essential for multi-task VRPs, 2) the fixed receptive field of individual patches cannot effectively accommodate varying requirements across tasks, and 3) imbalanced pixel distribution among constraints may cause the model to overlook constraints with fewer pixels.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
@@ -456,44 +525,14 @@
 <category>paper</category>
 <category>papers</category>
 <category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>Culturally-Adapted Red-Teaming Across East and Southeast Asian Contexts: A Methodological and Comparative Analysis</title>
-<link>https://tldr.takara.ai/p/2606.09178</link>
-<guid>title:culturally adapted red teaming across east and southeast asian contexts a methodological and comparative analysis</guid>
-<pubDate>Mon, 08 Jun 2026 08:17:18 +0000</pubDate>
-<description>Multilingual safety evaluation of large language models (LLMs) has predominantly relied on direct translation (DT) of English benchmarks into target languages - an approach that converts surface-level linguistic form while failing to reflect the cultural context embedded in threat scenarios, social norms, and legal frameworks. We construct paired DT and culturally-adapted (CA) datasets via 1:1 seed matching for four languages - Korean (KO), Japanese (JA), Thai (TH), and Khmer (KM) - and compare Attack Success Rate (ASR) and Cultural Realism scores across four open-source LLM. CA prompts yield Delta-ASR &gt; 0 across all 16 language x model combinations (mean +9. 3 pp), and DT-based evaluation underestimates risk in 44 of 48 category x language combinations. Language-level analysis reveals that the distribution of threat forms is heterogeneous across languages. Cultural Realism analysis further shows that DT Cultural Depth (C3) scores remain consistently below 1.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Vision-Language Guided Hyperspectral Object Tracking via Semantics Fusion and Contextual Template Updating</title>
-<link>https://tldr.takara.ai/p/2606.09167</link>
-<guid>title:vision language guided hyperspectral object tracking via semantics fusion and contextual template updating</guid>
-<pubDate>Mon, 08 Jun 2026 08:05:40 +0000</pubDate>
-<description>Hyperspectral object tracking (HOT) leverages the rich spectral information provided by hyperspectral videos (HSVs), offering substantial potential for object tracking. However, efficiently extracting and exploiting spectral information from redundant spectral bands remains a fundamental challenge, which severely limits model generalization and tracking performance. Moreover, in dynamic scenes, targets often experience drastic appearance variations due to factors such as occlusion and illumination changes. These variations lead to large deformations between the current frame and the template. Such discrepancies pose major challenges for existing temporal modeling approaches. In this work, we propose VLHTrack, a novel hyperspectral vision-language (VL) joint tracking framework.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
 <category>vision</category>
 </item>
 <item>
-<title>Unveiling Privacy Risks in Multi-modal Large Language Models: Task-specific Vulnerabilities and Mitigation Challenges</title>
-<link>https://tldr.takara.ai/p/2606.09125</link>
-<guid>title:unveiling privacy risks in multi modal large language models task specific vulnerabilities and mitigation challenges</guid>
-<pubDate>Mon, 08 Jun 2026 07:19:42 +0000</pubDate>
-<description>Privacy risks in text-only Large Language Models (LLMs) are well studied, particularly their tendency to memorize and leak sensitive information. However, Multi-modal Large Language Models (MLLMs), which process both text and images, introduce unique privacy challenges that remain underexplored. Compared to text-only models, MLLMs can extract and expose sensitive information embedded in images, posing new privacy risks. We reveal that some MLLMs are susceptible to privacy breaches, leaking sensitive data embedded in images or stored in memory. Specifically, in this paper, we (1) introduce MM-Privacy, a comprehensive dataset designed to assess privacy risks across various multi-modal tasks and scenarios, where we define Disclosure Risks and Retention Risks. (2) systematically evaluate different MLLMs using MM-Privacy and demonstrate how models leak sensitive data across various tasks, and (3) provide additional insights into the role of task inconsistency in privacy risks, emphasizing the urgent need for mitigation strategies.</description>
+<title>Unifying Local Communications and Local Updates for LLM Pretraining</title>
+<link>https://tldr.takara.ai/p/2606.11081</link>
+<guid>title:unifying local communications and local updates for llm pretraining</guid>
+<pubDate>Tue, 09 Jun 2026 16:40:54 +0000</pubDate>
+<description>Communication-efficient pre-training of LLMs is increasingly important as training draws on compute distributed across clusters, data centers, and lower-bandwidth links. Many practical methods reduce communication frequency but still rely on synchronous All-Reduce operations that maintain identical model states and tie progress to global collectives. This can become a bottleneck when bandwidth or worker speed is heterogeneous. We introduce GASLoC, a novel decentralized pre-training algorithm that generalizes the notion of communication acceleration to the recently popular &quot;outer optimizer&quot; to allow a practical gossip-based training framework that is compatible with adaptive optimizers, allows for local optimizer steps, and can utilize sparse randomized peer communication. Empirically, on a number of standard LLM training tasks, we demonstrate that GASLoC outperforms state-of-the-art decentralized algorithms in single step per communication setting for a number of topologies and, unlike existing decentralized methods in the LLM setting, it allows to obtain performance competitive with DiLoCo when utilizing multiple local steps. In the heterogeneous bandwidth setting we demonstrate the advantage of GASLoC showing that it can significantly outperform DiLoCo.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
@@ -501,43 +540,15 @@
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
-<category>rl</category>
 </item>
 <item>
-<title>PTL-Diffusion: Manifold-Aware Diffusion with Periodic Terminal Laws</title>
-<link>https://tldr.takara.ai/p/2606.09816</link>
-<guid>title:ptl diffusion manifold aware diffusion with periodic terminal laws</guid>
-<pubDate>Mon, 08 Jun 2026 17:56:16 +0000</pubDate>
-<description>Standard diffusion models typically use a single time-homogeneous Gaussian terminal distribution as the reference law for generation. While this choice is analytically convenient and empirically powerful, it provides little explicit structure for data concentrated near low-dimensional manifolds, where different regions of the data distribution may correspond to distinct local geometric or semantic factors. As a result, the reverse model must recover manifold-level structure almost entirely from an unstructured terminal reference distribution. We propose PTL-Diffusion, a proof-of-concept diffusion framework whose forward noising process converges to a nonconstant periodic family of Gaussian terminal laws rather than to a single invariant law. Unlike a phase-conditioned DDPM, where phase information only enters the denoising network while the forward process remains unchanged, PTL-Diffusion embeds phase structure directly into the forward noising dynamics. The proposed construction remains close to standard denoising diffusion models: for a periodically forced Ornstein--Uhlenbeck-type forward process, we derive closed-form forward marginals, the limiting periodic Gaussian terminal family, and explicit Gaussian reverse posteriors, enabling standard noise-prediction training.</description>
+<title>STAGE-Claw: Automated State-based Agent Benchmarking for Realistic Scenarios</title>
+<link>https://tldr.takara.ai/p/2606.10394</link>
+<guid>title:stage claw automated state based agent benchmarking for realistic scenarios</guid>
+<pubDate>Tue, 09 Jun 2026 04:16:35 +0000</pubDate>
+<description>Large language models are increasingly used to power personal agents for everyday applications, but evaluating these agents remains a challenge. Existing benchmarks still rely on sandboxed artifacts, static task design, and coarse scoring, which hinder scalability and limit progress toward reliable personal-agent evaluation. This paper introduces STAGE-Claw, an automated framework for building and evaluating realistic personal-agent scenarios in state-based personal-computing environments. Given a task hint, STAGE-Claw automatically creates and validates a realistic benchmark task with its environment, task prompts, ground truth, and related verification programs. Agents are then evaluated in realistic operating environments, where performance is measured by the correctness of the final system state rather than only the textual response. Using STAGE-Claw, this paper creates a benchmark with 40 challenging real scenario agent tasks, evaluates 11 frontier models, and analyzes their task scores, costs, tool-call reliability, and common failure patterns.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-</item>
-<item>
-<title>Preserving Plasticity in Continual Learning via Dynamical Isometry</title>
-<link>https://tldr.takara.ai/p/2606.09762</link>
-<guid>title:preserving plasticity in continual learning via dynamical isometry</guid>
-<pubDate>Mon, 08 Jun 2026 17:24:15 +0000</pubDate>
-<description>Continual training of deep neural networks under non-stationarity often leads to a progressive loss of plasticity, eventually limiting further learning. We relate plasticity to the empirical Neural Tangent Kernel, and identify dynamical isometry (the condition that layer-wise Jacobian singular values remain close to one) as a key mechanism for preserving plasticity in continual learning. We revisit a class of networks that are almost-everywhere isometric while remaining universal Lipschitz function approximators, demonstrating that near-dynamical isometry is compatible with expressive nonlinear representations. For general architectures, we propose an efficient isometry-promoting regularization scheme and identify a novel mechanism by which it can reactivate dormant ReLU units. Building on this, we introduce AdamO, an Adam-style adaptive optimizer that decouples isometry regularization from gradient updates, analogous to AdamW. We further reinterpret prior plasticity-preserving approaches through the lens of dynamical isometry, showing that they target only a partial measure of isometry.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Correlation Is Not Enough: Embedding Human Metadata for Individual Causal Discovery</title>
-<link>https://tldr.takara.ai/p/2606.09672</link>
-<guid>title:correlation is not enough embedding human metadata for individual causal discovery</guid>
-<pubDate>Mon, 08 Jun 2026 15:54:28 +0000</pubDate>
-<description>Ask a pretrained biomedical language model whether &quot;cortisol 28 ug/dL&quot; and &quot;stock-market volatility&quot; are related, and it returns a cosine similarity of 0. 83 on a scale where 1. 0 means identical. The two share no mechanism. This is not a corner case: every off-the-shelf biomedical encoder we tested (BioBERT, PubMedBERT, BioM-ELECTRA) scores unrelated cross-domain pairs between 0. 76 and 0.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
@@ -549,7 +560,7 @@
 <title>What we learned mapping a year’s worth of AI-enabled cyber threats</title>
 <link>https://www.anthropic.com/news/AI-enabled-cyber-threats-mitre-attack</link>
 <guid>title:what we learned mapping a year s worth of ai enabled cyber threats</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:28 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:42 +0000</pubDate>
 <description>As AI transforms the nature of and methods behind cyberattacks, how well do the techniques and frameworks used by the security community hold up? In a new report, we seek to answer that question. We examine 832 accounts that were banned for malicious cyber activity between March 2025 and March 2026 and map them onto MITRE ATT&amp;CK , a longstanding database of the tactics and techniques used by cyberattackers. We published some of these results in Verizon’s 2026 Data Breach Investigations Report (DBIR), and are sharing a more detailed analysis here. These 832 cases are just a subset of the total number of accounts banned during this period, but they represent those where we had enough detail to conduct a thorough assessment of the attackers’ techniques. There were three main conclusions from our analysis:</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>anthropic</category>
@@ -562,7 +573,7 @@
 <title>Anthropic co-founder Chris Olah's remarks on Pope Leo XIV's encyclical &quot;Magnifica humanitas&quot;</title>
 <link>https://www.anthropic.com/news/chris-olah-pope-leo-encyclical</link>
 <guid>title:anthropic co founder chris olah s remarks on pope leo xiv s encyclical magnifica humanitas</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:08 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:30 +0000</pubDate>
 <description>On Monday May 25, 2026, Pope Leo XIV released an encyclical on the topic of AI: &quot;Magnifica humanitas: On safeguarding the human person in the time of artificial intelligence.&quot; Anthropic co-founder Chris Olah was invited to speak at the presentation of the encyclical in the Vatican City, doing so as part of Anthropic’s initiative to widen the conversation on the important questions raised by AI. Below are his full remarks. — Holy Father,</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>anthropic</category>
@@ -570,6 +581,164 @@
 <category>nonpaper</category>
 <category>product</category>
 <category>safety</category>
+</item>
+<item>
+<title>Introducing Gemma 4 12B: a unified, encoder-free multimodal model</title>
+<link>https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/</link>
+<guid>title:introducing gemma 4 12b a unified encoder free multimodal model</guid>
+<pubDate>Tue, 09 Jun 2026 14:10:19 +0000</pubDate>
+<description></description>
+<source url="https://deepmind.google/blog/feed/basic/">deepmind</source>
+<category>deepmind</category>
+<category>lab</category>
+<category>multimodal</category>
+<category>nonpaper</category>
+<category>research</category>
+<category>science</category>
+</item>
+<item>
+<title>Model Quantization: Turn FP8 Checkpoints into High-Performance Inference Engines with NVIDIA TensorRT</title>
+<link>https://developer.nvidia.com/blog/model-quantization-turn-fp8-checkpoints-into-high-performance-inference-engines-with-nvidia-tensorrt/</link>
+<guid>title:model quantization turn fp8 checkpoints into high performance inference engines with nvidia tensorrt</guid>
+<pubDate>Tue, 09 Jun 2026 18:27:52 +0000</pubDate>
+<description>Converting a quantized checkpoint into an NVIDIA TensorRT engine bridges the gap between model optimization and production deployment, enabling faster...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>data science</category>
+<category>edge computing</category>
+<category>efficiency</category>
+<category>hardware</category>
+<category>inference performance</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>serving</category>
+<category>training</category>
+</item>
+<item>
+<title>Fluid, natural voice translation with Gemini 3.5 Live Translate</title>
+<link>https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/</link>
+<guid>title:fluid natural voice translation with gemini 3 5 live translate</guid>
+<pubDate>Tue, 09 Jun 2026 15:16:25 +0000</pubDate>
+<description>Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.</description>
+<source url="https://deepmind.google/blog/feed/basic/">deepmind</source>
+<category>deepmind</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>research</category>
+<category>science</category>
+</item>
+<item>
+<title>McKinsey consultants are using AI to end their dependence on PowerPoint</title>
+<link>https://www.businessinsider.com/mckinsey-consultant-ai-powerpoint-reliance-2026-6</link>
+<guid>title:mckinsey consultants are using ai to end their dependence on powerpoint</guid>
+<pubDate>Wed, 10 Jun 2026 09:55:09 +0000</pubDate>
+<description>Louis-Charles Généreux, a McKinsey consultant, built an AI-assisted website to manage his consulting project and effectively replace PowerPoint.</description>
+<source url="https://feeds.businessinsider.com/custom/all">feeds.businessinsider.com</source>
+<category>ai</category>
+<category>ai-in-action</category>
+<category>edit-series</category>
+<category>editorial-sponsorship</category>
+<category>feeds.businessinsider.com</category>
+<category>mckinsey</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>rl</category>
+<category>sp-review</category>
+<category>trending-uk</category>
+</item>
+<item>
+<title>Delivering Lifecycle Control for AI Infrastructure at Scale with NVIDIA DGX Spark Enterprise Manageability</title>
+<link>https://developer.nvidia.com/blog/delivering-lifecycle-control-for-ai-infrastructure-at-scale-with-nvidia-dgx-spark-enterprise-manageability/</link>
+<guid>title:delivering lifecycle control for ai infrastructure at scale with nvidia dgx spark enterprise manageability</guid>
+<pubDate>Tue, 09 Jun 2026 19:00:00 +0000</pubDate>
+<description>As AI infrastructure scales, enterprise expectations for operational maturity are increasing. Organizations expect these systems to be provisionable,...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>ai agent</category>
+<category>ai enterprise</category>
+<category>data science</category>
+<category>developer tools &amp; techniques</category>
+<category>dgx spark</category>
+<category>hardware</category>
+<category>infra</category>
+<category>llms</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>training</category>
+<category>vision</category>
+</item>
+<item>
+<title>Accelerating Federated Learning Research with AI Agents and NVIDIA FLARE Auto-FL</title>
+<link>https://developer.nvidia.com/blog/accelerating-federated-learning-research-with-ai-agents-and-nvidia-flare-auto-fl/</link>
+<guid>title:accelerating federated learning research with ai agents and nvidia flare auto fl</guid>
+<pubDate>Tue, 09 Jun 2026 16:35:08 +0000</pubDate>
+<description>Federated learning (FL) research often begins with a deceptively simple question: What should we try next? A new aggregation rule, a FedProx coefficient, a...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>agents</category>
+<category>ai agent</category>
+<category>data science</category>
+<category>edge computing</category>
+<category>federated learning</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>research</category>
+<category>training</category>
+</item>
+<item>
+<title>Evaluate Clinical ASR Models Faster with Agent Skills and NVIDIA Nemotron Speech</title>
+<link>https://developer.nvidia.com/blog/evaluate-clinical-asr-models-faster-with-agent-skills-and-nvidia-nemotron-speech/</link>
+<guid>title:evaluate clinical asr models faster with agent skills and nvidia nemotron speech</guid>
+<pubDate>Tue, 09 Jun 2026 15:00:00 +0000</pubDate>
+<description>Training a speech AI model to correctly recognize or synthesize clinical terminology is surprisingly difficult. Drug names like Acetaminophen, Amlodipine,...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agent skill</category>
+<category>agentic ai / generative ai</category>
+<category>agents</category>
+<category>ai agent</category>
+<category>developer tools &amp; techniques</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nemotron</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>speech &amp; audio processing</category>
+<category>speech ai</category>
+<category>synthetic data generation</category>
+<category>training</category>
+</item>
+<item>
+<title>As companies rethink AI ROI, Replit's AI chief calls token leaderboards 'very dystopian'</title>
+<link>https://www.businessinsider.com/ai-token-leaderboards-dystopian-replit-ai-chief-tokenmaxxing-2026-6</link>
+<guid>title:as companies rethink ai roi replit s ai chief calls token leaderboards very dystopian</guid>
+<pubDate>Wed, 10 Jun 2026 11:00:41 +0000</pubDate>
+<description>As Amazon and others rethink AI-use rankings, Replit's AI head said it was a poor measure of employee performance.</description>
+<source url="https://feeds.businessinsider.com/custom/all">feeds.businessinsider.com</source>
+<category>ai</category>
+<category>artificial-intelligence</category>
+<category>changing-workplace-big-bet</category>
+<category>feeds.businessinsider.com</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>replit</category>
+<category>token</category>
+<category>trending-uk</category>
+</item>
+<item>
+<title>Measuring the impact of learning with AI in Sierra Leone and beyond</title>
+<link>https://deepmind.google/blog/measuring-the-impact-of-learning-with-ai-in-sierra-leone-and-beyond/</link>
+<guid>title:measuring the impact of learning with ai in sierra leone and beyond</guid>
+<pubDate>Mon, 08 Jun 2026 13:04:59 +0000</pubDate>
+<description>Results from a randomized controlled trial show the potential of Gemini’s Guided Learning feature to boost engagement and accelerate learning.</description>
+<source url="https://deepmind.google/blog/feed/basic/">deepmind</source>
+<category>deepmind</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>research</category>
+<category>science</category>
 </item>
 <item>
 <title>Train Models Faster with JAX and MaxText Using NVFP4 on NVIDIA Blackwell</title>
@@ -588,23 +757,6 @@
 <category>nvfp4</category>
 <category>nvidia</category>
 <category>training</category>
-</item>
-<item>
-<title>I asked 4 executives how they measure AI ROI. None started with AI tokens.</title>
-<link>https://www.businessinsider.com/ai-token-reckoning-execs-on-measuring-return-on-investment-2026-6</link>
-<guid>title:i asked 4 executives how they measure ai roi none started with ai tokens</guid>
-<pubDate>Tue, 09 Jun 2026 10:14:11 +0000</pubDate>
-<description>As companies rethink AI token spending, four executives told Business Insider what metrics they use to measure return on investment.</description>
-<source url="https://feeds.businessinsider.com/custom/all">feeds.businessinsider.com</source>
-<category>ai</category>
-<category>changing-workplace-big-bet</category>
-<category>feeds.businessinsider.com</category>
-<category>mistral</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>roi</category>
-<category>tokens</category>
-<category>trending-uk</category>
 </item>
 <item>
 <title>Unlocking dependable responses with Gemini Enterprise Agent Platform’s Agentic RAG</title>
@@ -690,22 +842,6 @@
 <category>science</category>
 </item>
 <item>
-<title>5 ways Google Search can level up your thrift and vintage shopping</title>
-<link>https://blog.google/products-and-platforms/products/search/thrifting-tips/</link>
-<guid>title:5 ways google search can level up your thrift and vintage shopping</guid>
-<pubDate>Wed, 03 Jun 2026 13:00:00 +0000</pubDate>
-<description>A colorful, grain-textured collage of various items scattered across a light blue background. The items include a green bucket hat, a wooden clothes hanger, a blue-and-red striped collar, blue sunglasses, denim shorts, a yellow price tag, a red high-heele</description>
-<source url="https://blog.google/technology/ai/rss/">google</source>
-<category>ai</category>
-<category>google</category>
-<category>lab</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>research</category>
-<category>search</category>
-<category>shopping</category>
-</item>
-<item>
 <title>Deploy Agentic-Ready AI at the Edge with Memory Efficiency in NVIDIA JetPack 7.2</title>
 <link>https://developer.nvidia.com/blog/deploy-agentic-ready-ai-at-the-edge-with-memory-efficiency-in-nvidia-jetpack-7-2/</link>
 <guid>title:deploy agentic ready ai at the edge with memory efficiency in nvidia jetpack 7 2</guid>
@@ -725,6 +861,22 @@
 <category>rl</category>
 <category>robotics</category>
 <category>training</category>
+</item>
+<item>
+<title>5 ways Google Search can level up your thrift and vintage shopping</title>
+<link>https://blog.google/products-and-platforms/products/search/thrifting-tips/</link>
+<guid>title:5 ways google search can level up your thrift and vintage shopping</guid>
+<pubDate>Wed, 03 Jun 2026 13:00:00 +0000</pubDate>
+<description>A colorful, grain-textured collage of various items scattered across a light blue background. The items include a green bucket hat, a wooden clothes hanger, a blue-and-red striped collar, blue sunglasses, denim shorts, a yellow price tag, a red high-heele</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>google</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+<category>search</category>
+<category>shopping</category>
 </item>
 <item>
 <title>Develop Physical AI Reasoning, World, and Action Models with NVIDIA Cosmos 3</title>
@@ -845,6 +997,24 @@
 <category>training</category>
 </item>
 <item>
+<title>DynoSim: Simulating the Pareto Frontier</title>
+<link>https://developer.nvidia.com/blog/dynosim-simulating-the-pareto-frontier/</link>
+<guid>title:dynosim simulating the pareto frontier</guid>
+<pubDate>Fri, 29 May 2026 22:31:03 +0000</pubDate>
+<description>Modern LLM serving is hard to tune because each deployment is a stack of interacting choices: model backend, tensor-parallel shape, prefill/decode split, worker...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>data center / cloud</category>
+<category>featured</category>
+<category>hardware</category>
+<category>infra</category>
+<category>llm</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>serving</category>
+<category>training</category>
+</item>
+<item>
 <title>How to Post-Train Autonomous Vehicle Models in Closed-Loop with NVIDIA Alpamayo</title>
 <link>https://developer.nvidia.com/blog/how-to-post-train-autonomous-vehicle-models-in-closed-loop-with-nvidia-alpamayo/</link>
 <guid>title:how to post train autonomous vehicle models in closed loop with nvidia alpamayo</guid>
@@ -910,24 +1080,6 @@
 <category>top stories</category>
 <category>training</category>
 <category>vera cpu</category>
-</item>
-<item>
-<title>DynoSim: Simulating the Pareto Frontier</title>
-<link>https://developer.nvidia.com/blog/dynosim-simulating-the-pareto-frontier/</link>
-<guid>title:dynosim simulating the pareto frontier</guid>
-<pubDate>Fri, 29 May 2026 22:31:03 +0000</pubDate>
-<description>Modern LLM serving is hard to tune because each deployment is a stack of interacting choices: model backend, tensor-parallel shape, prefill/decode split, worker...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>data center / cloud</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
-<category>llm</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>serving</category>
-<category>training</category>
 </item>
 <item>
 <title>Take our I/O 2026 quiz, vibe coded in Google AI Studio.</title>
@@ -1093,27 +1245,24 @@
 <category>trustworthy ai / cybersecurity</category>
 </item>
 <item>
-<title>The Great AI Reality Check: Why Companies Are Reinvesting In Human Talent</title>
-<link>https://pub.towardsai.net/the-great-ai-reality-check-why-companies-are-reinvesting-in-human-talent-3b20221b98be?source=rss----98111c9905da---4</link>
-<guid>title:the great ai reality check why companies are reinvesting in human talent</guid>
-<pubDate>Tue, 09 Jun 2026 05:39:00 +0000</pubDate>
-<description>After three years of breathless automation promises, CFOs are demanding ROI — and the numbers tell a more complicated story than anyone on the vendor circuit will admit. 01 · CONTEXT The AI Investment Boom, 2023–2026 In early 2023, a global insurance company made headlines by announcing it would automate 40% of its back-office operations using generative AI within eighteen months. The CEO spoke at Davos. The stock ticked upward. Analysts published breathless notes about the “transformative efficiency gains” ahead. By Q2 2025, the company had quietly rehired most of the staff it had let go — and added a new department dedicated entirely to AI output governance.</description>
-<source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
-<category>agents</category>
-<category>ai</category>
-<category>artificial-intelligence</category>
-<category>data-engineering</category>
-<category>data-science</category>
+<title>MIND-V: Hierarchical World Model for Long-Horizon Robotic Manipulation with RL-based Physical Alignment</title>
+<link>https://arxiv.org/abs/2512.06628</link>
+<guid>arxiv:2512.06628</guid>
+<pubDate>Wed, 10 Jun 2026 04:00:00 +0000</pubDate>
+<description>arXiv:2512. 06628v3 Announce Type: replace-cross Abstract: Scalable embodied intelligence is constrained by the scarcity of diverse, long-horizon robotic manipulation data. Existing video world models in this domain are limited to synthesizing short clips of simple actions and often rely on manually defined trajectories. To this end, we introduce MIND-V, a cognitive hierarchical world model designed to synthesize physically plausible and logically coherent videos of long-horizon robotic manipulation. Inspired by cognitive science, MIND-V bridges high-level reasoning with pixel-level synthesis through three core components: a Semantic Reasoning Hub (SRH) that leverages a pre-trained vision-language model for task planning; a Behavioral Semantic Bridge (BSB) that translates abstract instructions into domain-invariant representations; and a Motor Video Generator (MVG) for conditional video rendering. MIND-V employs Staged Visual Future Rollouts, a test-time optimization strategy to enhance long-horizon robustness.</description>
+<source url="https://rss.arxiv.org/rss/cs.CV">arxiv</source>
+<category>alignment</category>
+<category>arxiv</category>
+<category>cs.cv</category>
+<category>cs.ro</category>
 <category>llm</category>
-<category>machine-learning</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>pub.towardsai.net</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
 <category>rl</category>
 <category>robotics</category>
-<category>serving</category>
 <category>vision</category>
+<category>world-models</category>
 </item>
 <item>
 <title>What’s New for Game Developers in NVIDIA RTX: DLSS 4.5 for UE5 and Multilingual AI Characters</title>
@@ -1134,232 +1283,51 @@
 <category>unreal engine</category>
 </item>
 <item>
-<title>Artificial Intelligence for Mathematical Reasoning: An Integrated Survey of Language Models, Neuro-symbolic Systems, and Verified Discovery</title>
-<link>https://arxiv.org/abs/2606.08728</link>
-<guid>arxiv:2606.08728</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2606. 08728v1 Announce Type: new Abstract: Mathematical reasoning has long served as a stringent test of machine intelligence; over the past decade, it has moved from a niche problem within NLP to one of the most consequential AI frontiers. This survey provides a unified account of the field's evolution, from early rule-based math word problem (MWP) solvers and template-driven geometry systems, through neural expression generation and LLM prompting, to contemporary reasoning models, multi-agent systems, neuro-symbolic theorem provers, and verified discovery workflows. We organize the landscape along four axes: (i) informal reasoning over text and diagrams, spanning MWP solving, multimodal geometry, and VLMs; (ii) formal reasoning in proof assistants, including autoformalization, tactic prediction, compiler-guided repair, and proof search; (iii) mathematical discovery, where systems propose constructions, improve bounds, or assist attacks on open problems; and (iv) the inference and training-time techniques, including CoT prompting, tool use, process reward models, and RLVR, that increasingly connect generation with verification. We catalog major benchmarks across grade-school arithmetic, competition mathematics, geometry, formal proving, multimodal and multilingual reasoning, and expert evaluation, and we examine benchmark saturation, contamination, reporting mismatches, and the distinction between pass@1, majority voting, and verifier-assisted pass@$k$. We critically assess failure modes: brittleness under perturbation, reward hacking, multimodal grounding failures, fragile formalization, and the energy cost of reasoning-scale inference.</description>
-<source url="https://rss.arxiv.org/rss/cs.AI">arxiv</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv</category>
-<category>cs.ai</category>
-<category>cs.cl</category>
-<category>cs.cv</category>
-<category>cs.lg</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-<category>research</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>MemDreamer: Decoupling Perception and Reasoning for Long Video Understanding via Hierarchical Graph Memory and Agentic Retrieval Mechanism</title>
-<link>https://arxiv.org/abs/2606.07512</link>
-<guid>arxiv:2606.07512</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2606. 07512v1 Announce Type: cross Abstract: Current Vision-Language Models struggle with hours-long videos because processing full-length visual sequences induces prohibitive token explosion and attention dilution. To overcome this, we introduce MemDreamer to decouple perception and reasoning, shifting long-video understanding into an agentic exploration process. As a plug-and-play framework, it incrementally streams videos to construct a Hierarchical Graph Memory, a top-down three-tier architecture for semantic abstraction, anchored by a foundational graph capturing spatiotemporal and causal relations. During inference, the reasoning model employs agentic tool-augmented retrieval, navigating hierarchies, searching nodes, and traversing logical edges via an Observation-Reason-Action loop. Experiments show MemDreamer achieves SOTA results across four mainstream benchmarks, narrowing the gap with human experts to only 3.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.ai</category>
-<category>cs.cl</category>
-<category>cs.cv</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
-<title>SlideAgent: Hierarchical Agentic Framework for Multi-Page Visual Document Understanding</title>
-<link>https://arxiv.org/abs/2510.26615</link>
-<guid>arxiv:2510.26615</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2510. 26615v4 Announce Type: replace Abstract: Multi-page visual documents such as manuals, brochures, presentations, and posters convey key information through layout, colors, icons, and cross-slide references. While multimodal large language models (MLLMs) offer opportunities in document understanding, current systems struggle with complex, multi-page visual documents, particularly in fine-grained reasoning over elements and pages. We introduce SlideAgent, a versatile agentic framework for understanding multi-modal, multi-page, and multi-layout documents, especially slide decks. SlideAgent employs specialized agents and decomposes reasoning into three specialized levels--global, page, and element--to construct a structured, query-agnostic representation that captures both overarching themes and detailed visual or textual cues. During inference, SlideAgent selectively activates specialized agents for multi-level reasoning and integrates their outputs into coherent, context-aware answers.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.cl</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>AutoTool: Dynamic Tool Selection and Integration for Agentic Reasoning</title>
-<link>https://arxiv.org/abs/2512.13278</link>
-<guid>arxiv:2512.13278</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2512. 13278v2 Announce Type: replace Abstract: Agentic reinforcement learning has advanced large language models (LLMs) to reason through long chain-of-thought trajectories while interleaving external tool use. Existing approaches assume a fixed inventory of tools, which limits the adaptability of LLM agents to new or evolving toolsets. We present AutoTool, a training framework that equips LLM agents with dynamic tool-selection capabilities throughout their reasoning trajectories. AutoTool employs a dual-phase optimization pipeline: (i) SFT and RL-based trajectory stabilization for coherent reasoning, and (ii) KL-regularized Plackett-Luce Ranking to refine consistent multi-step tool selection. We further build a 200k dataset with explicit tool-selection rationales across 1,000+ tools and 100+ tasks spanning mathematics, science, code generation, and multimodal reasoning.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.cl</category>
-<category>cs.lg</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>MCERF: Advancing Multimodal LLM Evaluation of Engineering Documentation with Enhanced Retrieval</title>
-<link>https://arxiv.org/abs/2604.09552</link>
-<guid>arxiv:2604.09552</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2604. 09552v2 Announce Type: replace-cross Abstract: Engineering rulebooks and technical standards contain multimodal information like dense text, tables, and illustrations that are challenging for retrieval augmented generation (RAG) systems. Building upon the DesignQA framework [1], which relied on full-text ingestion and text-based retrieval, this work establishes a Multimodal ColPali Enhanced Retrieval and Reasoning Framework (MCERF), a system that couples a multimodal retriever with large language model reasoning for accurate and efficient question answering from engineering documents. The system employs the ColPali, which retrieves both textual and visual information, and multiple retrieval and reasoning strategies: (i) Hybrid Lookup mode for explicit rule mentions, (ii) Vision to Text fusion for figure and table guided queries, (iii) High Reasoning LLM mode for complex multi modal questions, and (iv) SelfConsistency decision to stabilize responses. The modular framework design provides a reusable template for future multimodal systems regardless of underlying model architecture. Furthermore, this work establishes and compares two routing approaches: a single case routing approach and a multi-agent system, both of which dynamically allocate queries to optimal pipelines.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.ai</category>
-<category>cs.cl</category>
-<category>cs.ir</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>vision</category>
-</item>
-<item>
-<title>Siri AI at WWDC 2026</title>
-<link>https://simonwillison.net/2026/Jun/8/wwdc/#atom-everything</link>
-<guid>title:siri ai at wwdc 2026</guid>
-<pubDate>Mon, 08 Jun 2026 23:58:04 +0000</pubDate>
-<description>Given how badly burned anyone who took Apple's 2024 WWDC Apple Intelligence announcements at face value was, I'm holding to a strict &quot;I'll believe it when I see it&quot; policy for everything they announced today . The new Siri AI features do at least look feasible with today's technology, especially since Apple are licensing a custom Gemini-derived model that they can run on their own Private Cloud Compute . It sounds like they'll be taking advantage of vision LLMs to extract information from the user's screen, which neatly sidesteps the need for every existing application to ship custom code in order to integrate with Apple Intelligence. Vision LLMs were a much less mature category in June 2024. The new Core AI library looks like a good step in enabling developers to finally take full advantage of Apple's hardware for running their own models. It integrates with Meta's open source PyTorch ecosystem, using these Core AI PyTorch extensions : Core AI PyTorch Extensions ( coreai-torch ) is a Python package that bridges PyTorch and Core AI.</description>
-<source url="https://simonwillison.net/atom/everything/">simonwillison</source>
-<category>agents</category>
-<category>ai</category>
-<category>apple</category>
-<category>engineering</category>
-<category>gemini</category>
-<category>generative-ai</category>
-<category>google</category>
-<category>llm</category>
-<category>llms</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>reasoning</category>
-<category>serving</category>
-<category>simonwillison</category>
-<category>tools</category>
-<category>vision</category>
-<category>vision-llms</category>
-</item>
-<item>
-<title>What is Agentic RAG? Building Multi-Agent Agentic RAG Systems</title>
-<link>https://pub.towardsai.net/what-is-agentic-rag-building-multi-agent-agentic-rag-systems-88ba5fa3eaf4?source=rss----98111c9905da---4</link>
-<guid>title:what is agentic rag building multi agent agentic rag systems</guid>
-<pubDate>Tue, 09 Jun 2026 05:35:04 +0000</pubDate>
-<description>Explore Agentic RAG. Learn its benefits and how to implement it using LangChain. Retrieval-Augmented Generation (RAG) interacts with huge information repositories, combining the power of large language models (LLMs) with focused data retrieval to provide precise and contextually relevant responses. It emerged as a fundamental component for precision-based applications to integrate a retriever that extracts data from a knowledge base with a generative model that produces coherent answers. However, as AI systems grow and become more adaptive and complex, traditional RAG approaches show limitations in flexibility and reasoning. Agentic RAG introduces intelligent, self-sufficient agents that enhance RAG with dynamic decision-making, multi-step reasoning, and task management capabilities.</description>
+<title>Prompt Caching</title>
+<link>https://pub.towardsai.net/prompt-caching-66d436533522?source=rss----98111c9905da---4</link>
+<guid>title:prompt caching</guid>
+<pubDate>Wed, 10 Jun 2026 05:27:09 +0000</pubDate>
+<description>Indeed generated using ChatGPT Okay so real talk before we start…. There was this phase I went through, and honestly I am not ashamed of it because I think most people who got into building with LLMs went through the exact same thing, where I was just asking the model everything. Like everything. Bro can you code this → bro this function is broken can you debug → cool now write the tests → now write the docs → now refactor this whole file while you are at it!! I asked it to do git commits for me. I asked it to explain stack traces I did not feel like reading.</description>
 <source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
-<category>agentic-rag</category>
 <category>agents</category>
 <category>ai</category>
+<category>cache</category>
+<category>llm</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>prompt-engineering</category>
+<category>pub.towardsai.net</category>
+<category>reasoning</category>
+<category>rl</category>
+<category>serving</category>
+<category>writing-prompts</category>
+</item>
+<item>
+<title>Measuring Embedding Drift: Why Hybrid Search Saves Stale Models.</title>
+<link>https://pub.towardsai.net/measuring-embedding-drift-why-hybrid-search-saves-stale-models-c929bf5a1f14?source=rss----98111c9905da---4</link>
+<guid>title:measuring embedding drift why hybrid search saves stale models</guid>
+<pubDate>Wed, 10 Jun 2026 05:21:25 +0000</pubDate>
+<description>The standard advice on embedding drift is theoretical: your model’s vocabulary was frozen at training time, new terminology emerges, and retrieval quality degrades. Switch to a newer model. Add BM25. Re-embed periodically. The Aggregate Trap how deceptive metrics completely mask the collapse of unseen terminology recall. That advice is correct.</description>
+<source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
+<category>agents</category>
+<category>ai</category>
+<category>alignment</category>
 <category>artificial-intelligence</category>
 <category>llm</category>
-<category>multi-agent-systems</category>
-<category>multimodal</category>
+<category>machine-learning</category>
+<category>mlops</category>
 <category>news</category>
+<category>nlp</category>
 <category>nonpaper</category>
 <category>pub.towardsai.net</category>
 <category>reasoning</category>
 <category>rl</category>
 </item>
 <item>
-<title>M$^3$Exam: Benchmarking Multimodal Memory for Realistic User-Agent Interactions</title>
-<link>https://arxiv.org/abs/2606.07402</link>
-<guid>arxiv:2606.07402</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2606.07402v1 Announce Type: new Abstract: Language agents are increasingly deployed over accumulating multimodal information, yet existing benchmarks assume a human-human form with sparse visuals and straightforward content, evaluating neither reasoning over authentic multimodal file interaction nor the interpretation of concealed user information. We therefore introduce M$^3$Exam, a query-centric multimodal conversational memory benchmark built on realistic user-agent interaction, with multi-dimensional evaluation spanning cross-modal grounding and implicit information inference. Benchmarking MLLMs and memory systems reveals persistent gaps in cross-modal grounding, cross session reasoning, and the efficiency cost of accumulating multimodal context. We further propose M$^3$Proctor, a multimodal memory method that detects query modality bias and consumes raw visual sources only on demand, improving accuracy by 13% while cutting index-construction time and retrieved tokens by over 70%.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.cl</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>serving</category>
-</item>
-<item>
-<title>Agent Planning Benchmark: A Diagnostic Framework for Planning Capabilities in LLM Agents</title>
-<link>https://arxiv.org/abs/2606.04874</link>
-<guid>arxiv:2606.04874</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2606. 04874v2 Announce Type: replace Abstract: Planning is central to LLM agents: before acting, an agent must decompose goals, select tools, reason over constraints, and decide when a task is infeasible. Yet existing agent evaluations often report only end-to-end success, making it difficult to determine whether failures stem from planning or execution. We introduce Agent Planning Benchmark (APB), a planning-specific diagnostic benchmark with 4,209 multimodal cases across 22 domains and five settings, covering holistic planning, feedback-conditioned step-wise planning, and robustness under extraneous tools, broken tools, and unsolvable tasks. Across 12 MLLMs, APB reveals systematic weaknesses in long-horizon planning, tool-noise robustness, calibrated refusal, and inference-time refinement. We further validate APB on 200 ToolSandbox tasks and 200 $\tau^2$-bench tasks, where APB-guided refinement consistently improves plan correctness, plan grade, and downstream execution metrics across three representative models.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.cl</category>
-<category>llm</category>
-<category>multimodal</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>Beyond tokens: a unified framework for latent communication in LLM-based multi-agent systems</title>
-<link>https://arxiv.org/abs/2606.05711</link>
-<guid>arxiv:2606.05711</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2606. 05711v2 Announce Type: replace Abstract: Multi-agent systems built on large language models (LLMs) have become a prevailing paradigm for tackling complex reasoning, planning, and tool-use tasks. The dominant communication protocol in such systems is natural language: agents exchange messages token-by-token, verbalising their internal reasoning so that peers can read, verify, and respond. While convenient and interpretable, this protocol suffers from three structural drawbacks -- high inference cost, irreversible information loss during discretization, and ambiguity/redundancy of natural language. A growing body of work therefore explores an alternative protocol -- latent communication -- in which agents exchange continuous representations (embeddings, hidden states, or KV-caches) directly, bypassing the bottleneck of text generation. This paper presents a unified framework for organising the rapidly expanding literature on latent communication.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>agents</category>
-<category>ai</category>
-<category>alignment</category>
-<category>arxiv.org</category>
-<category>cs.cl</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>serving</category>
-</item>
-<item>
-<title>Finding the Minimal Parameter Budget for Implicit Reasoning: A Data Complexity Driven Scaling Law for Language Models</title>
-<link>https://arxiv.org/abs/2504.03635</link>
-<guid>arxiv:2504.03635</guid>
-<pubDate>Tue, 09 Jun 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2504. 03635v5 Announce Type: replace-cross Abstract: Reasoning is a core capability of language models (LMs), yet it remains unclear how much model capacity is necessary to support reasoning during pretraining. In this work, we study the minimal parameter budget required for implicit reasoning, defined as the ability to infer new facts from learned knowledge without explicit chain-of-thought supervision. To isolate this phenomenon, we pretrain LMs from scratch in a controlled synthetic environment that mimics the structure and distribution of real-world knowledge graphs, and evaluate their ability to complete missing edges via multi-hop inference. From both a theoretical and an empirical perspective, we identify a scaling law linking this optimal parameter budget to a graph search entropy measure. Across a wide range of model sizes, training steps, and graph complexities, we show that an optimally sized language model can reliably reason over approximately 0.</description>
-<source url="https://arxiv.org/rss/cs.CL">arxiv.org</source>
-<category>ai</category>
-<category>arxiv.org</category>
-<category>cs.ai</category>
-<category>cs.cl</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
 <title>Introducing WorldVQA â</title>
 <link>https://www.kimi.com/blog/worldvqa</link>
 <guid>title:introducing worldvqa</guid>
-<pubDate>Tue, 09 Jun 2026 11:27:32 +0000</pubDate>
+<pubDate>Wed, 10 Jun 2026 11:47:45 +0000</pubDate>
 <description>A benchmark for evaluating atomic visual world knowledge in Multimodal LLMs. Authors Kimi Team We are releasing WorldVQA , a new benchmark designed to measure the factual correctness of Multimodal Large Language Models (MLLMs). While recent models have demonstrated impressive capabilities in visual reasoning and description, measuring their reliability regarding visual world knowledge remains a challenge.</description>
 <source url="https://www.kimi.com/blog">kimi</source>
 <category>kimi</category>
@@ -1373,39 +1341,68 @@
 <category>rl</category>
 </item>
 <item>
-<title>What's Left to Build When Software Is Free (with Chip Huyen)</title>
-<link>https://www.youtube.com/watch?v=vi6UILzThgo</link>
-<guid>title:what s left to build when software is free with chip huyen</guid>
-<pubDate>Tue, 09 Jun 2026 11:00:21 +0000</pubDate>
-<description>#AIengineering #MachineLearning #FoundationModels Chip Huyen joins host @JonKrohnLearns for this milestone episode 999 to talk about her record-breaking book &quot;AI Engineering&quot; the most-read title on the O'Reilly platform last year and how the AI landscape has shifted since her last appearance. Chip breaks down what separates AI engineering from machine learning engineering, makes the case for a &quot;start simple&quot; workflow, gets candid about the real costs of running LLMs in production, and shares why she's now fascinated by physical AI, robotics, and world models and why the durable problems worth solving are increasingly human ones. Jon Krohn guides the conversation from the practical content of the book through to where the field is heading next. This episode is brought to you by: • Cisco: https://outshift. cisco. com • Acceldata: https://www.</description>
-<source url="https://www.youtube.com/feeds/videos.xml?channel_id=UCMbtqTGdSsxYYhhTpV4lSTQ">youtube.com</source>
-<category>ai</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>robotics</category>
-<category>world-models</category>
-<category>youtube.com</category>
-</item>
-<item>
-<title>How to Scrape E-Commerce Sites for AI Agents Using Playwright and LLMs</title>
-<link>https://dev.to/alterlab/how-to-scrape-e-commerce-sites-for-ai-agents-using-playwright-and-llms-j5g</link>
-<guid>title:how to scrape e commerce sites for ai agents using playwright and llms</guid>
-<pubDate>Tue, 09 Jun 2026 10:41:58 +0000</pubDate>
-<description>TL;DR AI agents require structured JSON data (prices, specifications, availability), but modern e-commerce sites serve heavily obfuscated, JavaScript-rendered HTML. To bridge this gap, modern scraping pipelines use headless browsers like Playwright to execute JavaScript and normalize browser fingerprints, combined with LLMs to extract schema-validated JSON directly from the rendered DOM. This approach eliminates brittle CSS selectors and scales across diverse retail layouts. The AI Agent Data Bottleneck Autonomous agents and LLM-powered applications rely on real-time external data. When an AI agent needs to analyze market trends, compare product specifications, or track inventory, it cannot parse raw, minified HTML effectively. Traditional rules-based web scraping relies heavily on XPath or CSS selectors to parse this HTML.</description>
+<title>Flash Attention: what it does and why it matters</title>
+<link>https://dev.to/tech_nuggets/flash-attention-what-it-does-and-why-it-matters-59b8</link>
+<guid>title:flash attention what it does and why it matters</guid>
+<pubDate>Wed, 10 Jun 2026 11:20:09 +0000</pubDate>
+<description>Flash Attention: what it does and why it matters Your training job is paying for an A100 at $3/hour. The loss is going down, gradients are flowing, and the model's loss curve looks textbook-logarithmic. But if you profile the step time and look at what the GPU is actually doing, you'll see something alarming: the GPU compute units are idle 40-60% of the time. The bottleneck isn't arithmetic -- it's memory bandwidth. The GPU's HBM (high-bandwidth memory, 1. 5-2 TB/s on an A100) cannot keep up with how fast the compute units want to consume data.</description>
 <source url="https://dev.to/feed">dev.to</source>
-<category>agents</category>
 <category>ai</category>
-<category>aiagents</category>
+<category>deeplearning</category>
 <category>dev.to</category>
+<category>gpu</category>
 <category>llm</category>
 <category>news</category>
 <category>nonpaper</category>
-<category>playwright</category>
 <category>rl</category>
 <category>serving</category>
-<category>webscraping</category>
+<category>vision</category>
+</item>
+<item>
+<title>Azure API Management Ships Unified Model API and MCP Content Safety at Build 2026</title>
+<link>https://www.infoq.com/news/2026/06/azure-apim-ai-gateway-build/?utm_campaign=infoq_content&amp;utm_source=infoq&amp;utm_medium=feed&amp;utm_term=AI%2C+ML+%26+Data+Engineering</link>
+<guid>title:azure api management ships unified model api and mcp content safety at build 2026</guid>
+<pubDate>Wed, 10 Jun 2026 09:38:00 +0000</pubDate>
+<description>Azure API Management shipped a Unified Model API that lets clients speak one format while APIM transforms requests to Anthropic, Vertex AI, and other backends. Content safety policies now cover MCP tool calls and Agent-to-Agent payloads alongside LLM traffic. Token metrics expanded to track reasoning, cached, and audio tokens across providers. By Steef-Jan Wiggers</description>
+<source url="https://feed.infoq.com/ai-ml-data-eng/">feed.infoq.com</source>
+<category>agents</category>
+<category>ai</category>
+<category>ai architecture</category>
+<category>ai, ml &amp; data engineering</category>
+<category>api gateway</category>
+<category>architecture &amp; design</category>
+<category>azure</category>
+<category>cloud</category>
+<category>development</category>
+<category>devops</category>
+<category>feed.infoq.com</category>
+<category>llm</category>
+<category>microsoft azure</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>reasoning</category>
+<category>serving</category>
+</item>
+<item>
+<title>Setting a custom price for a model in AgentsView</title>
+<link>https://simonwillison.net/2026/Jun/9/agentsview-custom-model-price/#atom-everything</link>
+<guid>title:setting a custom price for a model in agentsview</guid>
+<pubDate>Tue, 09 Jun 2026 21:35:31 +0000</pubDate>
+<description>TIL: Setting a custom price for a model in AgentsView I've been really enjoying AgentsView by Wes McKinney as a tool for exploring my token usage across different coding agents running on my laptop. Claude Fable 5 came out today and wasn't yet included in the pricing database AgentsView uses. I used Fable to reverse-engineer AgentsView and figured out this recipe for setting custom prices. Here's my Claude Fable 5 usage for today so far, plotted by AgentsView as a treemap across my different local projects: Tags: ai , generative-ai , llms , llm-pricing , claude-mythos</description>
+<source url="https://simonwillison.net/atom/everything/">simonwillison</source>
+<category>agents</category>
+<category>ai</category>
+<category>claude-mythos</category>
+<category>engineering</category>
+<category>generative-ai</category>
+<category>llm</category>
+<category>llm-pricing</category>
+<category>llms</category>
+<category>nonpaper</category>
+<category>rl</category>
+<category>serving</category>
+<category>simonwillison</category>
+<category>tools</category>
 </item>
 </channel>
 </rss>
