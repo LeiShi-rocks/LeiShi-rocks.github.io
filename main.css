@@ -903,3 +903,80 @@ table.imgtable, table.imgtable td {
 .pub-scroll ul {
     margin-bottom: 0;
 }
+
+/* Publication filter / label system */
+.pub-controls {
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+}
+.pub-filter-group {
+  margin-bottom: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+.pub-filter-group:last-child { margin-bottom: 0; }
+.pub-filter-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #586069;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-right: 4px;
+  white-space: nowrap;
+}
+.pub-filter-btn, .pub-sort-btn {
+  display: inline-block;
+  padding: 2px 9px;
+  font-size: 12px;
+  line-height: 20px;
+  border: 1px solid #e1e4e8;
+  background: white;
+  color: #586069;
+  cursor: pointer;
+  transition: all 0.12s;
+  user-select: none;
+}
+.pub-filter-btn { border-radius: 999px; }
+.pub-sort-btn   { border-radius: 4px; }
+.pub-filter-btn:hover, .pub-sort-btn:hover { border-color: #0366d6; color: #0366d6; }
+.pub-filter-btn.active, .pub-sort-btn.active {
+  background: #0366d6;
+  border-color: #0366d6;
+  color: white;
+}
+.pub-result-count {
+  font-size: 13px;
+  color: #586069;
+  margin: 10px 0 6px 0;
+}
+#pub-list { padding: 0; margin: 0; }
+.pub-entry {
+  padding: 14px 0;
+  border-bottom: 1px solid #eaecef;
+}
+.pub-entry:last-child { border-bottom: none; }
+.pub-entry.hidden { display: none; }
+.pub-entry-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+.pub-label {
+  display: inline-block;
+  padding: 1px 7px;
+  font-size: 11px;
+  line-height: 18px;
+  border-radius: 999px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+.pub-label-year { background:#f0f7ff; color:#0550ae; border-color:#b6d7ff; font-weight:700; }
+.pub-label-venue { background:#f6f8fa; color:#586069; border-color:#d1d5da; }
+.pub-label-topic { font-weight: 500; } /* colors injected at runtime by pub-label-colors.js */
+.pub-entry-text { font-size: 15px; line-height: 1.65; }
