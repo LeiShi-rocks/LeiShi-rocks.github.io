@@ -4,7 +4,7 @@
 <title>AI Papers</title>
 <link>https://example.com/ai-trend-feed</link>
 <description>Top daily AI papers</description>
-<lastBuildDate>Tue, 28 Jul 2026 10:44:00 +0000</lastBuildDate>
+<lastBuildDate>Wed, 29 Jul 2026 10:48:08 +0000</lastBuildDate>
 <item>
 <title>UniGen-AR: Unifying Visual Generation with Auto-Regressive Modeling</title>
 <link>https://tldr.takara.ai/p/2607.24157</link>
@@ -61,23 +61,25 @@
 <category>vision</category>
 </item>
 <item>
-<title>Data Pyramid for Embodied Manipulation</title>
-<link>https://arxiv.org/abs/2607.24744</link>
-<guid>arxiv:2607.24744</guid>
-<pubDate>Tue, 28 Jul 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2607. 24744v1 Announce Type: cross Abstract: Multimodal foundation models learned to see and to speak by consuming the whole internet. Embodied agents admit no such shortcut, since they require data that couple observations with physical states and actions. These signals can be provided, to varying degrees, by multiple data sources. In this work, we organize the embodied data ecosystem as a &quot;pyramid&quot; spanning five complementary sources: real-robot data, UMI-style data, egocentric and exocentric data, simulation data, and general vision-language data. We organize the pyramid around the tension between scalability and robot alignment, and further characterize each source in terms of data quality, diversity, reusability, and physical fidelity.</description>
-<source url="https://rss.arxiv.org/rss/cs.CV">arxiv</source>
+<title>ProcAgent: An Agentic Framework for Procedural Task Guidance on Edge with Human-in-the-Loop</title>
+<link>https://arxiv.org/abs/2607.24770</link>
+<guid>arxiv:2607.24770</guid>
+<pubDate>Wed, 29 Jul 2026 04:00:00 +0000</pubDate>
+<description>arXiv:2607. 24770v1 Announce Type: new Abstract: Procedural tasks such as furniture assembly and home repair impose substantial cognitive demands because users must interpret instructions, track task progress, reason about spatial state, and recover from errors while performing physical actions. Prior multimodal assistants have shown promise for procedural guidance, but most rely on cloud inference and fixed always-on perception, making them poorly suited to privacy-sensitive, latency-critical domestic settings. We present ProcAgent, a fully on-device, agentic, vision-based procedural assistant for real-time adaptive guidances on a single NVIDIA Jetson AGX Orin. ProcAgent uses a propose-and-verify architecture that combines low-latency continuous perception, a symbolic task graph, on-demand vision-language verification, and an LLM-based interaction agent. The system continuously proposes user progress, invokes expensive visual reasoning only when ambiguity or likely deviation arises, and supports both reactive question answering and proactive intervention with human-in-the- loop confirmation.</description>
+<source url="https://rss.arxiv.org/rss/cs.AI">arxiv</source>
 <category>agents</category>
-<category>alignment</category>
+<category>ai</category>
 <category>arxiv</category>
-<category>cs.cv</category>
-<category>cs.ro</category>
+<category>cs.ai</category>
+<category>cs.hc</category>
+<category>llm</category>
 <category>multimodal</category>
 <category>paper</category>
 <category>papers</category>
 <category>reasoning</category>
+<category>research</category>
 <category>rl</category>
-<category>robotics</category>
+<category>serving</category>
 <category>vision</category>
 </item>
 <item>
@@ -260,21 +262,6 @@
 <category>vision</category>
 </item>
 <item>
-<title>DraftExpert: Expansion-Aware Self-Speculative Decoding for End-Device MoE Inference</title>
-<link>https://tldr.takara.ai/p/2607.24434</link>
-<guid>title:draftexpert expansion aware self speculative decoding for end device moe inference</guid>
-<pubDate>Mon, 27 Jul 2026 13:44:42 +0000</pubDate>
-<description>Large Mixture-of-Experts (MoE) language models are attractive for end-device deployment because only a small subset of experts is active per token, but their routed expert weights often exceed accelerator memory. We target latency-critical single-user settings where routed experts are staged on demand from CPU memory to a GPU or from Flash to a mobile NPU. In this setting, self-speculative decoding faces a new bottleneck: increasing the draft expert set improves accuracy but triggers extra expert loading, while cheap small-footprint drafts have low acceptance; moreover, verifying a multi-token block activates the union of target experts and is no longer close to one target step. We propose DraftExpert, an expansion-aware self-speculative decoding framework for expert-offloaded MoE inference. DraftExpert trains one lightweight accelerator-resident draft expert per layer by self-distilling residual, logit/token, and router-agreement signals from the frozen target MoE. At inference time, it uses a fixed-footprint shared+top-1+draft-expert drafter together with confidence--expansion truncation and target-expert prefetching, while final tokens are still exactly verified by the target model.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>serving</category>
-</item>
-<item>
 <title>Understanding Tone-Dependent Inference Cost in Large Language Models</title>
 <link>https://tldr.takara.ai/p/2607.23915</link>
 <guid>title:understanding tone dependent inference cost in large language models</guid>
@@ -288,6 +275,21 @@
 <category>paper</category>
 <category>papers</category>
 <category>reasoning</category>
+<category>serving</category>
+</item>
+<item>
+<title>DraftExpert: Expansion-Aware Self-Speculative Decoding for End-Device MoE Inference</title>
+<link>https://tldr.takara.ai/p/2607.24434</link>
+<guid>title:draftexpert expansion aware self speculative decoding for end device moe inference</guid>
+<pubDate>Mon, 27 Jul 2026 13:44:42 +0000</pubDate>
+<description>Large Mixture-of-Experts (MoE) language models are attractive for end-device deployment because only a small subset of experts is active per token, but their routed expert weights often exceed accelerator memory. We target latency-critical single-user settings where routed experts are staged on demand from CPU memory to a GPU or from Flash to a mobile NPU. In this setting, self-speculative decoding faces a new bottleneck: increasing the draft expert set improves accuracy but triggers extra expert loading, while cheap small-footprint drafts have low acceptance; moreover, verifying a multi-token block activates the union of target experts and is no longer close to one target step. We propose DraftExpert, an expansion-aware self-speculative decoding framework for expert-offloaded MoE inference. DraftExpert trains one lightweight accelerator-resident draft expert per layer by self-distilling residual, logit/token, and router-agreement signals from the frozen target MoE. At inference time, it uses a fixed-footprint shared+top-1+draft-expert drafter together with confidence--expansion truncation and target-expert prefetching, while final tokens are still exactly verified by the target model.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
 <category>serving</category>
 </item>
 <item>
