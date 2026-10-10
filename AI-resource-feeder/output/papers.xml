@@ -4,15 +4,15 @@
 <title>AI Papers</title>
 <link>https://example.com/ai-trend-feed</link>
 <description>Top daily AI papers</description>
-<lastBuildDate>Fri, 09 Oct 2026 15:13:25 +0000</lastBuildDate>
+<lastBuildDate>Sat, 10 Oct 2026 14:26:41 +0000</lastBuildDate>
 <item>
-<title>RT-DETR-World: Transferring Rich LLM Semantics to Real-Time Open-Vocabulary Detection</title>
-<link>https://tldr.takara.ai/p/2610.09502</link>
-<guid>title:rt detr world transferring rich llm semantics to real time open vocabulary detection</guid>
-<pubDate>Wed, 07 Oct 2026 06:01:35 +0000</pubDate>
-<description>Open-vocabulary detection (OVD) recognizes categories unseen during training through textual category queries, yet achieving strong generalization with real-time efficiency remains challenging. Beyond vocabulary scaling, zero-shot generalization may benefit from reusable visual--semantic cues learned from seen data, including attributes, actions, states, and contextual relations. Existing real-time OVD methods primarily emphasize vocabulary coverage and efficient region/query--text matching; under strict efficiency constraints, compact detectors may struggle to absorb rich instance semantics and scene context. We propose RT-DETR-World, a compact DETR-style detector that transfers the rich semantics conveyed by descriptions during training while retaining lightweight query--text matching at inference. We construct GroundingCapv2 with three levels of supervision: category names for standard OVD, object descriptions conveying instance-level semantics, and image descriptions conveying object relations and scene context. These descriptions serve only as training-time semantic supervision.</description>
+<title>LLM-IDEA: Identifiability-Driven Experimental Agent for Autonomous Discovery of Mechanistic World Models</title>
+<link>https://tldr.takara.ai/p/2610.11253</link>
+<guid>title:llm idea identifiability driven experimental agent for autonomous discovery of mechanistic world models</guid>
+<pubDate>Thu, 08 Oct 2026 05:01:30 +0000</pubDate>
+<description>Large language model agents are being increasingly deployed as autonomous scientists, designing experiments and inferring mechanistic world models with minimal human oversight. Yet identifiability is often overlooked: when a plateau is reached, the agent needs to know whether it is not yet capable enough or the model simply is not identifiable from the data, in which case no amount of further experimentation of the same kind can help. We propose the Identifiability-Driven Experimental Agent (LLM-IDEA) for closed-loop discovery with an identifiability engine that returns a three-way plateau verdict: capability limit, resolvable within the design class, or certified exhausted. On ODEBench, 60 of the 62 systems with free constants are identifiable at round 0; the RC circuit is certified exhausted for every experiment that protocol can run, and a harvesting model is resolvable by one added initial condition. The identifiability engine reproduces known verdicts on Lotka-Volterra, Van der Pol, Lorenz, and a pharmacokinetic model, where it recommends the intravenous arm pharmacologists use, and it ranks the depth scorer of our own benchmark last among four observation designs. On the DiscoverPhysics benchmark, it finds two public worlds whose explanation rubric rewards a distinction no legal experiment can make, and every model there with accurate trajectories failed the explanation grade (15 of 15, against 5 of 9 in identifiable worlds, p = 0.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
+<category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
@@ -20,49 +20,46 @@
 <category>paper</category>
 <category>papers</category>
 <category>rl</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
-<title>RoboJEPA: Scaling Robotic Latent World Models</title>
-<link>https://tldr.takara.ai/p/2610.10515</link>
-<guid>title:robojepa scaling robotic latent world models</guid>
-<pubDate>Wed, 07 Oct 2026 17:54:42 +0000</pubDate>
-<description>Latent world models have shown a remarkable ability to predict future states and to plan in the real world. In practice, however, we lack a principled way to estimate how their capabilities scale with model size, data, and compute, an open problem that slows progress in the field. In this work we present RoboJEPA, a world model based on the Joint Embedding Predictive Architecture (JEPA) and trained on a large-scale dataset spanning 12 robotic embodiments. We show that RoboJEPA's imagination error, the error of its latent rollouts, follows a second-order power law in compute, allowing us to predict model quality well beyond the scale at which the law is fit. We further show that downstream robotic planning performance improves predictably with compute, and that imagination error is strongly correlated with it, making it a reliable proxy for real-robot evaluation. Finally, we demonstrate that latent world models can be deployed zero-shot as robotic agents, planning toward a single goal image to solve tasks requiring long-horizon planning on real hardware.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>robotics</category>
 <category>world-models</category>
 </item>
 <item>
-<title>Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment</title>
-<link>https://tldr.takara.ai/p/2610.09369</link>
-<guid>title:immiscible diffusion policy preserving multimodal robot actions through label free noise assignment</guid>
-<pubDate>Wed, 07 Oct 2026 03:22:26 +0000</pubDate>
-<description>When diffusion policies were first introduced, they were expected to recover multi-modal action distributions. However, we find this expectation does not always hold, as diffusion policies often collapse to a single modality even when we guarantee the balance of dataset modalities and exact within-batch symmetry. Our analysis indicates that independent action-noise pairing contributes to this failure by increasing mixing and crossing among diffusion paths, which can produce averaged denoising responses and suppress modality-specific behavior. This issue is especially severe in robot planning, where action spaces are dense and low-dimensional, significantly increasing such mixing and crossing. To alleviate this problem, we propose Immiscible Diffusion Policy, a label-free training-time add-on to diffusion policy that uses action-noise assignment to preserve relatively distinct noise-to-action routes without modifying the policy architecture or inference procedure. Across five simulated and two real-world humanoid manipulation tasks spanning state, RGB, and point-cloud observations, our method significantly improves the policy's preservation of action modalities while maintaining strong task performance.</description>
+<title>VFold: Symmetry-Aware Cross-Layer Value Cache Compression</title>
+<link>https://tldr.takara.ai/p/2610.12338</link>
+<guid>title:vfold symmetry aware cross layer value cache compression</guid>
+<pubDate>Thu, 08 Oct 2026 17:14:28 +0000</pubDate>
+<description>While caching key-value (KV) states accelerates Large Language Model (LLM) decoding, this cache can dominate memory usage at long context lengths. One solution is to compress this memory by exploiting inter-layer cache similarities. However, most existing techniques necessitate architectural changes to LLMs and incur substantial overhead. In this work, we propose a symmetry-aware value cache merging strategy that reduces cache memory while avoiding both harmful performance degradation and architectural overhead during decoding. Furthermore, we show that this approach can be exploited alongside existing cache compression techniques, composing with high-ratio quantization or key cache pruning to reach compression ratios that neither method reaches alone, with minimal additional cost. Ultimately, our findings reveal a major source of underutilized capacity in the value cache, offering a simple yet highly effective direction for scaling context windows under memory constraints.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
-<category>diffusion</category>
+<category>efficiency</category>
 <category>huggingface</category>
+<category>llm</category>
 <category>ml</category>
-<category>multimodal</category>
 <category>paper</category>
 <category>papers</category>
-<category>rl</category>
-<category>robotics</category>
+<category>serving</category>
+</item>
+<item>
+<title>Reading the Room: Foundations, Design, and Challenges of Normative Competence in LLMs</title>
+<link>https://tldr.takara.ai/p/2610.10906</link>
+<guid>title:reading the room foundations design and challenges of normative competence in llms</guid>
+<pubDate>Wed, 07 Oct 2026 21:02:52 +0000</pubDate>
+<description>Human communities are governed by normative systems: shared standards that produce \textit{norms} dictating acceptable behavior, enforced through community sanctioning. Aligning increasingly autonomous AI systems with these norms is a central alignment challenge, complicated by the fact that norms are vast in number, change quickly, and are often arbitrary (e. g. , dress or language conventions). Thus, alignment requires \textit{normative competence}: the ability to discern from interaction alone what norms a community enforces without relying on static pretrained knowledge. We introduce a multi-agent community debate setting, where access to debate is governed by synthetic norms, to study normative competence in isolation from pretraining exposure.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
 <category>serving</category>
 </item>
 <item>
 <title>Coverage-Aware Reasoning with Medical Tokens for Diagnosis Prediction</title>
 <link>https://arxiv.org/abs/2610.10641</link>
 <guid>arxiv:2610.10641</guid>
-<pubDate>Fri, 09 Oct 2026 04:00:00 +0000</pubDate>
+<pubDate>Sat, 10 Oct 2026 04:00:00 +0000</pubDate>
 <description>arXiv:2610. 10641v1 Announce Type: cross Abstract: Large language models (LLMs) offer promising potential for next-visit diagnosis prediction, owing to their ability to integrate longitudinal clinical evidence and reason over it in natural language. However, reinforcement learning for LLM reasoning commonly rewards each trajectory according to the correctness of its final answer. In next-visit diagnosis prediction, multiple diagnoses can be simultaneously valid, but independently rewarding one diagnosis per trajectory does not distinguish repeated hits from coverage of different diagnoses. The policy can therefore concentrate on a few correct diagnoses, leaving others uncovered. Meanwhile, LLM tokenizers can split ICD codes into several generic tokens with limited clinical meaning, requiring multiple decoding steps to predict each diagnosis and hindering reasoning over a large disease vocabulary.</description>
 <source url="https://rss.arxiv.org/rss/cs.AI">arxiv</source>
 <category>ai</category>
@@ -81,50 +78,47 @@
 <category>vision</category>
 </item>
 <item>
-<title>RobotWorld: Benchmarking Multimodal Agents for Robot Use Across Diverse Tasks and Embodiments</title>
-<link>https://tldr.takara.ai/p/2610.10409</link>
-<guid>title:robotworld benchmarking multimodal agents for robot use across diverse tasks and embodiments</guid>
-<pubDate>Wed, 07 Oct 2026 16:55:24 +0000</pubDate>
-<description>General-purpose agents increasingly write code, use tools, and complete complex digital tasks, raising the question of how far these capabilities carry into the physical world. To investigate this, we introduce RobotWorld, a challenging simulation testbed for robot use: turning instructions and observations into physical task execution through robot interfaces. Its 84 tasks span manipulation, mobile manipulation, locomotion, driving, and aerial control, with explicit interaction budgets and executable success checks. By analysing task outcomes alongside execution traces, we identify both the capabilities that transfer and the gaps that prevent reliable completion. Furthermore, we find that current agents can construct sophisticated perception and control workflows, including image segmentation, camera calibration, spatial estimation, and dynamics-based computation. These capabilities, however, do not consistently compose into successful behaviour: agents lose task-relevant object states despite reaching commanded poses, fail to correct ineffective actions, recover too late, or mistake unfinished tasks for completion.</description>
+<title>HeiCo-FOCUS: A Clinically Grounded Dataset for Long-Context Video Understanding</title>
+<link>https://tldr.takara.ai/p/2610.10156</link>
+<guid>title:heico focus a clinically grounded dataset for long context video understanding</guid>
+<pubDate>Wed, 07 Oct 2026 14:33:47 +0000</pubDate>
+<description>Recent advances in Vision-Language Models (VLMs) have led to rapid progress in video understanding across a wide range of benchmark tasks. However, existing evaluations largely focus on short-term reasoning, failing to assess a critical capability: maintaining cumulative temporal consistency over extended time horizons. To close this evaluation gap, we introduce HeiCo-FOCUS, a clinically grounded dataset for evaluating long-context video understanding through the task of Foreign Object Contextual Understanding in Surgery. Built on a dataset of Heidelberg Colorectal surgeries, this task requires models to continuously track multiple objects as they are inserted, manipulated, occluded, and removed over procedures lasting up to hours. HeiCo-FOCUS comprises 30,000 visual question answering (VQA) pairs covering five core capabilities: object recognition, temporal grounding, aggregation, event and procedural understanding, and complex reasoning. The dataset was constructed through a rigorous multi-stage annotation pipeline involving large-scale crowd annotation and 39 surgical domain experts to ensure high quality and clinical relevance.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
+<category>llm</category>
 <category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>robotics</category>
-</item>
-<item>
-<title>VideoEvolve: Co-Evolving Memory and Retrieval for Long Video Understanding</title>
-<link>https://tldr.takara.ai/p/2610.10183</link>
-<guid>title:videoevolve co evolving memory and retrieval for long video understanding</guid>
-<pubDate>Wed, 07 Oct 2026 14:51:23 +0000</pubDate>
-<description>Long video understanding increasingly relies on external memory to organize massive visual streams into compact representations. However, most memory-based methods dynamically adapt how information is retrieved for different questions, while largely fixing what is remembered. This mismatch makes missing details costly to recover, whereas stored information is valuable only when it can be reliably retrieved. To address this issue, we propose VideoEvolve, a novel self-evolving framework that jointly evolves memory and retrieval for long video understanding. Specifically, starting from a coarse low-frame-rate overview, VideoEvolve couples a Memory Evolver for selective memory augmentation with a Retrieval Evolver for adaptive retrieval over the evolving memory. We then co-evolve the two Evolvers through alternating agentic reinforcement learning (Agentic RL), updating one while freezing the other.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>multimodal</category>
 <category>paper</category>
 <category>papers</category>
 <category>reasoning</category>
 <category>rl</category>
+<category>vision</category>
 </item>
 <item>
-<title>DUDA-Bench: Benchmarking LLM Agents on Multimodal Data-Driven Urban Diagnosis</title>
-<link>https://tldr.takara.ai/p/2610.09374</link>
-<guid>title:duda bench benchmarking llm agents on multimodal data driven urban diagnosis</guid>
-<pubDate>Wed, 07 Oct 2026 03:29:27 +0000</pubDate>
-<description>Urban diagnosis integrates heterogeneous observations to identify urban problems, localize affected areas, and investigate contributing factors, informing evidence-based urban planning and management. However, its reliance on labor-intensive, case-specific expert workflows limits scalability and reuse, motivating the exploration of agent-based execution. To evaluate this capability, we introduce DUDA-Bench, a hierarchical and interactive benchmark that formalizes data-driven urban diagnosis as a multi-stage agent workflow. It comprises 86 atomic and 22 workflow tasks spanning four analytical stages, grounded in multimodal data from 12 cities covering five urban problem types. Evaluations of seven backbone models and five agent systems reveal a substantial gap between isolated analytical competence and end-to-end diagnosis, with system benefits varying across backbones. Trajectory analysis shows that unresolved evidence gaps propagate across stages, while successful recovery involves revising assumptions and actions using feedback.</description>
+<title>Why LLM Agents Favor Their Group: Stakes, Observed Norms, and Reputation</title>
+<link>https://tldr.takara.ai/p/2610.11008</link>
+<guid>title:why llm agents favor their group stakes observed norms and reputation</guid>
+<pubDate>Wed, 07 Oct 2026 23:46:37 +0000</pubDate>
+<description>Language-model agents favor their own group because they have watched their members favor each other. The group label alone does little once the decision has a cost; what drives favoritism is observed behavior, and an individual's own record can override it. We test this in small societies with arbitrary group labels, ten rounds of point sharing, and matched one-shot decisions across fifteen OpenAI models and three Claude models, about 4,400 societies and 3. 3 million audited model calls. First, the large effect of a bare group label reported in earlier work appears only when giving others points costs the agent nothing; once the agent can keep points for itself, that effect collapses on every model that shows it. Second, under a stake, interaction history becomes the main source of favoritism: the history effect is statistically positive on 13 of 15 models, reaches about 3.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+</item>
+<item>
+<title>Softmax Attention on Gaussian Mixtures: Linear When It Can, Selective When It Must</title>
+<link>https://tldr.takara.ai/p/2610.11798</link>
+<guid>title:softmax attention on gaussian mixtures linear when it can selective when it must</guid>
+<pubDate>Thu, 08 Oct 2026 12:09:57 +0000</pubDate>
+<description>Softmax attention, at the heart of Transformers, has demonstrated remarkable capabilities. Yet its underlying mechanisms remain only partially understood. Recent theoretical work studies Gaussian prompts, where the infinite-prompt limit reduces softmax attention to a linear map, but also removes the query-dependent selection that distinguishes it from linear attention. This work studies the infinite-prompt limit of softmax attention on Gaussian mixtures, which retain the tractability of Gaussian data while introducing latent structure, multimodality, and nonlinear dependencies. We show that softmax attention can represent and learn, via gradient-based methods, optimal solutions to a range of statistical tasks, including supervised classification and denoising. Our results highlight two complementary capabilities of softmax attention: it can recover linear tasks as effectively as its simpler linear counterpart, while also exploiting query-dependent context selection to solve nonlinear tasks beyond the reach of linear attention.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
 <category>ml</category>
 <category>multimodal</category>
 <category>paper</category>
@@ -132,64 +126,31 @@
 <category>rl</category>
 </item>
 <item>
-<title>EmbodiedRSI: Active Continual Robot Learning Through Hypothesis-Guided Co-Evolution</title>
-<link>https://tldr.takara.ai/p/2610.10498</link>
-<guid>title:embodiedrsi active continual robot learning through hypothesis guided co evolution</guid>
-<pubDate>Wed, 07 Oct 2026 17:48:02 +0000</pubDate>
-<description>Robot foundation models provide strong visuomotor control, yet their performance can degrade when object positions or task instructions change. Further improvements often require post-training on substantial robot data, which can be costly to collect through methods such as teleoperation. Agentic harnesses can adapt around the model, but current self-evolving harnesses use robot trials inefficiently when deciding which code and skill changes to pursue. We introduce EmbodiedRSI, a self-evolving agentic harness that autonomously decides where to explore next and turns the resulting physical interaction into improved code and skills. EmbodiedRSI realizes this through a Fast-Slow Dual-System Architecture, in which competing code and skill hypotheses are maintained in a Hypothesis Graph. Value-of-Information Experiment Selection chooses physical experiments that can distinguish these hypotheses.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>robotics</category>
-</item>
-<item>
-<title>CRT-HMAR: Causal Requirement Tracing-Guided Hierarchical Multi-Agent Regulation for Open-Task-Aware Infrared-Visible Image Fusion</title>
-<link>https://tldr.takara.ai/p/2610.09330</link>
-<guid>title:crt hmar causal requirement tracing guided hierarchical multi agent regulation for open task aware infrared visible image fusion</guid>
-<pubDate>Wed, 07 Oct 2026 02:39:34 +0000</pubDate>
-<description>Infrared and visible (IR-VIS) image fusion integrates complementary multimodal information into a single fused image to support downstream vision tasks. However, existing methods are typically tailored to seen tasks within a fixed task set and struggle to generalize to unseen tasks, which restricts their applicability in real-world open-task scenarios. To address this issue, this paper proposes CRT-HMAR, a Causal Requirement Tracing-Guided Hierarchical Multi-Agent Regulation Framework for open-task-aware IR-VIS image fusion. CRT-HMAR introduces a Causal Requirement Tracing Task Localization mechanism, which actively intervenes in key image information and observes task-network response variations to map task-specific semantic preferences into image-level causal requirement maps. Based on these maps, a requirement analysis agent aggregates task-specific requirement knowledge to adaptively guide requirement-customized image fusion. Moreover, CRT-HMAR incorporates History-Analysis Multi-Objective Balancing and Task-Level-Correction Conflict Mitigation mechanisms, jointly constructing a hierarchical regulation chain of &quot;requirement interpretation - task balancing - conflict mitigation&quot;.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>vision</category>
-</item>
-<item>
-<title>Geometry-Supervised Visual Representation Learning for Multi-Phenotype Lesion Interpretation in Medical VLMs</title>
-<link>https://tldr.takara.ai/p/2610.10238</link>
-<guid>title:geometry supervised visual representation learning for multi phenotype lesion interpretation in medical vlms</guid>
-<pubDate>Wed, 07 Oct 2026 15:22:11 +0000</pubDate>
-<description>Medical vision-language models (VLMs) have shown increasing potential for clinical image interpretation. However, these models still struggle to interpret multi-phenotype lesions whose diagnosis requires the joint assessment of multiple pathological phenotypes. Existing vision-language alignment methods produce visual representations that fail to preserve anatomical hierarchies and relationships among phenotypic subclasses. This stems from their reliance on semantic supervision, which lacks geometric constraints to preserve these relationships in the visual embedding space. Moreover, the sparsity of lesion-related anatomical and phenotypic representations makes it difficult for medical VLMs to capture important diagnostic evidence. To address these limitations, we propose \textbf{PureVision}, a geometry-supervised visual representation learning framework for multi-phenotype lesion interpretation in medical VLMs.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>vision</category>
-</item>
-<item>
-<title>From Prompts to Trees: Effective LLM-Guided Tree Generation for Few-Shot Tabular Classification</title>
-<link>https://tldr.takara.ai/p/2610.10227</link>
-<guid>title:from prompts to trees effective llm guided tree generation for few shot tabular classification</guid>
-<pubDate>Wed, 07 Oct 2026 15:18:11 +0000</pubDate>
-<description>While Large Language Models (LLMs) possess rich world knowledge and impressive generalization capabilities, their direct application to tabular data classification is hindered by high inference costs and limited interpretability. In contrast, decision trees are fast and transparent but often underperform in low-data regimes. In this work, we propose a novel framework that bridges these paradigms by distilling LLM knowledge into interpretable decision trees under a few-shot learning setting. Instead of directly prompting the LLM to generate full trees, which is often unstable and inefficient, we develop a three-stage paradigm that prompts the LLM to generate rules and organize the rules into a tree. Experiments on multiple real-world tabular datasets demonstrate that our method achieves superior accuracy and interpretability with significantly lower prompting overhead compared to existing baselines.</description>
+<title>Less from More: Reinforcing Sparse Video Reasoning from Dense References</title>
+<link>https://tldr.takara.ai/p/2610.10893</link>
+<guid>title:less from more reinforcing sparse video reasoning from dense references</guid>
+<pubDate>Wed, 07 Oct 2026 20:51:59 +0000</pubDate>
+<description>Video-language models commonly assume that more temporal observations lead to more reliable reasoning. We question this assumption and argue that the key challenge is not merely processing more video frames efficiently, but learning to reason reliably under limited temporal evidence. We propose SAVER, a dense-to-sparse post-training framework that uses dense video views as training-time references for sparse-frame inference. During reinforcement post-training, paired dense and sparse views are optimized with grounding rewards and a reliability-gated reference reward, encouraging sparse view predictions to preserve task-relevant temporal evidence. Notably, SAVER is trained only on 1,250 randomly sampled temporal grounding examples, without using any video question answering annotations. Across three temporal grounding benchmarks and six video question-answering benchmarks, SAVER consistently improves performance across frame budgets.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>serving</category>
+</item>
+<item>
+<title>Enabling Preference-driven Unlearning in Few-step Distilled Text-to-Image Diffusion Models</title>
+<link>https://tldr.takara.ai/p/2610.10859</link>
+<guid>title:enabling preference driven unlearning in few step distilled text to image diffusion models</guid>
+<pubDate>Wed, 07 Oct 2026 20:03:49 +0000</pubDate>
+<description>Text-to-image diffusion models are increasingly distilled into few-step variants and being deployed to enable fast inference. However, their ability to generate harmful or undesired content poses significant safety risks. Data-driven unlearning methods suppress targeted generations by fine-tuning model weights using specialized unlearning objectives. Crucially, these objectives implicitly rely on multi-step denoising dynamics, an assumption that breaks down for few-step distilled (FSD) models, resulting in ineffective forgetting. Furthermore, performing unlearning on the non-distilled base model and subsequently re-distilling it to obtain an unlearned FSD model incurs substantial computational and time overhead, making it impractical in many settings. Hence, we address this limitation with a preference-driven unlearning framework that revisits Direct Preference Optimization (DPO) for diffusion models.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>diffusion</category>
+<category>huggingface</category>
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
@@ -197,104 +158,28 @@
 <category>serving</category>
 </item>
 <item>
-<title>How to train your model organism</title>
-<link>https://tldr.takara.ai/p/2610.10203</link>
-<guid>title:how to train your model organism</guid>
-<pubDate>Wed, 07 Oct 2026 15:02:57 +0000</pubDate>
-<description>Model organisms of alignment-relevant behaviors (e. g. , backdoors, sycophancy, spurious correlations) have emerged as a key tool for evaluating whitebox interpretability techniques. We argue that the prevailing practice of training model organisms to a single objective of installing the target behavior is insufficient and propose validating model organisms with respect to three objectives with associated metrics: target-behavior installation, general-capability preservation (i. e. , parametric knowledge, chat quality), and output naturalness (i.</description>
+<title>SV-TAD: Native Sparse Convs for Efficient Temporal Action Detection</title>
+<link>https://tldr.takara.ai/p/2610.11579</link>
+<guid>title:sv tad native sparse convs for efficient temporal action detection</guid>
+<pubDate>Thu, 08 Oct 2026 09:31:38 +0000</pubDate>
+<description>To adapt billion-parameter Vision Transformers for long-video understanding, recent methods freeze the backbone and train lightweight convolutional modules. While effective for parameter-efficient training, existing adapters do not reduce inference-time computation, leaving scalability with respect to video length largely unaddressed. Token selection can reduce attention cost by pruning redundant tokens, but it breaks the spatial grid structure required by convolutional adapters. This forces an expensive dense reconstruction, nullifying much of the potential speedup. We address this by introducing native sparse 2D convolutions, a primitive that allows these adapters, for the first time, to operate directly and efficiently on dynamically pruned token sets. We integrate this primitive into SV-TAD, an adapter framework for temporal action detection, reducing VideoMAEv2-L computation by up to 64% and achieving 2.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+<category>vision</category>
+</item>
+<item>
+<title>Large Language Model Orchestration under Heterogeneous Preferences via Explicit Persona Inference</title>
+<link>https://tldr.takara.ai/p/2610.07587</link>
+<guid>title:large language model orchestration under heterogeneous preferences via explicit persona inference</guid>
+<pubDate>Tue, 06 Oct 2026 01:24:56 +0000</pubDate>
+<description>LLM orchestration investigates how an orchestrator coordinates a group of autonomous agents to achieve common goals or maximize collective welfare. The agents are typically heterogeneous, each holding a private preference that it pursues but does not reveal. Inferring such hidden preferences from behavior has been a subject of long-standing research in game theory and multi-agent systems. The core challenge lies in maintaining a belief over every agent's preference and updating it from the agents' observed actions. Existing LLM orchestrators carry that belief as prompt text with no explicit update rule. This lets early errors persist and propagate rather than be corrected.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>agents</category>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>Efficient Reasoning with Flow Language Models</title>
-<link>https://tldr.takara.ai/p/2610.09416</link>
-<guid>title:efficient reasoning with flow language models</guid>
-<pubDate>Wed, 07 Oct 2026 04:18:22 +0000</pubDate>
-<description>Flow Language Models (FLMs) have emerged as a continuous-state alternative to discrete diffusion language models, yet the role of their continuous representations in reasoning remains unclear. We investigate this question by comparing the reasoning efficiency of FLMs and discrete diffusion models, measured by solution accuracy under matched denoising steps. Unlike discrete diffusion, which passes categorical states between denoising steps, FLMs evolve a continuous sequence representation throughout denoising and decodes it into discrete tokens only at the end. Our theoretical analysis shows, from a superposition perspective, how information retained in these continuous states can benefit reasoning. Intermediate-state interventions provide further empirical support for this theoretical account, showing that removing information about alternative candidates reduces subsequent solution recovery. Together, these findings show that FLMs allow evidence for multiple candidates to persist and inform subsequent reasoning before a discrete answer is produced.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>CoTrace: Data Recipes for Training Terminal Agents with Harness-Model Co-Evolution</title>
-<link>https://tldr.takara.ai/p/2610.10426</link>
-<guid>title:cotrace data recipes for training terminal agents with harness model co evolution</guid>
-<pubDate>Wed, 07 Oct 2026 17:06:59 +0000</pubDate>
-<description>Terminal-agent capability depends jointly on model weights and the runtime harness that formats prompts, binds tools, and handles error recovery. Existing harness-model co-evolution approaches improve both components, yet often treat trajectories produced during harness search as an undifferentiated replay buffer. This practice overlooks that a trajectory's value for model training depends on the harness under which it was generated. To systematically analyze this interface, we establish an alternating co-evolution framework that decouples harness search and policy training through component-wise promotion decisions. Within this framework, we introduce CoTrace, a harness-aware data recipe that explicitly governs trajectory routing, provenance matching, and curriculum refresh. Under CoTrace, recurring execution failures guide harness synthesis, while policy training is strictly conditioned on verified rollouts matched to the adopted runtime for supervised fine-tuning (SFT) or fresh online interactions for reinforcement learning (RL).</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Temporally Interpretable Differentiable Decision Trees</title>
-<link>https://tldr.takara.ai/p/2610.10367</link>
-<guid>title:temporally interpretable differentiable decision trees</guid>
-<pubDate>Wed, 07 Oct 2026 16:35:17 +0000</pubDate>
-<description>Interpretability offers a solution to safe autonomy by providing transparency into an agent's underlying decision-making model. Within sequential-decision making tasks, differentiable decision trees (DDTs) are one approach to such interpretability, maintaining automatic-differentiable policies while providing humans with a discrete tree-based visualization. Nonetheless, current implementations of DDTs are not well-suited for sequential-decision making domains, as there exists an inherent mismatch between a tree's single-timestep behavior and a human's multi-timestep planning. Our work thus introduces time as a new dimension of interpretability, coined as temporal interpretability, and demonstrates how temporal abstractions via action chunking improve it. We achieve this by first introducing two novel policy gradient algorithms that incorporate action chunking. Additionally, to maintain parameter-efficient trees, we develop an information-theoretic tree restructuring algorithm that modifies the tree during training.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>OOM-RL II: Reality Is an Oracle, Not a Debugger Provenance-Constrained Diagnosis in Continually Evolving Agent-Engineered Systems</title>
-<link>https://tldr.takara.ai/p/2610.10256</link>
-<guid>title:oom rl ii reality is an oracle not a debugger provenance constrained diagnosis in continually evolving agent engineered systems</guid>
-<pubDate>Wed, 07 Oct 2026 15:33:17 +0000</pubDate>
-<description>Reality may establish that an outcome occurred without identifying which evolving procedure produced it or why. This distinction matters in production ML systems whose code, configuration, and artifacts change while external feedback accumulates. We examine it in a human-directed, agent-engineered quantitative trading system, using oracle to mean an external source of realized outcomes rather than a complete correctness specification. Across one year, the account gained and outperformed a broad market index, while annual alpha was not statistically distinguishable from zero under the main retrospective specification. Retrospectively selected subperiods include adverse relative performance and conditional candidate-level weakness under declared approximate references. Engineering records document changes during the episode, and complete recommendation-to-runtime binding is unavailable.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>AdSpark: A Large-Scale Dataset and Benchmark for Product-Centric Advertisement Video Generation</title>
-<link>https://tldr.takara.ai/p/2610.10047</link>
-<guid>title:adspark a large scale dataset and benchmark for product centric advertisement video generation</guid>
-<pubDate>Wed, 07 Oct 2026 13:23:24 +0000</pubDate>
-<description>Product-centric advertisement video generation aims to create promotional videos that preserve fine-grained product identity while presenting selling points through coherent multi-shot narratives. However, this emerging task remains underexplored due to the lack of large-scale advertisement-specific datasets and comprehensive evaluation frameworks. To address this gap, we introduce \textbf{AdSpark}, a large-scale dataset and benchmark for product-centric advertisement video generation, based on data from a major e-commerce platform. \textit{AdSpark-300K} contains approximately 300K reference image--prompt--video triplets, comprising a real-world subset and a synthetic subset. Each sample provides structured advertisement annotations, including product identity annotations, selling-point descriptions, creative plans, and aligned audio scripts, enabling models to learn product preservation and advertisement-oriented visual storytelling. We further propose \textit{AdSpark-Bench}, a diagnostic benchmark that evaluates generated advertisements across six dimensions, including visual quality, product fidelity, instruction adherence, temporal coherence, audio alignment, and advertisement effectiveness.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Unrolled Flow Models for Reasoning</title>
-<link>https://tldr.takara.ai/p/2610.09759</link>
-<guid>title:unrolled flow models for reasoning</guid>
-<pubDate>Wed, 07 Oct 2026 09:45:54 +0000</pubDate>
-<description>Flow matching enables language generation in few steps, but whether additional integration steps improve reasoning remains unclear. We prove that a flow parameterized by a two-layer Transformer can solve graph reachability, with the required number of integration steps increasing with the target's distance from the root. Yet, standard flow language models can fail to benefit from additional steps on reasoning tasks. We attribute this limitation to objectives that supervise each time point independently, without explicitly training successive steps to build on one another. To address this, we instead train through the model's own latent rollout over a randomly sampled subinterval of [0, 1], decoding only at the endpoint. On ProsQA, this raises accuracy to 97% and enables performance to improve with additional integration steps.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
@@ -302,75 +187,31 @@
 <category>paper</category>
 <category>papers</category>
 <category>reasoning</category>
-</item>
-<item>
-<title>Sequential Pretraining Favors Large Models</title>
-<link>https://tldr.takara.ai/p/2610.09611</link>
-<guid>title:sequential pretraining favors large models</guid>
-<pubDate>Wed, 07 Oct 2026 07:54:48 +0000</pubDate>
-<description>Large neural networks often acquire capabilities that small models fail to learn. Does this stem from large models learning more representative features, or from being more robust to unaccounted-for adverse effects introduced during training? We define and quantify one such adverse effect, primacy bias, as the extent to which exposure to early data distributions impairs later learning. We show that small models can allocate learning capacity inefficiently toward early distributions, whereas sufficiently overparameterized models are robust to this effect. This inefficiency is particularly consequential in pretraining, where foundation models often encounter heterogeneous data distributions sequentially rather than jointly. As a result, small foundation models can struggle to learn distributions encountered late in training, which is particularly harmful when later data emphasizes desirable capabilities such as code, mathematics, and reasoning.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
 <category>rl</category>
+<category>serving</category>
 </item>
 <item>
-<title>Which Language Should a Skeleton Speak? Language Choices in Multilingual Reasoning</title>
-<link>https://tldr.takara.ai/p/2610.09607</link>
-<guid>title:which language should a skeleton speak language choices in multilingual reasoning</guid>
-<pubDate>Wed, 07 Oct 2026 07:53:13 +0000</pubDate>
-<description>Skeleton-based reasoning prompting is a promising training-free approach for structuring LLM reasoning, but prior work largely assumes an English-centric setting. We propose the Language-Aware Skeleton Exploration Framework (LASEF) to study skeleton-language choice in multilingual mathematical reasoning. Across math benchmarks, model scales, and languages, we show that English skeletons yield a small positive tendency on average, most visible for smaller models and low-resource languages. However, few language-level gains remain significant after correction, and English is not universally optimal. Combining greedy decoding, multi-rollout evaluation, translation ablation, and cross-benchmark validation, we further find three patterns of skeleton-language effects: directionally consistent, evaluation- and benchmark-dependent, and asymmetric negative. These effects cannot be fully explained by generation quality alone.</description>
+<title>Neuro-Memory Fuzzy Inference System for Mimicking Human-like Car Following Behavior</title>
+<link>https://tldr.takara.ai/p/2610.11252</link>
+<guid>title:neuro memory fuzzy inference system for mimicking human like car following behavior</guid>
+<pubDate>Thu, 08 Oct 2026 04:56:10 +0000</pubDate>
+<description>This study presents the Neuro-Memory Fuzzy Inference System (NeMeFIS), a hierarchical machine learning architecture that asymmetrically models acceleration and deceleration in car following behavior by integrating five human memory types procedural, working, episodic, semantic, and declarative. By linking external variables to memory functions via metaheuristics and validating them through factor and p-value analyses, NeMeFIS uncovers latent cognitive influences across Arterial, Collector, and Rural Highway corridors for different types of vehicles. Results from 54 different trained models emphasize cognitive thresholds shaped by driver perception limits and cognitive load. The trained NeMeFIS models outperform traditional statistical and conventional machine learning models in replicating realistic driving behavior, including comparisons with Linear Regression, ANFIS, and LSTM architectures. Fuzzy rule analysis reveals that declarative memory demands the highest rule, especially during deceleration, indicating complex braking decisions. Procedural memory drives acceleration, while semantic and declarative memory guide deceleration.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>Reliability of LLM Judges for Evaluating Entity Alignment</title>
-<link>https://tldr.takara.ai/p/2610.09554</link>
-<guid>title:reliability of llm judges for evaluating entity alignment</guid>
-<pubDate>Wed, 07 Oct 2026 06:55:45 +0000</pubDate>
-<description>Entity Alignment (EA) identifies equivalent entities across knowledge graphs and is critical for knowledge base integration and ontology merging. Evaluating EA systems at scale requires expensive expert annotation, making systematic assessment across diverse domains practically infeasible. LLM-as-judge evaluation offers a potentially scalable alternative, yet its reliability for structured prediction tasks like EA remains unstudied. We present the first systematic benchmarking study across three frontier models, three datasets, and four EA systems, using perturbation bias diagnostics, meta-evaluation across all dataset-judge-prompt combinations, and counterfactual label-flip tests. We identify anchor bias, a failure mode in which judges invert discrimination when the system's decision label is visible. Label exposure causally collapses judge discrimination (J-ROC-AUC 0.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-</item>
-<item>
-<title>Reflected Anchored Langevin Algorithms</title>
-<link>https://tldr.takara.ai/p/2610.09522</link>
-<guid>title:reflected anchored langevin algorithms</guid>
-<pubDate>Wed, 07 Oct 2026 06:16:49 +0000</pubDate>
-<description>First order Langevin algorithms for constrained sampling in machine learning, such as projected Langevin Monte Carlo which are based on discretizations of reflected Langevin dynamics, require differentiable log densities that limits their applicability. This paper introduces reflected anchored Langevin dynamics (RALD), a reflected diffusion that converges to non-differentiable targets on constrained domains. The method uses a smooth anchored reference potential and multiplies the drift and noise covariance of its reflected Langevin dynamics by the same state dependent scaling factor. Its Euler-Maruyama discretization with projection gives reflected anchored Langevin Monte Carlo (RALMC) algorithm. We prove explicit convergence bounds and iteration complexity for RALMC in the 2-Wasserstein distance to the target distribution. Numerical experiments are provided to illustrate the theoretical predictions and the empirical performance of the method.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
 <category>huggingface</category>
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
 <category>rl</category>
+<category>serving</category>
 </item>
 <item>
-<title>From Global Alignment to Local Grounding: Zero-Shot Chinese Character Recognition with Radical Verification</title>
-<link>https://tldr.takara.ai/p/2610.09449</link>
-<guid>title:from global alignment to local grounding zero shot chinese character recognition with radical verification</guid>
-<pubDate>Wed, 07 Oct 2026 05:03:12 +0000</pubDate>
-<description>Zero-shot Chinese character recognition (ZS-CCR) aims to recognize characters whose categories are never observed during training, and typically relies on the compositional structure shared between seen and unseen characters. Recent CLIP-style methods represent this structure with the Ideographic Description Sequence (IDS) and align it with glyph images in a shared embedding space. However, they rely on a single global image--IDS similarity that discards the spatial layout of radicals and, being learned only implicitly from seen classes, generalizes poorly to unseen ones; moreover, global matching often retrieves the correct character within the top candidates yet fails to rank it first when characters differ only in subtle local radicals. To address these issues, we propose a global-to-local two-stage framework. In the first stage, STG-CLIP augments the IDS with explicit tree-position and radical-level geometric priors, yielding a spatial-aware prototype that provides a consistent spatial description across seen and unseen categories for high-recall global retrieval. In the second stage, the Radical Verification Module (RVM) uses the radical instances of each retrieved candidate as queries to verify whether the corresponding radicals can be matched to spatially compatible regions in the input glyph.</description>
+<title>On the estimation and validity of AI time horizons---a statistical look at the METR plot</title>
+<link>https://tldr.takara.ai/p/2610.12466</link>
+<guid>title:on the estimation and validity of ai time horizons a statistical look at the metr plot</guid>
+<pubDate>Thu, 08 Oct 2026 17:59:50 +0000</pubDate>
+<description>METR's 50\% time horizon measures the human completion time of software tasks that an AI solves with 50\% probability, allowing AI capabilities to be expressed in interpretable units. On 228 tasks and 26 AIs, we recompute the time horizons using splines and item-response theory to relax the assumption that the AI difficulty of a task depends linearly on the log of human time. Our fitted spline can be interpreted as a function that \emph{converts} human time to AI difficulty; it is nearly flat in a region from 2--30 min but close to linear elsewhere. Hence, a time-horizon jump from 3 min to 30 min is much easier than one from 30 min to 5 hours despite the same multiplier of $10 \times$. Overall, we contribute time-horizon point estimates that perform better under a cross-validated suite of proper scoring rules, as well as diagnostic plots for assessing time horizons' construct validity. We suggest that time horizons be interpreted together with the diagnostic plots, especially as new time-horizon-based benchmarks are proposed or existing ones grow to include longer tasks.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>ml</category>
@@ -379,28 +220,12 @@
 <category>rl</category>
 </item>
 <item>
-<title>Finding the Right Balance: Relevance and Diversity in LLM Retrieval</title>
-<link>https://tldr.takara.ai/p/2610.09412</link>
-<guid>title:finding the right balance relevance and diversity in llm retrieval</guid>
-<pubDate>Wed, 07 Oct 2026 04:14:31 +0000</pubDate>
-<description>Retrieval diversification is widely available in retrieval-augmented generation (RAG) frameworks, yet prior studies disagree on whether it improves retrieval and answer quality. We show that its effectiveness varies primarily with candidate-pool redundancy, in a pattern consistent with the number of distinct evidence pieces a query requires. Using controlled near-duplicate injection and production-style overlapping chunking, we find that diversification harms relevance, evidence coverage and answer quality on clean pools, but becomes beneficial on multi-evidence tasks when redundancy causes nearest-neighbor retrieval to select repeated passages. We therefore introduce a query-adaptive rule that diversifies only when the effective number of distinct documents in the nearest-neighbor top-$k$ selection falls below the query's evidence requirement. Computed from existing embeddings, the rule captures most of the achievable gain, transfers across datasets and encoders and automatically reduces to nearest-neighbor retrieval for single-evidence queries. We also introduce RNG-Score, a geometric reranker with an exact nearest-neighbor fallback whose margin indicates duplicate structure.</description>
+<title>Verdict Without the Rule: Diagnosing and Auditing Regulatory Rule Sensitivity in LLM Compliance Systems</title>
+<link>https://tldr.takara.ai/p/2610.12313</link>
+<guid>title:verdict without the rule diagnosing and auditing regulatory rule sensitivity in llm compliance systems</guid>
+<pubDate>Thu, 08 Oct 2026 16:59:40 +0000</pubDate>
+<description>Large language model compliance systems are deployed on the assumption that a verdict depends on the regulatory rule it is given. We test this directly across five models and 20 regulatory and platform-policy domains: delete, swap, or negate the governing rule while holding the case fixed, and check whether the verdict changes (OCS) or the model's internal representation of compliance shifts at all (ICS-delta). Neither moves much: models' verdicts are often invariant to substantial perturbations of the supplied rule, and the guard model, evaluated here under a custom-rule adaptation of its native taxonomy, is the least rule-sensitive and least accurate of the five, barely above chance (51%, versus 90-92% for general-purpose models). This reflects easy cases more than blanket neglect: on cases where deleting the rule changes a previously correct model prediction, models do track it closely. Neither better prompting nor direct intervention on the model's internal representations closes this gap. Accuracy alone does not establish that a compliance verdict is grounded in the supplied rule.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>ScribbleEdit: A Benchmark for Scribble-Only Image Editing</title>
-<link>https://tldr.takara.ai/p/2610.09382</link>
-<guid>title:scribbleedit a benchmark for scribble only image editing</guid>
-<pubDate>Wed, 07 Oct 2026 03:38:48 +0000</pubDate>
-<description>Scribble-based interaction provides a lightweight and intuitive way for users to specify image editing intents in interactive editing tools. However, current image editing models based on VLMs or LLMs struggle to understand and execute edits based solely on scribble inputs. To systematically study this problem, we construct a new benchmark, ScribbleEdit, that evaluates the ability of image editing models to perform image editing conditioned on scribbles. This task requires both a deep understanding of the intention of the scribble and an accurate interpretation of its spatial information. In ScribbleEdit, we design an automated data construction pipeline and introduce a dedicated evaluation protocol that explicitly measures intention alignment. Our analysis reveals that existing VLM/LLM-based editing models fail to accurately capture scribble intentions.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
@@ -409,53 +234,25 @@
 <category>papers</category>
 </item>
 <item>
-<title>Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos</title>
-<link>https://tldr.takara.ai/p/2610.10538</link>
-<guid>title:never look back understanding persistence in 3d object memory from egocentric videos</guid>
-<pubDate>Wed, 07 Oct 2026 17:59:41 +0000</pubDate>
-<description>As we move through the world and carry out everyday tasks, we encounter objects that may become relevant only later. We are capable of recalling where we left something or what was inside a container, even without knowing we would need it later. Here, we study how an embodied assistant can build a similar memory from egocentric videos, by observing a person's day-to-day activities. We present Ledger, a persistent 3D object memory that combines object locations, their histories, and contextual descriptions. It associates observations across the recording and retains objects after they leave the view, including those the person never touches. It clusters each object's observations by resting locations and records a move only after repeated evidence, reducing the effect of localization noise.</description>
+<title>A persistent accuracy ceiling in automated verbal deception detection</title>
+<link>https://tldr.takara.ai/p/2610.12118</link>
+<guid>title:a persistent accuracy ceiling in automated verbal deception detection</guid>
+<pubDate>Thu, 08 Oct 2026 15:15:32 +0000</pubDate>
+<description>Automated methods have been proposed to overcome the limitations of human verbal deception detection, but evidence remains fragmented across disciplines. We systematically reviewed 25 years of research (289 reports, 6,136 classification models) and meta-analyzed 3,653 models nested within 97 datasets. Pooled accuracy was 74. 4% (95% CI: 71. 2%-77. 4%) with substantial heterogeneity.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Your Prompt Should Do More: Effects of Retrieval Instructions in Embedding Models</title>
-<link>https://tldr.takara.ai/p/2610.10508</link>
-<guid>title:your prompt should do more effects of retrieval instructions in embedding models</guid>
-<pubDate>Wed, 07 Oct 2026 17:51:46 +0000</pubDate>
-<description>Prompted embedding models have recently received increasing attention, particularly for retrieval, where detailed retrieval instructions are provided as part of the retrieval prompt. Several new datasets and studies have examined this setting, showing that the current embedding models often struggle to follow such instructions reliably. In this paper, we study the mechanism of how instructions actually affect the representations of retrieval queries in asymmetric retrieval tasks. We show that models can fail to follow even simple task instructions when query-side distractors are included in the evaluation. We hypothesize that this behavior is driven by the training setup of current embedding models and their evaluation, and show that fine-tuning with added query-side distractors leads to substantial improvements, with minimal effect on other tasks.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>ECHO: Embodied Camera Observations of Human Object Carrying</title>
-<link>https://tldr.takara.ai/p/2610.10438</link>
-<guid>title:echo embodied camera observations of human object carrying</guid>
-<pubDate>Wed, 07 Oct 2026 17:15:27 +0000</pubDate>
-<description>Embodied and assistive agents must do more than recognize objects: they must reason about where an object belongs given the layout of an environment and the habits of the people who live in it. Progress on this problem has been limited, in part because no dedicated benchmark or dataset exists to define and evaluate it. Existing RGB-D scan datasets reconstruct static rooms without human activity, while human-object-interaction datasets capture motion without a navigable, fully reconstructed scene or a ground-truth notion of an object's natural destination. We introduce contextual object placement as a benchmark task: predicting an object's destination during an observed object-carrying episode. To support this task, we present Embodied Camera observations of Human Object carrying (ECHO), a large-scale synthetic dataset that pairs dense RGB-D scans of indoor scenes with recordings of an embodied human carrying everyday objects to context-appropriate destinations. ECHO is the first publicly available dataset to combine reconstructed scenes, human activity, natural language, and contextual-placement annotations.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
+<category>llm</category>
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
 </item>
 <item>
-<title>Performance at What Cost? A Sustainability-Aware Performance Index for Cell and Nucleus Instance Segmentation</title>
-<link>https://tldr.takara.ai/p/2610.10324</link>
-<guid>title:performance at what cost a sustainability aware performance index for cell and nucleus instance segmentation</guid>
-<pubDate>Wed, 07 Oct 2026 16:12:53 +0000</pubDate>
-<description>Pretrained models for cell and nuclear instance segmentation differ substantially in architecture, pretraining data and objectives, parameter count, inference strategy, adaptation requirements, postprocessing pipeline, and computational demand. Large pretrained and foundation models are increasingly adopted because of their strong zero-shot capabilities, but their use also imposes greater energy consumption, memory requirements, computational demands, adaptation costs, and operational carbon emissions. Whether these additional demands are justified by meaningful gains in segmentation performance remains unclear. We address this question by introducing the Sustainability-Aware Performance Index (SAPI), a configurable metric that combines segmentation performance, energy consumption, and model size. We benchmark 19 pretrained and foundation models across six CellBinDB datasets under zero-shot inference and evaluate 16 fine-tunable models using few-shot adaptation with both frozen encoder and full-model fine-tuning. We estimate energy consumption for GPU, CPU, and RAM using software-based monitoring tools.</description>
+<title>Puffin: Probabilistic Learning of Spatial Detail From Coarse Observations</title>
+<link>https://tldr.takara.ai/p/2610.11914</link>
+<guid>title:puffin probabilistic learning of spatial detail from coarse observations</guid>
+<pubDate>Thu, 08 Oct 2026 13:12:37 +0000</pubDate>
+<description>High-resolution socioeconomic variables are important for applications such as urban planning, public health, disaster response, and resource allocation. In practice, however, these variables are often observed only at a coarse spatial resolution. We introduce Puffin, a probabilistic framework for statistical disaggregation that raises the resolution of coarse totals using high-resolution satellite embeddings as covariates. Instead of predicting a single value for each fine-resolution subregion, Puffin learns a probability distribution and is trained through an aggregation-aware likelihood. At inference, Puffin conditions these predictions on the observed regional total and splits it among the subregions. The resulting fine-scale estimates are consistent with the observed aggregate and come with calibrated uncertainty, without requiring fine-resolution labels for training.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
@@ -465,13 +262,202 @@
 <category>serving</category>
 </item>
 <item>
-<title>Revisiting Explainable AI through Model-Independent Concept Dictionaries</title>
-<link>https://tldr.takara.ai/p/2610.10301</link>
-<guid>title:revisiting explainable ai through model independent concept dictionaries</guid>
-<pubDate>Wed, 07 Oct 2026 15:56:15 +0000</pubDate>
-<description>Modern applications of AI rely on increasingly complex models. Explainable AI (XAI) has emerged as a set of techniques aimed at improving model transparency. However, existing XAI methods typically assume input features to be inherently interpretable, or they rely on intermediate internal abstractions that are difficult to characterize and highly architecture-specific, hindering consistent use across models. To address these limitations, we propose DictXAI, a method that defines concepts directly in the input domain via a dictionary---a large, potentially overcomplete set of predefined elements, each carrying an interpretable meaning. Technically, DictXAI first computes a sparse code of the input and then attributes the model's prediction to the associated dictionary elements. We demonstrate the actionable nature of DictXAI explanations, showing that they can attribute AI malfunctions (e.</description>
+<title>AuraLuxMuse: Adaptive Fusion Modeling for Aesthetic Stage Lighting Design with Music and Expert Guidance</title>
+<link>https://tldr.takara.ai/p/2610.11792</link>
+<guid>title:auraluxmuse adaptive fusion modeling for aesthetic stage lighting design with music and expert guidance</guid>
+<pubDate>Thu, 08 Oct 2026 12:06:03 +0000</pubDate>
+<description>We present AuraLuxMuse, a novel system for automated aesthetic stage lighting design that integrates expert knowledge, representation learning, and preference-adaptive modeling. Lighting design in live performance settings requires the seamless translation of musical features into dynamic lighting behaviors. However, traditional workflows remain time-consuming, labor-intensive, and difficult to transfer. AuraLuxMuse encodes music and professional cue sequences into a shared retrieval space, estimates cue-event density, and retargets selected fixture commands to the destination stage. It assists pre-production authoring by returning editable cues rather than replacing the designer with an unconstrained generator. At the heart of AuraLuxMuse are two key modules: Lighting-Aligned Music Pretraining (LAMP), which performs contrastive learning between audio and lighting cues for alignment, and Preference-Adaptive Mixture of Experts (PAMoE), which conditions preference-aware cue retrieval and adaptation on designers' intent through a gated ensemble of style-specific expert networks.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>What Output-Only Review Cannot Verify: Study Contracts for Research Agents</title>
+<link>https://tldr.takara.ai/p/2610.11754</link>
+<guid>title:what output only review cannot verify study contracts for research agents</guid>
+<pubDate>Thu, 08 Oct 2026 11:42:23 +0000</pubDate>
+<description>Some defects in an AI-generated study can be identified from its artifacts; others require knowledge of what was approved before execution. We propose study contracts that bind declared experimental choices, run obligations and claim scope to recorded execution evidence, and distinguish this contract-relative verification from scientific truth. A diagnostic using eight self-authored clean/mutated pairs illustrates the information boundary. A deterministic checker applying a registered, fault-specific rule to approved and executed objects detected all eight registered mutations. Across eighteen recorded judge aliases given individual metadata-filtered packages without pair context or the registry-selected fault label, 104 of 144 mutated evaluation cases received defect flags; the remaining cases comprised 32 abstentions and eight terminal failures, with no explicit clean decisions on mutated cases. Some packages retained approval and execution fields, including digests.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>Neural Networks for Temporal Pattern Recognition and Dynamic Arm Gesture Speed Estimation for Robot Control</title>
+<link>https://tldr.takara.ai/p/2610.11631</link>
+<guid>title:neural networks for temporal pattern recognition and dynamic arm gesture speed estimation for robot control</guid>
+<pubDate>Thu, 08 Oct 2026 10:08:56 +0000</pubDate>
+<description>Deploying intelligent robotic systems that interact with humans through gestures requires neural networks capable of recognizing diverse temporal patterns. We present a systematic benchmark of ten abstract sequential tasks--five permutation-invariant (set) and five order-dependent (sequence) problems--evaluated across eighteen neural network architectures spanning recurrent, convolutional, attention-based, and set-function families. Beyond the core architecture-task grid, we explore numerous preprocessing and target-variable transformations, yielding more than 250 distinct experimental configurations. All variants are trained and tested under strictly identical conditions (fixed random seeds, shared hyperparameters, shared data splits) to ensure fair and reproducible comparison. Ranking across all ten tasks reveals four consistently top-performing architectures--BiGRU, TCN, Conv1D, and GRUReLU--all compact enough for real-time deployment (under 2,000 parameters in the benchmark setting). Based on this ranking, we apply three architecturally diverse top models (BiGRU, TCN, and GRUReLU) to a practical robotics problem: estimating the execution speed of dynamic arm gestures from skeletal keypoint sequences.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>robotics</category>
+</item>
+<item>
+<title>When Scientific Cognition Is No Longer Scarce</title>
+<link>https://tldr.takara.ai/p/2610.10241</link>
+<guid>title:when scientific cognition is no longer scarce</guid>
+<pubDate>Wed, 07 Oct 2026 15:25:04 +0000</pubDate>
+<description>AI could change which parts of science impede progress. Consider a world in which machine systems are better, faster, and cheaper than people at most scientific work that can be done through a computer. Our question is what would limit science in that world. Literature synthesis, hypothesis generation, software development, simulation, and analysis could become abundant, while experiments, observations, well-supported conclusions, and accountable institutional au- thority remain scarce. Science would then be constrained by a different set of resources. In this paper, we call this change the scarcity inversion and consider four parts of it: selection, physical access, validation, and organizational choice.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>rl</category>
+</item>
+<item>
+<title>Directed Temporal Representations for Offline Visual Control</title>
+<link>https://tldr.takara.ai/p/2610.08960</link>
+<guid>title:directed temporal representations for offline visual control</guid>
+<pubDate>Tue, 06 Oct 2026 18:26:53 +0000</pubDate>
+<description>Predictive world models provide compact visual representations for control. Control requires a latent geometry aligned with temporal reachability rather than predictive similarity alone. We introduce Directed Temporal Representations for Control (DTRC), which learns such a geometry from offline visual trajectories on top of frozen LeWorldModel (LeWM) features. DTRC constructs a directed temporal quasimetric over the learned control representation. Short-range temporal offsets calibrate the distance scale. Bootstrapped targets extend temporal reachability across longer horizons.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>vision</category>
+<category>world-models</category>
+</item>
+<item>
+<title>TKCAM: Text and Keyframe to Camera Trajectory Generation</title>
+<link>https://tldr.takara.ai/p/2610.11105</link>
+<guid>title:tkcam text and keyframe to camera trajectory generation</guid>
+<pubDate>Thu, 08 Oct 2026 02:20:16 +0000</pubDate>
+<description>Generating high-quality and controllable camera motion is essential for AI-assisted cinematography, video synthesis, and 3D scene understanding. We introduce TKCAM, a Text- and Keyframe-conditioned CAMera-motion synthesis framework based on generative masked modeling. We represent camera dynamics using a 12-dimensional kinematic feature comprising position, velocity, and a continuous rotation representation and discretize them into hierarchical motion tokens via a Residual Vector Quantizer (RVQ). A two-stage masked transformer architecture then learns to reconstruct and refine these tokens, utilizing explicit self- and cross-attention modules for multimodal conditioning. A central feature of our framework is sparse visual keyframe conditioning: users can provide free-form text prompts together with RGB observations at selected timestamps, which provide temporally localized visual guidance for generating coherent in-between trajectories. Furthermore, to advance evaluation standards, we curate RealEstate10K-Cap, a large-scale text-camera dataset, and establish a cross-domain benchmark with a Universal CLaTr Evaluator.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>Coding-Agent Benchmarks Should Match Their Users' Task Flows</title>
+<link>https://tldr.takara.ai/p/2610.09633</link>
+<guid>title:coding agent benchmarks should match their users task flows</guid>
+<pubDate>Wed, 07 Oct 2026 08:08:39 +0000</pubDate>
+<description>The evaluation of coding agents generally strives to be as realistic as possible. In our study, we collect 4,782 agent sessions of real software engineers in JetBrains IDEs, which we call Production Sessions. Since our subject is interactive agents, we study the sessions with at least three user messages (33% of the sample). These long sessions differ from issue-derived benchmark tasks in two ways: (i) user requests span a far wider mix of task types - questions about the project's code, planning, review, refactoring, execution - and (ii) users switch between types throughout a session. Long-session samples from three public interaction corpora exhibit markedly different Task Flows (the distributions of session lengths, task types, and type-to-type transitions), so no single interaction distribution is universally realistic: benchmarks should name a target use case and calibrate to measurements from it. We present SWE-TaskFlow, an approach for transforming any issue-derived benchmark: it preserves the verified tasks and tests while steering the interaction toward a target Task Flow through prompt splitting and verifiable repository QA, with a TaskFlow Alignment Score (TFAS) for selecting among generated trajectories.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>OSFP4: Joint Optimization of Diagonal Smoothing and Block Scales for NVFP4 Quantization</title>
+<link>https://tldr.takara.ai/p/2610.08231</link>
+<guid>title:osfp4 joint optimization of diagonal smoothing and block scales for nvfp4 quantization</guid>
+<pubDate>Tue, 06 Oct 2026 12:17:52 +0000</pubDate>
+<description>NVFP4 is an attractive datatype for large language model (LLM) inference, offering compact storage and native tensor-core acceleration. However, preserving accuracy using NVFP4 requires careful quantization. In this work we develop a novel quantization scheme called Optimized Smoothing and Scaling for NVFP4 (OSFP4). For each linear projection it uses a diagonal smoothing matrix whose entries are optimized to minimize the squared matrix-product quantization error under NVFP4, taking into account the rounding procedure that is used (either round-to-nearest, or GPTQ-style successive interference cancellation). This requires performing joint optimization on the smoothing entries as well as the block scales, which is facilitated by analyzing a multiplicative-dither FP4 quantizer instead of the fixed deterministic one. Experiments show that OSFP4 achieves the highest average accuracy among the evaluated competitors in the corresponding quantization settings, while retaining approximately 94-97\% of vendor NVFP4 prefill throughput on the measured workloads.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>efficiency</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>Power Side-Channel Membership Inference Attack on Embedded Machine Learning</title>
+<link>https://tldr.takara.ai/p/2610.10909</link>
+<guid>title:power side channel membership inference attack on embedded machine learning</guid>
+<pubDate>Wed, 07 Oct 2026 21:07:02 +0000</pubDate>
+<description>Membership inference attacks (MIAs) threaten the privacy of machine learning (ML) training data by determining whether a sample was used to train a target model. Existing MIAs rely on model outputs, ranging from prediction probabilities to predicted labels, an assumption that can be restrictive for on-device ML systems with limited or inaccessible outputs. However, suppressing model outputs does not eliminate the data-dependent computations that produce them, which may remain observable through physical side channels. We present PSCMIA, a power side-channel membership inference attack against embedded ML models that can infer membership directly from power traces without requiring prediction probabilities or even the predicted labels. We evaluate PSCMIA across multiple datasets (MNIST, FMNIST, CIFAR10, CINIC10), fully connected (FC) and convolutional neural network (CNN) architectures, and two embedded platforms (STM32F3, XMEGA). PSCMIA achieves ROC-AUC values of up to 0.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>Correlational Training of Morphological Neural Networks</title>
+<link>https://tldr.takara.ai/p/2610.11740</link>
+<guid>title:correlational training of morphological neural networks</guid>
+<pubDate>Thu, 08 Oct 2026 11:33:50 +0000</pubDate>
+<description>Neural networks are typically trained using first-order methods and back-propagation. It is unclear whether this approach is optimal for morphological layers whose weight Jacobians are sparse and whose resulting parameter gradients can be poor. In this work, we propose a novel weight update method for morphological neural networks inspired from the Multiplicative Weights Update (MWU) scheme. We view each morphological perceptron as an instance of the learning from experts' advice problem in logarithmic space, and use a correlation-based reward that favors inputs aligned with the desired output change, regardless of whether a strong gradient signal has reached their weight. We empirically evaluate our approach by training fully connected layers both as stand-alone models and as parts of larger transformer networks. Across nine benchmarks, correlational training yields improvements on eight, by up to 32.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>Quantization Effects on Tool-Failure Recovery Vary Across Prompts and Evaluation Designs</title>
+<link>https://tldr.takara.ai/p/2610.07781</link>
+<guid>title:quantization effects on tool failure recovery vary across prompts and evaluation designs</guid>
+<pubDate>Tue, 06 Oct 2026 05:17:10 +0000</pubDate>
+<description>Post-training quantization reduces the cost of deploying language-model agents, but its effect on recovery from temporary tool failures can depend on how recovery is evaluated. We compare 8-bit and 4-bit variants of Llama-3. 1-8B-Instruct and Qwen2. 5-7B-Instruct on twenty deterministic tool-use tasks and five prompts. The 8-bit-4-bit recovery comparison changes direction across prompts and evaluation targets. On tasks that both variants complete without faults under the same prompt, the difference ranges from 0 to +20.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>efficiency</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>Writing for the Reviewer: Defensive Writing in GPT Models</title>
+<link>https://tldr.takara.ai/p/2610.11355</link>
+<guid>title:writing for the reviewer defensive writing in gpt models</guid>
+<pubDate>Thu, 08 Oct 2026 06:47:48 +0000</pubDate>
+<description>Researchers increasingly use ChatGPT to revise their papers, and recent GPT versions often narrow or even retract the authors' claims. We call such changes defensive writing when the given material does not support them, and we test two explanations: the model corrects the authors' overclaiming, or it writes for an anticipated reviewer. We ask GPT versions and models from other developers to rewrite paragraphs from papers written before ChatGPT, or to write from an evidence sheet that lists a paper's method and results. Defensive writing grows with GPT version. GPT-6-astra retracts the authors' claims outright, and when it writes from the evidence sheet, it still adds the most ungrounded qualifications. The results favor the anticipated-review explanation, and correcting overclaiming explains only a small part.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>One-Slide Calibration of Pathology Foundation Models</title>
+<link>https://tldr.takara.ai/p/2610.08944</link>
+<guid>title:one slide calibration of pathology foundation models</guid>
+<pubDate>Tue, 06 Oct 2026 18:09:36 +0000</pubDate>
+<description>Scanner variation changes how pathology foundation models represent the same tissue. We introduce SlideRuler, which uses regions within a slide as internal controls to estimate and correct acquisition-induced shifts in other regions. A transfer map learned from paired rescans enables calibration from a single scan at inference while keeping the foundation model fixed. Across two encoders and five SCORPION scanners, learned transfer reduces mean target-to-source embedding distance by 16. 3-38. 5% relative to raw embeddings.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>Artificial intelligence pathways from weather to climate</title>
+<link>https://tldr.takara.ai/p/2610.09770</link>
+<guid>title:artificial intelligence pathways from weather to climate</guid>
+<pubDate>Wed, 07 Oct 2026 09:52:47 +0000</pubDate>
+<description>Deep learning has made rapid advances in weather forecasting: autoregressive models trained on atmospheric reanalyses now rival dynamical models across nowcasting, medium-range, and subseasonal-to-seasonal lead times, producing well-calibrated ensemble forecasts at reduced cost. We review these advances and consider their extension to climate horizons, where the challenge shifts from initial-condition skill to producing reliable statistical responses under altered forcings. AI-powered climate prediction systems must produce credible forced responses to drivers (e. g. , greenhouse gases, land-use change) typically outside the observed record. We propose two minimum requirements for AI in climate modeling: (i) external forcing agents must enter explicitly enough to support interventions in which they vary independently; and (ii) robustness must be stress-tested in out-of-distribution regimes, including extremes and counterfactual trajectories.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>ml</category>
