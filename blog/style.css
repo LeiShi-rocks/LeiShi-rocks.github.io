@@ -1,0 +1,133 @@
+:root {
+  --blog-ink: #24292e;
+  --blog-muted: #586069;
+  --blog-rule: #e1e4e8;
+  --blog-link: #0366d6;
+}
+
+.blog-index {
+  margin-top: 32px;
+}
+
+.infoblock:has(.blog-index),
+.infoblock > .blockcontent:has(.blog-index) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.blog-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  border-top: 1px solid var(--blog-rule);
+  border-bottom: 1px solid var(--blog-rule);
+  padding: 24px 0 28px;
+  gap: 24px;
+}
+
+.blog-preview {
+  display: block;
+  background: #f6f8fa;
+  padding: 16px;
+  border: 1px solid var(--blog-rule);
+}
+
+.blog-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  border-radius: 0;
+}
+
+.blog-entry-content {
+  min-width: 0;
+}
+
+.blog-entry .blog-entry-meta {
+  margin: 0 0 12px;
+  color: var(--blog-muted);
+  font-size: 13px;
+}
+
+.blog-entry h2 {
+  margin: 0 0 12px;
+  padding: 0;
+  border: 0;
+  font: 700 30px/1.2 Georgia, "Times New Roman", serif;
+  color: var(--blog-ink);
+}
+
+.blog-entry h2 a {
+  color: inherit;
+}
+
+.blog-entry p {
+  line-height: 1.65;
+}
+
+.blog-entry .blog-entry-subtitle {
+  font-size: 18px;
+  color: var(--blog-muted);
+  margin-bottom: 12px;
+}
+
+.blog-read {
+  display: inline-block;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.blog-nav {
+  max-width: 940px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--blog-rule);
+  font: 16px/1.5 Georgia, "Times New Roman", serif;
+}
+
+.blog-nav a {
+  text-decoration: none;
+  color: var(--blog-link);
+}
+
+.blog-nav .blog-brand {
+  font-weight: 700;
+  color: var(--blog-ink);
+}
+
+.blog-nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.blog-nav a:hover,
+.blog-entry a:hover {
+  text-decoration: underline;
+}
+
+.blog-nav a:focus-visible,
+.blog-entry a:focus-visible {
+  outline: 2px solid var(--blog-link);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  .blog-entry h2 {
+    font-size: 25px;
+  }
+
+  .blog-preview {
+    padding: 8px;
+  }
+
+  .blog-nav {
+    flex-wrap: wrap;
+  }
+}
