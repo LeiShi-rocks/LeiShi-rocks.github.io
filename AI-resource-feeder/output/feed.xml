@@ -4,31 +4,49 @@
 <title>AI Trend Feed</title>
 <link>https://example.com/ai-trend-feed</link>
 <description>Top daily AI papers/blogs ranked by recency + popularity + relevance</description>
-<lastBuildDate>Fri, 09 Oct 2026 15:13:25 +0000</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 18:36:54 +0000</lastBuildDate>
 <item>
-<title>RT-DETR-World: Transferring Rich LLM Semantics to Real-Time Open-Vocabulary Detection</title>
-<link>https://tldr.takara.ai/p/2610.09502</link>
-<guid>title:rt detr world transferring rich llm semantics to real time open vocabulary detection</guid>
-<pubDate>Wed, 07 Oct 2026 06:01:35 +0000</pubDate>
-<description>Open-vocabulary detection (OVD) recognizes categories unseen during training through textual category queries, yet achieving strong generalization with real-time efficiency remains challenging. Beyond vocabulary scaling, zero-shot generalization may benefit from reusable visual--semantic cues learned from seen data, including attributes, actions, states, and contextual relations. Existing real-time OVD methods primarily emphasize vocabulary coverage and efficient region/query--text matching; under strict efficiency constraints, compact detectors may struggle to absorb rich instance semantics and scene context. We propose RT-DETR-World, a compact DETR-style detector that transfers the rich semantics conveyed by descriptions during training while retaining lightweight query--text matching at inference. We construct GroundingCapv2 with three levels of supervision: category names for standard OVD, object descriptions conveying instance-level semantics, and image descriptions conveying object relations and scene context. These descriptions serve only as training-time semantic supervision.</description>
+<title>Lost on Campus: Evaluating Embodied Spatial Reasoning of Vision-Language Models in the Wild</title>
+<link>https://tldr.takara.ai/p/2611.33145</link>
+<guid>title:lost on campus evaluating embodied spatial reasoning of vision language models in the wild</guid>
+<pubDate>Tue, 24 Nov 2026 18:57:48 +0000</pubDate>
+<description>Embodied Spatial Reasoning (ESR) is central to deploying Vision-Language Models (VLMs) in real-world embodied tasks, yet remains inadequately evaluated. Existing benchmarks primarily assess spatial reasoning in static images or synthetic indoor environments, where semantic shortcuts often suffice, making it difficult to faithfully evaluate spatial reasoning capabilities in the wild. In light of this, we present Lost on Campus, a benchmark for evaluating ESR in large-scale real-world outdoor 3D environments reconstructed by 3D Gaussian Splatting. Our benchmark introduces a unified reasoning-action evaluation framework that seamlessly integrates diagnostic QA for isolated reasoning with closed-loop interactive navigation for active reasoning under multimodal instructions. To enable fine-grained diagnosis, we evaluate six capability aspects of ESR: action grounding, spatial foresight, metric awareness, goal-directed planning, ego-allocentric localization, and spatio-temporal consistency. Extensive experiments reveal that: (i) Compared to indoor settings, real-world outdoor environments impose substantially higher demands on spatial reasoning, where existing models exhibit poor performance; (ii) VLMs still struggle with fine-grained visual alignment, with failures in spatial foresight and ego-allocentric localization emerging as primary bottlenecks; (iii) Improving multimodal interaction capabilities and long-term spatial reasoning is crucial for advancing embodied intelligence.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>alignment</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
 <category>ml</category>
+<category>multimodal</category>
 <category>paper</category>
 <category>papers</category>
+<category>reasoning</category>
 <category>rl</category>
-<category>serving</category>
 <category>vision</category>
 </item>
 <item>
-<title>RoboJEPA: Scaling Robotic Latent World Models</title>
-<link>https://tldr.takara.ai/p/2610.10515</link>
-<guid>title:robojepa scaling robotic latent world models</guid>
-<pubDate>Wed, 07 Oct 2026 17:54:42 +0000</pubDate>
-<description>Latent world models have shown a remarkable ability to predict future states and to plan in the real world. In practice, however, we lack a principled way to estimate how their capabilities scale with model size, data, and compute, an open problem that slows progress in the field. In this work we present RoboJEPA, a world model based on the Joint Embedding Predictive Architecture (JEPA) and trained on a large-scale dataset spanning 12 robotic embodiments. We show that RoboJEPA's imagination error, the error of its latent rollouts, follows a second-order power law in compute, allowing us to predict model quality well beyond the scale at which the law is fit. We further show that downstream robotic planning performance improves predictably with compute, and that imagination error is strongly correlated with it, making it a reliable proxy for real-robot evaluation. Finally, we demonstrate that latent world models can be deployed zero-shot as robotic agents, planning toward a single goal image to solve tasks requiring long-horizon planning on real hardware.</description>
+<title>CoT-Proxy: Cross-Format Transfer for Distilling Long-Horizon Policies</title>
+<link>https://tldr.takara.ai/p/2611.33148</link>
+<guid>title:cot proxy cross format transfer for distilling long horizon policies</guid>
+<pubDate>Tue, 24 Nov 2026 18:58:53 +0000</pubDate>
+<description>Reasoning models become long-horizon agents through reinforcement learning or, more cheaply, through fine-tuning on a stronger teacher's trajectories, which contain the teacher's chain-of-thought as well as its actions. The standard fine-tuning approach imitates both, yet the strongest teachers are closed models whose chain-of-thought is hidden behind an API. We show that the chain-of-thought can be left out altogether and that the long-horizon policy can be distilled from the teacher's actions alone. The student is trained on these trajectories with its reasoning block left empty, while a KL loss on a replay buffer of its own generations limits drift from its initial model. Surprisingly, the policy learned from these trajectories with an empty reasoning block carries over to inference with thinking enabled, where the student reasons in its own style while acting like the teacher, an effect we call cross-format transfer. Distilling the actions of Qwen3.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>rl</category>
+<category>serving</category>
+</item>
+<item>
+<title>Learning Agent States for Latent Action Modeling</title>
+<link>https://tldr.takara.ai/p/2611.32017</link>
+<guid>title:learning agent states for latent action modeling</guid>
+<pubDate>Tue, 24 Nov 2026 05:59:54 +0000</pubDate>
+<description>Latent action models (LAMs) learn action-like latents from unlabeled video by coupling frame-pair inference with latent-conditioned prediction, enabling policy and world-model pretraining. However, what the latent must explain depends on the representation space used for action inference and transition prediction. When this space entangles the agent's evolving physical state with visual context, such as background and persistent agent appearance, inferred latents can encode information unrelated to the agent's actions. To address this challenge, we propose Agent-State LAM, which jointly learns a compact agent-state representation and latent actions modeling its transitions. The compact state aggregates dense visual features into a shared space for both action inference and forward prediction. To guide what this state retains, we introduce spatially matched temporal discrimination (SMTD), which trains the state to distinguish its source frame from nearby frames through spatially flexible matching with frozen local visual features.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>agents</category>
 <category>daily</category>
@@ -38,85 +56,33 @@
 <category>papers</category>
 <category>rl</category>
 <category>robotics</category>
+<category>serving</category>
 <category>world-models</category>
 </item>
 <item>
-<title>Immiscible Diffusion Policy: Preserving Multimodal Robot Actions through Label-Free Noise Assignment</title>
-<link>https://tldr.takara.ai/p/2610.09369</link>
-<guid>title:immiscible diffusion policy preserving multimodal robot actions through label free noise assignment</guid>
-<pubDate>Wed, 07 Oct 2026 03:22:26 +0000</pubDate>
-<description>When diffusion policies were first introduced, they were expected to recover multi-modal action distributions. However, we find this expectation does not always hold, as diffusion policies often collapse to a single modality even when we guarantee the balance of dataset modalities and exact within-batch symmetry. Our analysis indicates that independent action-noise pairing contributes to this failure by increasing mixing and crossing among diffusion paths, which can produce averaged denoising responses and suppress modality-specific behavior. This issue is especially severe in robot planning, where action spaces are dense and low-dimensional, significantly increasing such mixing and crossing. To alleviate this problem, we propose Immiscible Diffusion Policy, a label-free training-time add-on to diffusion policy that uses action-noise assignment to preserve relatively distinct noise-to-action routes without modifying the policy architecture or inference procedure. Across five simulated and two real-world humanoid manipulation tasks spanning state, RGB, and point-cloud observations, our method significantly improves the policy's preservation of action modalities while maintaining strong task performance.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>robotics</category>
-<category>serving</category>
-</item>
-<item>
-<title>RobotWorld: Benchmarking Multimodal Agents for Robot Use Across Diverse Tasks and Embodiments</title>
-<link>https://tldr.takara.ai/p/2610.10409</link>
-<guid>title:robotworld benchmarking multimodal agents for robot use across diverse tasks and embodiments</guid>
-<pubDate>Wed, 07 Oct 2026 16:55:24 +0000</pubDate>
-<description>General-purpose agents increasingly write code, use tools, and complete complex digital tasks, raising the question of how far these capabilities carry into the physical world. To investigate this, we introduce RobotWorld, a challenging simulation testbed for robot use: turning instructions and observations into physical task execution through robot interfaces. Its 84 tasks span manipulation, mobile manipulation, locomotion, driving, and aerial control, with explicit interaction budgets and executable success checks. By analysing task outcomes alongside execution traces, we identify both the capabilities that transfer and the gaps that prevent reliable completion. Furthermore, we find that current agents can construct sophisticated perception and control workflows, including image segmentation, camera calibration, spatial estimation, and dynamics-based computation. These capabilities, however, do not consistently compose into successful behaviour: agents lose task-relevant object states despite reaching commanded poses, fail to correct ineffective actions, recover too late, or mistake unfinished tasks for completion.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>robotics</category>
-</item>
-<item>
-<title>VideoEvolve: Co-Evolving Memory and Retrieval for Long Video Understanding</title>
-<link>https://tldr.takara.ai/p/2610.10183</link>
-<guid>title:videoevolve co evolving memory and retrieval for long video understanding</guid>
-<pubDate>Wed, 07 Oct 2026 14:51:23 +0000</pubDate>
-<description>Long video understanding increasingly relies on external memory to organize massive visual streams into compact representations. However, most memory-based methods dynamically adapt how information is retrieved for different questions, while largely fixing what is remembered. This mismatch makes missing details costly to recover, whereas stored information is valuable only when it can be reliably retrieved. To address this issue, we propose VideoEvolve, a novel self-evolving framework that jointly evolves memory and retrieval for long video understanding. Specifically, starting from a coarse low-frame-rate overview, VideoEvolve couples a Memory Evolver for selective memory augmentation with a Retrieval Evolver for adaptive retrieval over the evolving memory. We then co-evolve the two Evolvers through alternating agentic reinforcement learning (Agentic RL), updating one while freezing the other.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>multimodal</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-<category>rl</category>
-</item>
-<item>
-<title>DUDA-Bench: Benchmarking LLM Agents on Multimodal Data-Driven Urban Diagnosis</title>
-<link>https://tldr.takara.ai/p/2610.09374</link>
-<guid>title:duda bench benchmarking llm agents on multimodal data driven urban diagnosis</guid>
-<pubDate>Wed, 07 Oct 2026 03:29:27 +0000</pubDate>
-<description>Urban diagnosis integrates heterogeneous observations to identify urban problems, localize affected areas, and investigate contributing factors, informing evidence-based urban planning and management. However, its reliance on labor-intensive, case-specific expert workflows limits scalability and reuse, motivating the exploration of agent-based execution. To evaluate this capability, we introduce DUDA-Bench, a hierarchical and interactive benchmark that formalizes data-driven urban diagnosis as a multi-stage agent workflow. It comprises 86 atomic and 22 workflow tasks spanning four analytical stages, grounded in multimodal data from 12 cities covering five urban problem types. Evaluations of seven backbone models and five agent systems reveal a substantial gap between isolated analytical competence and end-to-end diagnosis, with system benefits varying across backbones. Trajectory analysis shows that unresolved evidence gaps propagate across stages, while successful recovery involves revising assumptions and actions using feedback.</description>
+<title>U-Statistics-Powered LLM Reasoning</title>
+<link>https://tldr.takara.ai/p/2611.33064</link>
+<guid>title:u statistics powered llm reasoning</guid>
+<pubDate>Tue, 24 Nov 2026 18:05:01 +0000</pubDate>
+<description>Since its introduction by DeepSeek, group relative policy optimization (GRPO) has been widely adopted for training large reasoning models and agents, spurring a proliferation of its variants. Yet the group size, a crucial hyperparameter in these GRPO-type algorithms, remains largely chosen by trial and error. Exploiting the U-statistic structure of GRPO's policy gradient, we recast the selection of the group size as a classical statistical problem of variance ratio estimation. This problem is particularly challenging when the denominator of the ratio is small, rendering naive plug-in estimators unstable. To address this challenge, we propose a pessimistic ratio estimator that accounts for the denominator's estimation uncertainty. We characterise the statistical properties of this estimator across three sample-size regimes.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>llm</category>
 <category>ml</category>
-<category>multimodal</category>
 <category>paper</category>
 <category>papers</category>
+<category>reasoning</category>
 <category>rl</category>
 </item>
 <item>
-<title>EmbodiedRSI: Active Continual Robot Learning Through Hypothesis-Guided Co-Evolution</title>
-<link>https://tldr.takara.ai/p/2610.10498</link>
-<guid>title:embodiedrsi active continual robot learning through hypothesis guided co evolution</guid>
-<pubDate>Wed, 07 Oct 2026 17:48:02 +0000</pubDate>
-<description>Robot foundation models provide strong visuomotor control, yet their performance can degrade when object positions or task instructions change. Further improvements often require post-training on substantial robot data, which can be costly to collect through methods such as teleoperation. Agentic harnesses can adapt around the model, but current self-evolving harnesses use robot trials inefficiently when deciding which code and skill changes to pursue. We introduce EmbodiedRSI, a self-evolving agentic harness that autonomously decides where to explore next and turns the resulting physical interaction into improved code and skills. EmbodiedRSI realizes this through a Fast-Slow Dual-System Architecture, in which competing code and skill hypotheses are maintained in a Hypothesis Graph. Value-of-Information Experiment Selection chooses physical experiments that can distinguish these hypotheses.</description>
+<title>Motion Conditioned World Modeling for Embodied Visual Tracking</title>
+<link>https://tldr.takara.ai/p/2611.32900</link>
+<guid>title:motion conditioned world modeling for embodied visual tracking</guid>
+<pubDate>Tue, 24 Nov 2026 16:25:49 +0000</pubDate>
+<description>World models support embodied decision-making by predicting future environment states. In embodied visual tracking, uncertain target motion and robot-induced viewpoint changes jointly affect visual observations, making future-state prediction challenging. We propose Motion-Conditioned World Modeling, which incorporates predicted target-motion distributions and robot ego-motion into latent state transitions. A Geometry--Progress module jointly models geometric paths and single-step travel distances through shared motion modes and path-conditioned progress distributions. This formulation captures uncertainty in route selection and motion progress while preserving their dependence. Action-induced coordinate transformations express predicted paths in the next robot frame, providing geometrically grounded conditions for future visual-state prediction.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>ml</category>
@@ -124,30 +90,49 @@
 <category>papers</category>
 <category>rl</category>
 <category>robotics</category>
+<category>vision</category>
+<category>world-models</category>
 </item>
 <item>
-<title>CRT-HMAR: Causal Requirement Tracing-Guided Hierarchical Multi-Agent Regulation for Open-Task-Aware Infrared-Visible Image Fusion</title>
-<link>https://tldr.takara.ai/p/2610.09330</link>
-<guid>title:crt hmar causal requirement tracing guided hierarchical multi agent regulation for open task aware infrared visible image fusion</guid>
-<pubDate>Wed, 07 Oct 2026 02:39:34 +0000</pubDate>
-<description>Infrared and visible (IR-VIS) image fusion integrates complementary multimodal information into a single fused image to support downstream vision tasks. However, existing methods are typically tailored to seen tasks within a fixed task set and struggle to generalize to unseen tasks, which restricts their applicability in real-world open-task scenarios. To address this issue, this paper proposes CRT-HMAR, a Causal Requirement Tracing-Guided Hierarchical Multi-Agent Regulation Framework for open-task-aware IR-VIS image fusion. CRT-HMAR introduces a Causal Requirement Tracing Task Localization mechanism, which actively intervenes in key image information and observes task-network response variations to map task-specific semantic preferences into image-level causal requirement maps. Based on these maps, a requirement analysis agent aggregates task-specific requirement knowledge to adaptively guide requirement-customized image fusion. Moreover, CRT-HMAR incorporates History-Analysis Multi-Objective Balancing and Task-Level-Correction Conflict Mitigation mechanisms, jointly constructing a hierarchical regulation chain of &quot;requirement interpretation - task balancing - conflict mitigation&quot;.</description>
+<title>RubikSQL-HB: Agentic Text-to-SQL with Knowledge in the Loop</title>
+<link>https://tldr.takara.ai/p/2611.32772</link>
+<guid>title:rubiksql hb agentic text to sql with knowledge in the loop</guid>
+<pubDate>Tue, 24 Nov 2026 15:06:50 +0000</pubDate>
+<description>Database agents need more than schema structure: business meanings, stored values and reference queries supply knowledge that becomes relevant at different points in reasoning. We introduce RubikSQL-HB, which exposes these materials through queryable, database-specific knowledge workspaces built on the HeavenBase platform. Its knowledge interface remains available as an agent constructs and investigates an answer. Candidate agents interleave knowledge access with SQL construction and execution; a downstream Judge can reuse the same interfaces to investigate disagreements. A two-stage example interface separates discovering a reference question from expanding its SQL. On a 500-question BIRD Mini-Dev evaluation, the full pipeline reaches 75.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>agents</category>
 <category>daily</category>
 <category>huggingface</category>
 <category>ml</category>
-<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+<category>rl</category>
+<category>vision</category>
+</item>
+<item>
+<title>Verify then Steer: Progress Hallucination-Aware Recovery for Continuous Vision-and-Language Navigation</title>
+<link>https://tldr.takara.ai/p/2611.32400</link>
+<guid>title:verify then steer progress hallucination aware recovery for continuous vision and language navigation</guid>
+<pubDate>Tue, 24 Nov 2026 11:05:44 +0000</pubDate>
+<description>Vision-and-Language Navigation (VLN) requires an agent to follow language instructions to reach a target in an unseen 3D environment. However, existing methods still struggle to recover from route deviations at test time. We investigate this limitation through the lens of instruction progress, and trace it to a phenomenon we term progress hallucination: agents misinterpret off-route observations as evidence of task progress, causing their internal instruction progress to advance beyond the actual task stage and hindering recovery based on earlier sub-instructions. To address this failure mode, we propose PHAR (Progress Hallucination-Aware Recovery), a test-time recovery framework following a verify-then-steer paradigm. The verifier examines residual-stream representations of the Vision-Language Model (VLM) to identify mismatch of cross-modal evidence along the trajectories, and uses split conformal calibration to control false alarms. When an alarm is raised, the steering module uses a contextual bandit to adaptively select the rewind extent of instruction progress for online recovery.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
 <category>paper</category>
 <category>papers</category>
 <category>rl</category>
 <category>vision</category>
 </item>
 <item>
-<title>Geometry-Supervised Visual Representation Learning for Multi-Phenotype Lesion Interpretation in Medical VLMs</title>
-<link>https://tldr.takara.ai/p/2610.10238</link>
-<guid>title:geometry supervised visual representation learning for multi phenotype lesion interpretation in medical vlms</guid>
-<pubDate>Wed, 07 Oct 2026 15:22:11 +0000</pubDate>
-<description>Medical vision-language models (VLMs) have shown increasing potential for clinical image interpretation. However, these models still struggle to interpret multi-phenotype lesions whose diagnosis requires the joint assessment of multiple pathological phenotypes. Existing vision-language alignment methods produce visual representations that fail to preserve anatomical hierarchies and relationships among phenotypic subclasses. This stems from their reliance on semantic supervision, which lacks geometric constraints to preserve these relationships in the visual embedding space. Moreover, the sparsity of lesion-related anatomical and phenotypic representations makes it difficult for medical VLMs to capture important diagnostic evidence. To address these limitations, we propose \textbf{PureVision}, a geometry-supervised visual representation learning framework for multi-phenotype lesion interpretation in medical VLMs.</description>
+<title>StreamCoach: Proactive Sports Coaching via Continuous Visual Reasoning</title>
+<link>https://tldr.takara.ai/p/2611.32281</link>
+<guid>title:streamcoach proactive sports coaching via continuous visual reasoning</guid>
+<pubDate>Tue, 24 Nov 2026 09:45:02 +0000</pubDate>
+<description>In fitness and sports training, timely action quality assessment (AQA) is essential for learners to identify and correct technical errors during movement execution. However, most AQA methods assess completed performances, limiting their ability to provide timely feedback. Streaming methods alleviate this latency, but limited reasoning hinders their use of subtle movement cues and sport-specific knowledge. Moreover, their fragmented feedback focuses on one body part at a time, overlooking movement details of other body parts and transitions between action phases. To address these limitations, we propose StreamCoach, a streaming AQA framework under the OnCueCoaching paradigm that couples continuous chain-of-thought (CoT) reasoning with proactive, evidence-gated coaching. Technique-Aware Reasoning tracks body-part movements and action-phase transitions against sport-specific criteria, while Holistic Coaching integrates accumulated evidence to deliver timely, comprehensive feedback on strengths and technical errors.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>alignment</category>
 <category>daily</category>
@@ -156,137 +141,15 @@
 <category>ml</category>
 <category>paper</category>
 <category>papers</category>
-<category>vision</category>
-</item>
-<item>
-<title>From Prompts to Trees: Effective LLM-Guided Tree Generation for Few-Shot Tabular Classification</title>
-<link>https://tldr.takara.ai/p/2610.10227</link>
-<guid>title:from prompts to trees effective llm guided tree generation for few shot tabular classification</guid>
-<pubDate>Wed, 07 Oct 2026 15:18:11 +0000</pubDate>
-<description>While Large Language Models (LLMs) possess rich world knowledge and impressive generalization capabilities, their direct application to tabular data classification is hindered by high inference costs and limited interpretability. In contrast, decision trees are fast and transparent but often underperform in low-data regimes. In this work, we propose a novel framework that bridges these paradigms by distilling LLM knowledge into interpretable decision trees under a few-shot learning setting. Instead of directly prompting the LLM to generate full trees, which is often unstable and inefficient, we develop a three-stage paradigm that prompts the LLM to generate rules and organize the rules into a tree. Experiments on multiple real-world tabular datasets demonstrate that our method achieves superior accuracy and interpretability with significantly lower prompting overhead compared to existing baselines.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-<category>serving</category>
-</item>
-<item>
-<title>How to train your model organism</title>
-<link>https://tldr.takara.ai/p/2610.10203</link>
-<guid>title:how to train your model organism</guid>
-<pubDate>Wed, 07 Oct 2026 15:02:57 +0000</pubDate>
-<description>Model organisms of alignment-relevant behaviors (e. g. , backdoors, sycophancy, spurious correlations) have emerged as a key tool for evaluating whitebox interpretability techniques. We argue that the prevailing practice of training model organisms to a single objective of installing the target behavior is insufficient and propose validating model organisms with respect to three objectives with associated metrics: target-behavior installation, general-capability preservation (i. e. , parametric knowledge, chat quality), and output naturalness (i.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
 <category>reasoning</category>
-</item>
-<item>
-<title>Efficient Reasoning with Flow Language Models</title>
-<link>https://tldr.takara.ai/p/2610.09416</link>
-<guid>title:efficient reasoning with flow language models</guid>
-<pubDate>Wed, 07 Oct 2026 04:18:22 +0000</pubDate>
-<description>Flow Language Models (FLMs) have emerged as a continuous-state alternative to discrete diffusion language models, yet the role of their continuous representations in reasoning remains unclear. We investigate this question by comparing the reasoning efficiency of FLMs and discrete diffusion models, measured by solution accuracy under matched denoising steps. Unlike discrete diffusion, which passes categorical states between denoising steps, FLMs evolve a continuous sequence representation throughout denoising and decodes it into discrete tokens only at the end. Our theoretical analysis shows, from a superposition perspective, how information retained in these continuous states can benefit reasoning. Intermediate-state interventions provide further empirical support for this theoretical account, showing that removing information about alternative candidates reduces subsequent solution recovery. Together, these findings show that FLMs allow evidence for multiple candidates to persist and inform subsequent reasoning before a discrete answer is produced.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>CoTrace: Data Recipes for Training Terminal Agents with Harness-Model Co-Evolution</title>
-<link>https://tldr.takara.ai/p/2610.10426</link>
-<guid>title:cotrace data recipes for training terminal agents with harness model co evolution</guid>
-<pubDate>Wed, 07 Oct 2026 17:06:59 +0000</pubDate>
-<description>Terminal-agent capability depends jointly on model weights and the runtime harness that formats prompts, binds tools, and handles error recovery. Existing harness-model co-evolution approaches improve both components, yet often treat trajectories produced during harness search as an undifferentiated replay buffer. This practice overlooks that a trajectory's value for model training depends on the harness under which it was generated. To systematically analyze this interface, we establish an alternating co-evolution framework that decouples harness search and policy training through component-wise promotion decisions. Within this framework, we introduce CoTrace, a harness-aware data recipe that explicitly governs trajectory routing, provenance matching, and curriculum refresh. Under CoTrace, recurring execution failures guide harness synthesis, while policy training is strictly conditioned on verified rollouts matched to the adopted runtime for supervised fine-tuning (SFT) or fresh online interactions for reinforcement learning (RL).</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
 <category>rl</category>
 </item>
 <item>
-<title>Temporally Interpretable Differentiable Decision Trees</title>
-<link>https://tldr.takara.ai/p/2610.10367</link>
-<guid>title:temporally interpretable differentiable decision trees</guid>
-<pubDate>Wed, 07 Oct 2026 16:35:17 +0000</pubDate>
-<description>Interpretability offers a solution to safe autonomy by providing transparency into an agent's underlying decision-making model. Within sequential-decision making tasks, differentiable decision trees (DDTs) are one approach to such interpretability, maintaining automatic-differentiable policies while providing humans with a discrete tree-based visualization. Nonetheless, current implementations of DDTs are not well-suited for sequential-decision making domains, as there exists an inherent mismatch between a tree's single-timestep behavior and a human's multi-timestep planning. Our work thus introduces time as a new dimension of interpretability, coined as temporal interpretability, and demonstrates how temporal abstractions via action chunking improve it. We achieve this by first introducing two novel policy gradient algorithms that incorporate action chunking. Additionally, to maintain parameter-efficient trees, we develop an information-theoretic tree restructuring algorithm that modifies the tree during training.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>OOM-RL II: Reality Is an Oracle, Not a Debugger Provenance-Constrained Diagnosis in Continually Evolving Agent-Engineered Systems</title>
-<link>https://tldr.takara.ai/p/2610.10256</link>
-<guid>title:oom rl ii reality is an oracle not a debugger provenance constrained diagnosis in continually evolving agent engineered systems</guid>
-<pubDate>Wed, 07 Oct 2026 15:33:17 +0000</pubDate>
-<description>Reality may establish that an outcome occurred without identifying which evolving procedure produced it or why. This distinction matters in production ML systems whose code, configuration, and artifacts change while external feedback accumulates. We examine it in a human-directed, agent-engineered quantitative trading system, using oracle to mean an external source of realized outcomes rather than a complete correctness specification. Across one year, the account gained and outperformed a broad market index, while annual alpha was not statistically distinguishable from zero under the main retrospective specification. Retrospectively selected subperiods include adverse relative performance and conditional candidate-level weakness under declared approximate references. Engineering records document changes during the episode, and complete recommendation-to-runtime binding is unavailable.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>AdSpark: A Large-Scale Dataset and Benchmark for Product-Centric Advertisement Video Generation</title>
-<link>https://tldr.takara.ai/p/2610.10047</link>
-<guid>title:adspark a large scale dataset and benchmark for product centric advertisement video generation</guid>
-<pubDate>Wed, 07 Oct 2026 13:23:24 +0000</pubDate>
-<description>Product-centric advertisement video generation aims to create promotional videos that preserve fine-grained product identity while presenting selling points through coherent multi-shot narratives. However, this emerging task remains underexplored due to the lack of large-scale advertisement-specific datasets and comprehensive evaluation frameworks. To address this gap, we introduce \textbf{AdSpark}, a large-scale dataset and benchmark for product-centric advertisement video generation, based on data from a major e-commerce platform. \textit{AdSpark-300K} contains approximately 300K reference image--prompt--video triplets, comprising a real-world subset and a synthetic subset. Each sample provides structured advertisement annotations, including product identity annotations, selling-point descriptions, creative plans, and aligned audio scripts, enabling models to learn product preservation and advertisement-oriented visual storytelling. We further propose \textit{AdSpark-Bench}, a diagnostic benchmark that evaluates generated advertisements across six dimensions, including visual quality, product fidelity, instruction adherence, temporal coherence, audio alignment, and advertisement effectiveness.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Unrolled Flow Models for Reasoning</title>
-<link>https://tldr.takara.ai/p/2610.09759</link>
-<guid>title:unrolled flow models for reasoning</guid>
-<pubDate>Wed, 07 Oct 2026 09:45:54 +0000</pubDate>
-<description>Flow matching enables language generation in few steps, but whether additional integration steps improve reasoning remains unclear. We prove that a flow parameterized by a two-layer Transformer can solve graph reachability, with the required number of integration steps increasing with the target's distance from the root. Yet, standard flow language models can fail to benefit from additional steps on reasoning tasks. We attribute this limitation to objectives that supervise each time point independently, without explicitly training successive steps to build on one another. To address this, we instead train through the model's own latent rollout over a randomly sampled subinterval of [0, 1], decoding only at the endpoint. On ProsQA, this raises accuracy to 97% and enables performance to improve with additional integration steps.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>Sequential Pretraining Favors Large Models</title>
-<link>https://tldr.takara.ai/p/2610.09611</link>
-<guid>title:sequential pretraining favors large models</guid>
-<pubDate>Wed, 07 Oct 2026 07:54:48 +0000</pubDate>
-<description>Large neural networks often acquire capabilities that small models fail to learn. Does this stem from large models learning more representative features, or from being more robust to unaccounted-for adverse effects introduced during training? We define and quantify one such adverse effect, primacy bias, as the extent to which exposure to early data distributions impairs later learning. We show that small models can allocate learning capacity inefficiently toward early distributions, whereas sufficiently overparameterized models are robust to this effect. This inefficiency is particularly consequential in pretraining, where foundation models often encounter heterogeneous data distributions sequentially rather than jointly. As a result, small foundation models can struggle to learn distributions encountered late in training, which is particularly harmful when later data emphasizes desirable capabilities such as code, mathematics, and reasoning.</description>
+<title>Roboclock: A Unified Benchmark for Time-Aware Robotic Intelligence</title>
+<link>https://tldr.takara.ai/p/2611.32233</link>
+<guid>title:roboclock a unified benchmark for time aware robotic intelligence</guid>
+<pubDate>Tue, 24 Nov 2026 09:13:14 +0000</pubDate>
+<description>Time is a fundamental dimension of robotic intelligence: a robot may fail despite physically correct actions if it acts outside a valid time window, responds too slowly to an event, or fails to meet required throughput. Yet existing robotic benchmarks primarily emphasize spatial correctness and logical task completion, largely overlooking the temporal constraints of real-world applications. We present RoboClock, a unified benchmark for time-aware robotic manipulation featuring 60 tasks across five application domains. Mirroring these failure modes, RoboClock structures tasks around three types of temporal constraints: Temporal Window, Event-Reactive, and Throughput. Furthermore, RoboClock incorporates a Latency-Aligned evaluation protocol that continuously advances environment time during model inference and control-interface delays, paired with time-sensitive metrics. Evaluating over 30 methods, we find that the best-performing approach is the trained VLA, yet it achieves only 8.</description>
 <source url="https://papers.takara.ai/api/feed">huggingface</source>
 <category>daily</category>
 <category>huggingface</category>
@@ -295,490 +158,389 @@
 <category>papers</category>
 <category>reasoning</category>
 <category>rl</category>
-</item>
-<item>
-<title>Which Language Should a Skeleton Speak? Language Choices in Multilingual Reasoning</title>
-<link>https://tldr.takara.ai/p/2610.09607</link>
-<guid>title:which language should a skeleton speak language choices in multilingual reasoning</guid>
-<pubDate>Wed, 07 Oct 2026 07:53:13 +0000</pubDate>
-<description>Skeleton-based reasoning prompting is a promising training-free approach for structuring LLM reasoning, but prior work largely assumes an English-centric setting. We propose the Language-Aware Skeleton Exploration Framework (LASEF) to study skeleton-language choice in multilingual mathematical reasoning. Across math benchmarks, model scales, and languages, we show that English skeletons yield a small positive tendency on average, most visible for smaller models and low-resource languages. However, few language-level gains remain significant after correction, and English is not universally optimal. Combining greedy decoding, multi-rollout evaluation, translation ablation, and cross-benchmark validation, we further find three patterns of skeleton-language effects: directionally consistent, evaluation- and benchmark-dependent, and asymmetric negative. These effects cannot be fully explained by generation quality alone.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>Reliability of LLM Judges for Evaluating Entity Alignment</title>
-<link>https://tldr.takara.ai/p/2610.09554</link>
-<guid>title:reliability of llm judges for evaluating entity alignment</guid>
-<pubDate>Wed, 07 Oct 2026 06:55:45 +0000</pubDate>
-<description>Entity Alignment (EA) identifies equivalent entities across knowledge graphs and is critical for knowledge base integration and ontology merging. Evaluating EA systems at scale requires expensive expert annotation, making systematic assessment across diverse domains practically infeasible. LLM-as-judge evaluation offers a potentially scalable alternative, yet its reliability for structured prediction tasks like EA remains unstudied. We present the first systematic benchmarking study across three frontier models, three datasets, and four EA systems, using perturbation bias diagnostics, meta-evaluation across all dataset-judge-prompt combinations, and counterfactual label-flip tests. We identify anchor bias, a failure mode in which judges invert discrimination when the system's decision label is visible. Label exposure causally collapses judge discrimination (J-ROC-AUC 0.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-</item>
-<item>
-<title>Introducing the Anthropic Cyber Mission</title>
-<link>https://www.anthropic.com/news/anthropic-cyber-mission</link>
-<guid>title:introducing the anthropic cyber mission</guid>
-<pubDate>Thu, 08 Oct 2026 09:04:16 +0000</pubDate>
-<description>Today we’re launching the Anthropic Cyber Mission, a long-term commitment to securing the systems everyone depends on. The Cyber Mission is a new effort to support defenders with tools, research, and resources to secure their software and systems. We’re starting with two areas: Frontier models can be misused to exploit vulnerabilities and conduct cyber operations. Despite best efforts, many areas of technology remain dangerously exposed. State-sponsored adversaries have spent years gaining footholds in these systems, across many sectors, so that they can disrupt them. Defenders of critical infrastructure and the OSS community have decades of security experience but have faced severe resource shortages that are exacerbated by this moment.</description>
-<source url="https://www.anthropic.com/news">anthropic</source>
-<category>anthropic</category>
-<category>lab</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>rl</category>
-<category>safety</category>
-</item>
-<item>
-<title>Reflected Anchored Langevin Algorithms</title>
-<link>https://tldr.takara.ai/p/2610.09522</link>
-<guid>title:reflected anchored langevin algorithms</guid>
-<pubDate>Wed, 07 Oct 2026 06:16:49 +0000</pubDate>
-<description>First order Langevin algorithms for constrained sampling in machine learning, such as projected Langevin Monte Carlo which are based on discretizations of reflected Langevin dynamics, require differentiable log densities that limits their applicability. This paper introduces reflected anchored Langevin dynamics (RALD), a reflected diffusion that converges to non-differentiable targets on constrained domains. The method uses a smooth anchored reference potential and multiplies the drift and noise covariance of its reflected Langevin dynamics by the same state dependent scaling factor. Its Euler-Maruyama discretization with projection gives reflected anchored Langevin Monte Carlo (RALMC) algorithm. We prove explicit convergence bounds and iteration complexity for RALMC in the 2-Wasserstein distance to the target distribution. Numerical experiments are provided to illustrate the theoretical predictions and the empirical performance of the method.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>diffusion</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>From Global Alignment to Local Grounding: Zero-Shot Chinese Character Recognition with Radical Verification</title>
-<link>https://tldr.takara.ai/p/2610.09449</link>
-<guid>title:from global alignment to local grounding zero shot chinese character recognition with radical verification</guid>
-<pubDate>Wed, 07 Oct 2026 05:03:12 +0000</pubDate>
-<description>Zero-shot Chinese character recognition (ZS-CCR) aims to recognize characters whose categories are never observed during training, and typically relies on the compositional structure shared between seen and unseen characters. Recent CLIP-style methods represent this structure with the Ideographic Description Sequence (IDS) and align it with glyph images in a shared embedding space. However, they rely on a single global image--IDS similarity that discards the spatial layout of radicals and, being learned only implicitly from seen classes, generalizes poorly to unseen ones; moreover, global matching often retrieves the correct character within the top candidates yet fails to rank it first when characters differ only in subtle local radicals. To address these issues, we propose a global-to-local two-stage framework. In the first stage, STG-CLIP augments the IDS with explicit tree-position and radical-level geometric priors, yielding a spatial-aware prototype that provides a consistent spatial description across seen and unseen categories for high-recall global retrieval. In the second stage, the Radical Verification Module (RVM) uses the radical instances of each retrieved candidate as queries to verify whether the corresponding radicals can be matched to spatially compatible regions in the input glyph.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Finding the Right Balance: Relevance and Diversity in LLM Retrieval</title>
-<link>https://tldr.takara.ai/p/2610.09412</link>
-<guid>title:finding the right balance relevance and diversity in llm retrieval</guid>
-<pubDate>Wed, 07 Oct 2026 04:14:31 +0000</pubDate>
-<description>Retrieval diversification is widely available in retrieval-augmented generation (RAG) frameworks, yet prior studies disagree on whether it improves retrieval and answer quality. We show that its effectiveness varies primarily with candidate-pool redundancy, in a pattern consistent with the number of distinct evidence pieces a query requires. Using controlled near-duplicate injection and production-style overlapping chunking, we find that diversification harms relevance, evidence coverage and answer quality on clean pools, but becomes beneficial on multi-evidence tasks when redundancy causes nearest-neighbor retrieval to select repeated passages. We therefore introduce a query-adaptive rule that diversifies only when the effective number of distinct documents in the nearest-neighbor top-$k$ selection falls below the query's evidence requirement. Computed from existing embeddings, the rule captures most of the achievable gain, transfers across datasets and encoders and automatically reduces to nearest-neighbor retrieval for single-evidence queries. We also introduce RNG-Score, a geometric reranker with an exact nearest-neighbor fallback whose margin indicates duplicate structure.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>ScribbleEdit: A Benchmark for Scribble-Only Image Editing</title>
-<link>https://tldr.takara.ai/p/2610.09382</link>
-<guid>title:scribbleedit a benchmark for scribble only image editing</guid>
-<pubDate>Wed, 07 Oct 2026 03:38:48 +0000</pubDate>
-<description>Scribble-based interaction provides a lightweight and intuitive way for users to specify image editing intents in interactive editing tools. However, current image editing models based on VLMs or LLMs struggle to understand and execute edits based solely on scribble inputs. To systematically study this problem, we construct a new benchmark, ScribbleEdit, that evaluates the ability of image editing models to perform image editing conditioned on scribbles. This task requires both a deep understanding of the intention of the scribble and an accurate interpretation of its spatial information. In ScribbleEdit, we design an automated data construction pipeline and introduce a dedicated evaluation protocol that explicitly measures intention alignment. Our analysis reveals that existing VLM/LLM-based editing models fail to accurately capture scribble intentions.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>llm</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-</item>
-<item>
-<title>Never Look Back: Understanding Persistence in 3D Object Memory from Egocentric Videos</title>
-<link>https://tldr.takara.ai/p/2610.10538</link>
-<guid>title:never look back understanding persistence in 3d object memory from egocentric videos</guid>
-<pubDate>Wed, 07 Oct 2026 17:59:41 +0000</pubDate>
-<description>As we move through the world and carry out everyday tasks, we encounter objects that may become relevant only later. We are capable of recalling where we left something or what was inside a container, even without knowing we would need it later. Here, we study how an embodied assistant can build a similar memory from egocentric videos, by observing a person's day-to-day activities. We present Ledger, a persistent 3D object memory that combines object locations, their histories, and contextual descriptions. It associates observations across the recording and retains objects after they leave the view, including those the person never touches. It clusters each object's observations by resting locations and records a move only after repeated evidence, reducing the effect of localization noise.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>Your Prompt Should Do More: Effects of Retrieval Instructions in Embedding Models</title>
-<link>https://tldr.takara.ai/p/2610.10508</link>
-<guid>title:your prompt should do more effects of retrieval instructions in embedding models</guid>
-<pubDate>Wed, 07 Oct 2026 17:51:46 +0000</pubDate>
-<description>Prompted embedding models have recently received increasing attention, particularly for retrieval, where detailed retrieval instructions are provided as part of the retrieval prompt. Several new datasets and studies have examined this setting, showing that the current embedding models often struggle to follow such instructions reliably. In this paper, we study the mechanism of how instructions actually affect the representations of retrieval queries in asymmetric retrieval tasks. We show that models can fail to follow even simple task instructions when query-side distractors are included in the evaluation. We hypothesize that this behavior is driven by the training setup of current embedding models and their evaluation, and show that fine-tuning with added query-side distractors leads to substantial improvements, with minimal effect on other tasks.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>rl</category>
-</item>
-<item>
-<title>ECHO: Embodied Camera Observations of Human Object Carrying</title>
-<link>https://tldr.takara.ai/p/2610.10438</link>
-<guid>title:echo embodied camera observations of human object carrying</guid>
-<pubDate>Wed, 07 Oct 2026 17:15:27 +0000</pubDate>
-<description>Embodied and assistive agents must do more than recognize objects: they must reason about where an object belongs given the layout of an environment and the habits of the people who live in it. Progress on this problem has been limited, in part because no dedicated benchmark or dataset exists to define and evaluate it. Existing RGB-D scan datasets reconstruct static rooms without human activity, while human-object-interaction datasets capture motion without a navigable, fully reconstructed scene or a ground-truth notion of an object's natural destination. We introduce contextual object placement as a benchmark task: predicting an object's destination during an observed object-carrying episode. To support this task, we present Embodied Camera observations of Human Object carrying (ECHO), a large-scale synthetic dataset that pairs dense RGB-D scans of indoor scenes with recordings of an embodied human carrying everyday objects to context-appropriate destinations. ECHO is the first publicly available dataset to combine reconstructed scenes, human activity, natural language, and contextual-placement annotations.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>agents</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-</item>
-<item>
-<title>Performance at What Cost? A Sustainability-Aware Performance Index for Cell and Nucleus Instance Segmentation</title>
-<link>https://tldr.takara.ai/p/2610.10324</link>
-<guid>title:performance at what cost a sustainability aware performance index for cell and nucleus instance segmentation</guid>
-<pubDate>Wed, 07 Oct 2026 16:12:53 +0000</pubDate>
-<description>Pretrained models for cell and nuclear instance segmentation differ substantially in architecture, pretraining data and objectives, parameter count, inference strategy, adaptation requirements, postprocessing pipeline, and computational demand. Large pretrained and foundation models are increasingly adopted because of their strong zero-shot capabilities, but their use also imposes greater energy consumption, memory requirements, computational demands, adaptation costs, and operational carbon emissions. Whether these additional demands are justified by meaningful gains in segmentation performance remains unclear. We address this question by introducing the Sustainability-Aware Performance Index (SAPI), a configurable metric that combines segmentation performance, energy consumption, and model size. We benchmark 19 pretrained and foundation models across six CellBinDB datasets under zero-shot inference and evaluate 16 fine-tunable models using few-shot adaptation with both frozen encoder and full-model fine-tuning. We estimate energy consumption for GPU, CPU, and RAM using software-based monitoring tools.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-<category>serving</category>
-</item>
-<item>
-<title>Revisiting Explainable AI through Model-Independent Concept Dictionaries</title>
-<link>https://tldr.takara.ai/p/2610.10301</link>
-<guid>title:revisiting explainable ai through model independent concept dictionaries</guid>
-<pubDate>Wed, 07 Oct 2026 15:56:15 +0000</pubDate>
-<description>Modern applications of AI rely on increasingly complex models. Explainable AI (XAI) has emerged as a set of techniques aimed at improving model transparency. However, existing XAI methods typically assume input features to be inherently interpretable, or they rely on intermediate internal abstractions that are difficult to characterize and highly architecture-specific, hindering consistent use across models. To address these limitations, we propose DictXAI, a method that defines concepts directly in the input domain via a dictionary---a large, potentially overcomplete set of predefined elements, each carrying an interpretable meaning. Technically, DictXAI first computes a sparse code of the input and then attributes the model's prediction to the associated dictionary elements. We demonstrate the actionable nature of DictXAI explanations, showing that they can attribute AI malfunctions (e.</description>
-<source url="https://papers.takara.ai/api/feed">huggingface</source>
-<category>alignment</category>
-<category>daily</category>
-<category>huggingface</category>
-<category>ml</category>
-<category>paper</category>
-<category>papers</category>
-</item>
-<item>
-<title>Building on our commitment to American scientific discovery</title>
-<link>https://www.anthropic.com/news/genesis-mission-commitment</link>
-<guid>title:building on our commitment to american scientific discovery</guid>
-<pubDate>Thu, 08 Oct 2026 13:00:00 +0000</pubDate>
-<description>Anthropic is deepening its support for American scientific research by committing $150 million over three years to the Genesis Mission , a federal initiative to accelerate scientific and technological discovery through AI. The funding will go toward making Claude available to more than 15 agencies that are part of the mission, including NASA, the National Institutes of Health, and the National Science Foundation. We first announced our partnership with the US Department of Energy (DOE) and the Genesis Mission last December . Since then, we have worked with DOE to bring Claude to scientists across the national laboratories. Today, we announced this new commitment as part of the Science: A New Golden Age Summit hosted by the White House Office of Science and Technology Policy in Washington, DC. We share the administration’s view, laid out in “ Science: A New Golden Age ,” that AI can have a profound and positive impact on scientific discovery, and we are glad to back its efforts to support American scientists.</description>
-<source url="https://www.anthropic.com/news">anthropic</source>
-<category>anthropic</category>
-<category>lab</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>safety</category>
-</item>
-<item>
-<title>5 Steps to Create SimReady Assets for Robotics with Frontier AI Models</title>
-<link>https://developer.nvidia.com/blog/5-steps-to-create-simready-assets-for-robotics-with-frontier-ai-models/</link>
-<guid>title:5 steps to create simready assets for robotics with frontier ai models</guid>
-<pubDate>Thu, 08 Oct 2026 20:57:55 +0000</pubDate>
-<description>Preparing CAD assets for robotics simulation requires more than converting geometry to OpenUSD: developers must configure and validate materials, collision...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>developer tools &amp; techniques</category>
-<category>dli</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
-<category>manufacturing</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>omniverse</category>
-<category>openusd</category>
 <category>robotics</category>
-<category>robotics simulation</category>
-<category>simulation / modeling / design</category>
-<category>training</category>
+<category>serving</category>
 </item>
 <item>
-<title>Building Reliable Data Analytics Agents: Lessons from the KDD Cup</title>
-<link>https://developer.nvidia.com/blog/building-reliable-data-analytics-agents-lessons-from-the-kdd-cup/</link>
-<guid>title:building reliable data analytics agents lessons from the kdd cup</guid>
-<pubDate>Thu, 08 Oct 2026 18:30:02 +0000</pubDate>
-<description>The NVIDIA KGMON team placed second in the KDD Cup 2026 Data Agents competition with a system built around a simple idea of making an agent's harness smaller,...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>agents</category>
-<category>ai agent</category>
-<category>data analytics / processing</category>
-<category>data preprocessing</category>
-<category>data science</category>
-<category>hardware</category>
-<category>infra</category>
-<category>llm techniques</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>training</category>
-</item>
-<item>
-<title>Dell pledges $1,000 to Trump Accounts of employees' kids, and says it will become a standard benefit in corporate America</title>
-<link>https://www.businessinsider.com/michael-dell-trump-accounts-employee-benefits-2026-10</link>
-<guid>title:dell pledges 1 000 to trump accounts of employees kids and says it will become a standard benefit in corporate america</guid>
-<pubDate>Fri, 09 Oct 2026 09:53:57 +0000</pubDate>
-<description>&quot;When a child has even a small amount, they're much more likely to have greater life outcomes,&quot; Michael Dell said in an interview this week.</description>
-<source url="https://feeds.businessinsider.com/custom/all">feeds.businessinsider.com</source>
-<category>ai</category>
-<category>dell</category>
-<category>feeds.businessinsider.com</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>tech</category>
-<category>trending-uk</category>
-<category>trump-accounts</category>
-</item>
-<item>
-<title>Validate AI Factory Changes with Digital Twins and AI Agents</title>
-<link>https://developer.nvidia.com/blog/validate-ai-factory-changes-with-digital-twins-and-ai-agents/</link>
-<guid>title:validate ai factory changes with digital twins and ai agents</guid>
-<pubDate>Wed, 07 Oct 2026 16:00:00 +0000</pubDate>
-<description>AI factories are some of the most complex operations in the world, combining GPUs, CPUs, switches, DPUs, and SuperNICs alongside schedulers, orchestration...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agents</category>
-<category>ai agent</category>
-<category>data center / cloud</category>
-<category>dsx</category>
-<category>hardware</category>
-<category>infra</category>
-<category>nemoclaw</category>
-<category>networking / communications</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>retrieval augmented generation (rag)</category>
-<category>rl</category>
-<category>simulation / modeling / design</category>
-<category>training</category>
-</item>
-<item>
-<title>Introducing Playground: Create and play custom games</title>
-<link>https://blog.google/innovation-and-ai/technology/ai/playground-experimental-gaming-platform/</link>
-<guid>title:introducing playground create and play custom games</guid>
-<pubDate>Wed, 07 Oct 2026 12:00:00 +0000</pubDate>
-<description>Overview of Playground</description>
-<source url="https://blog.google/technology/ai/rss/">google</source>
-<category>ai</category>
-<category>google</category>
-<category>lab</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>research</category>
-</item>
-<item>
-<title>EmbeddingGemma 2: an open, lightweight multimodal embedding model</title>
-<link>https://deepmind.google/blog/embeddinggemma-2-an-open-lightweight-multimodal-embedding-model/</link>
-<guid>title:embeddinggemma 2 an open lightweight multimodal embedding model</guid>
-<pubDate>Tue, 06 Oct 2026 19:57:04 +0000</pubDate>
-<description></description>
-<source url="https://deepmind.google/blog/feed/basic/">deepmind</source>
-<category>deepmind</category>
-<category>lab</category>
-<category>multimodal</category>
-<category>nonpaper</category>
-<category>research</category>
-<category>science</category>
-</item>
-<item>
-<title>Expanding the Cyber Verification Program</title>
-<link>https://www.anthropic.com/news/cyber-verification-program</link>
-<guid>title:expanding the cyber verification program</guid>
-<pubDate>Tue, 06 Oct 2026 19:00:00 +0000</pubDate>
-<description>We’re launching a new, expanded version of our Cyber Verification Program (CVP), which makes advanced cyber capabilities and reduced blocking classifiers available to qualifying security professionals. The program now consists of three access tiers, which allow security teams to apply for the level of access that best suits their work. Each tier includes access to our most capable models, including Claude Opus 5. 5, Claude Sonnet 5. 5, Claude Mythos 5. 1, and new models moving forward.</description>
-<source url="https://www.anthropic.com/news">anthropic</source>
-<category>anthropic</category>
-<category>lab</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>safety</category>
-</item>
-<item>
-<title>Unlocking Earth AI’s planetary geospatial foundation models for global public health</title>
-<link>https://research.google/blog/earth-ais-planetary-geospatial-foundation-models-for-global-public-health/</link>
-<guid>title:unlocking earth ai s planetary geospatial foundation models for global public health</guid>
-<pubDate>Tue, 06 Oct 2026 15:05:11 +0000</pubDate>
-<description>Earth AI</description>
-<source url="https://research.google/blog/rss/">google-research</source>
-<category>earth ai</category>
-<category>global</category>
-<category>google-research</category>
-<category>health &amp; bioscience</category>
-<category>models</category>
-<category>nonpaper</category>
-<category>research</category>
-<category>science</category>
-</item>
-<item>
-<title>Open and Emergent Problems in Agentic Privacy and Security: A Contextual Angle</title>
-<link>https://research.google/blog/open-and-emergent-problems-in-agentic-privacy-and-security-a-contextual-angle/</link>
-<guid>title:open and emergent problems in agentic privacy and security a contextual angle</guid>
-<pubDate>Mon, 05 Oct 2026 21:08:00 +0000</pubDate>
+<title>Verifiable Social Reasoning for LLM Assistants</title>
+<link>https://research.google/blog/verifiable-social-reasoning-for-llm-assistants/</link>
+<guid>title:verifiable social reasoning for llm assistants</guid>
+<pubDate>Wed, 25 Nov 2026 17:10:27 +0000</pubDate>
 <description>Generative AI</description>
 <source url="https://research.google/blog/rss/">google-research</source>
-<category>agents</category>
 <category>generative ai</category>
 <category>google-research</category>
+<category>human-computer interaction and visualization</category>
+<category>llm</category>
+<category>machine intelligence</category>
 <category>models</category>
 <category>natural language processing</category>
 <category>nonpaper</category>
+<category>reasoning</category>
 <category>research</category>
 <category>science</category>
-<category>security, privacy and abuse prevention</category>
 </item>
 <item>
-<title>Scaling Decision Optimization to 100 Million Variables and Beyond with mPDLP in NVIDIA cuOpt</title>
-<link>https://developer.nvidia.com/blog/scaling-decision-optimization-to-100-million-variables-and-beyond-with-mpdlp-in-nvidia-cuopt/</link>
-<guid>title:scaling decision optimization to 100 million variables and beyond with mpdlp in nvidia cuopt</guid>
-<pubDate>Wed, 07 Oct 2026 15:45:00 +0000</pubDate>
-<description>Supply chain problems are expanding across more SKUs, lanes, and constraints than ever before, while energy grids are balancing more distributed sources in real...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>algorithms / numerical techniques</category>
-<category>developer tools &amp; techniques</category>
-<category>hardware</category>
-<category>infra</category>
-<category>linear programming</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>simulation / modeling / design</category>
-<category>top stories</category>
-<category>training</category>
+<title>Fix How It Acts, Not How It Thinks: Surgical Fine-Tuning of Frontier LLMs</title>
+<link>https://tldr.takara.ai/p/2611.32064</link>
+<guid>title:fix how it acts not how it thinks surgical fine tuning of frontier llms</guid>
+<pubDate>Tue, 24 Nov 2026 06:51:43 +0000</pubDate>
+<description>Open-weight LLMs are competent software engineers, but they sometimes fail at tasks they are otherwise able to do. Often it is not a failure of reasoning. It is a few small missteps over a long trajectory (repeating a step that has already failed, or declaring the task done while a requirement is still unmet) that make the difference. Correcting this calls for a surgical weight update that steers the model toward the right actions without interfering with its reasoning. Such updates, typically learned with LoRA adapters, are often too small to survive merging into a released checkpoint. In our BF16 release, the median weight change is only 1.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>efficiency</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
 </item>
 <item>
-<title>Faster Scientific Image Analysis with NVIDIA cuPhoton</title>
-<link>https://developer.nvidia.com/blog/faster-scientific-image-analysis-with-nvidia-cuphoton/</link>
-<guid>title:faster scientific image analysis with nvidia cuphoton</guid>
-<pubDate>Wed, 07 Oct 2026 15:00:00 +0000</pubDate>
-<description>Observatories and telescopes, lasers and X-ray light sources, and other high-throughput instruments generate image data faster than CPU-bound pipelines can...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>cuda</category>
-<category>cuda-x</category>
-<category>data science</category>
-<category>developer tools &amp; techniques</category>
-<category>hardware</category>
-<category>infra</category>
-<category>nemotron</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>omniverse</category>
-<category>open source</category>
-<category>simulation / modeling / design</category>
-<category>supercomputing</category>
-<category>training</category>
-<category>vera rubin</category>
+<title>AIChipBench: Benchmarking LLM Agents for Automated AI Accelerator Design</title>
+<link>https://tldr.takara.ai/p/2611.33093</link>
+<guid>title:aichipbench benchmarking llm agents for automated ai accelerator design</guid>
+<pubDate>Tue, 24 Nov 2026 18:28:41 +0000</pubDate>
+<description>A language-model decoder carries state between decoding steps, and in hardware a wrong state update can leave the current token correct and corrupt the output several tokens later, so a design can pass output tests and still be wrong. AIChipBench asks what LLM coding agents need to build such hardware correctly. Agents implement quantized Qwen3. 5, Gemma 3, Gemma 4, and Llama 3. 2 decoders in synthesizable register-transfer-level (RTL) code against an executable integer reference that specifies the outputs and the stored state at every decoding step. They debug against public tests under fixed budgets; their frozen designs are graded on held-out token sequences, resets, memory stalls, and synthesis, and a second track asks them to speed up a correct design at nearly fixed area.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
 </item>
 <item>
-<title>Scale Bitwise-Deterministic Pretraining with NVIDIA Megatron Core</title>
-<link>https://developer.nvidia.com/blog/scale-bitwise-deterministic-pretraining-with-nvidia-megatron-core/</link>
-<guid>title:scale bitwise deterministic pretraining with nvidia megatron core</guid>
-<pubDate>Tue, 06 Oct 2026 19:58:03 +0000</pubDate>
-<description>Bitwise determinism makes large-scale pretraining easier to debug, validate, and resume reproducibly. These benefits become especially valuable when training...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>data center / cloud</category>
-<category>hardware</category>
-<category>infra</category>
-<category>megatron</category>
-<category>nemotron</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>training</category>
+<title>SALSA: Sampling Adversarial Suffixes from Learned Distributions for LLM Safety Assessment</title>
+<link>https://tldr.takara.ai/p/2611.33030</link>
+<guid>title:salsa sampling adversarial suffixes from learned distributions for llm safety assessment</guid>
+<pubDate>Tue, 24 Nov 2026 17:43:09 +0000</pubDate>
+<description>Large language models (LLMs) remain vulnerable to jailbreak attacks, where adversaries append optimized suffixes to otherwise benign looking prompts to bypass safety alignment. Existing optimization-based GCG-style attacks can be effective, but they are expensive at inference time, and suffer from poor transfer. We present, SALSA, a generative framework that learns a distribution over jailbreak suffixes from optimization-derived attack corpora. Once trained, the model supports efficient sampling-based attacks. On open-source targets, it achieves attack success rates comparable to state-of-the-art optimization baselines, while reducing generation time from 3. 46s to 0.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
 </item>
 <item>
-<title>AICR v1.0: Open, stable, and verifiable GPU cluster configuration</title>
-<link>https://developer.nvidia.com/blog/aicr-v1-0-open-stable-and-verifiable-gpu-cluster-configuration/</link>
-<guid>title:aicr v1 0 open stable and verifiable gpu cluster configuration</guid>
-<pubDate>Tue, 06 Oct 2026 16:13:47 +0000</pubDate>
-<description>GPU-accelerated Kubernetes clusters depend on compatible versions across dozens of components, each on its own release cycle: host kernels, GPU drivers,...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>cloud services</category>
-<category>data center / cloud</category>
-<category>developer tools &amp; techniques</category>
-<category>dynamo</category>
-<category>hardware</category>
-<category>infra</category>
-<category>kubernetes</category>
-<category>nim</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>training</category>
-<category>trustworthy ai / cybersecurity</category>
+<title>RecordRoute: Auditing Agent Failures with Localization-Guided Diagnosis</title>
+<link>https://tldr.takara.ai/p/2611.33022</link>
+<guid>title:recordroute auditing agent failures with localization guided diagnosis</guid>
+<pubDate>Tue, 24 Nov 2026 17:37:25 +0000</pubDate>
+<description>Auditing failed agent executions requires identifying the responsible actor, the earliest decisive step, and the error mode. Representative supervised methods either focus on step localization or predict multiple attribution targets from shared trajectory representations. These methods do not use the localization result to select the text for mode diagnosis. To address this limitation, we propose RecordRoute, which couples comparative localization with local diagnosis. Specifically, it represents each record with word and character features and learns to rank records through comparisons within each trajectory. The selected record supplies the actor and step, while its text and metadata drive mode prediction.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
 </item>
 <item>
-<title>Anthropic invests $100 million to train 10,000 engineers and tackle the enterprise AI talent gap</title>
-<link>https://www.anthropic.com/news/claude-frontier-academy</link>
-<guid>title:anthropic invests 100 million to train 10 000 engineers and tackle the enterprise ai talent gap</guid>
-<pubDate>Fri, 02 Oct 2026 23:01:00 +0000</pubDate>
-<description>The first-of-its-kind Academy trains Frontier Deployed Engineers using the same standard of skills as Anthropic’s own engineers, starting with cohorts from Accenture, Bain, Capgemini, Commonwealth Bank of Australia, Deloitte, McKinsey, Morgan Stanley, Novo Nordisk and others. Today we are launching Claude Frontier Academy to solve one of the most pressing issues in AI implementation: talent. Backed by a $100 million commitment, Anthropic aims to train 10,000 Frontier Deployed Engineers (FDEs) by the end of 2027. Engineers from Accenture, Bain, Capgemini, Commonwealth Bank of Australia, Deloitte, McKinsey, Morgan Stanley and Novo Nordisk are in the first cohorts. Every enterprise is racing to bring AI into its organization, but the people with the skills to make it work inside a real business have become the hardest talent to find. Inside the companies we work with, a small group of deeply skilled people drives an outsized share of what AI delivers.</description>
+<title>CAPER: PartGround and PlanRefine for Reliable Manual-Guided Robotic Assembly Planning</title>
+<link>https://tldr.takara.ai/p/2611.32986</link>
+<guid>title:caper partground and planrefine for reliable manual guided robotic assembly planning</guid>
+<pubDate>Tue, 24 Nov 2026 17:16:21 +0000</pubDate>
+<description>Vision-Language-Models (VLMs) used in robot task planning to derive assembly procedures from existing manuals may correctly interpret individual assembly actions yet confuse exact part identities, predict unsupported Part IDs, or produce inconsistent parts across assembly steps. Thus, we propose CAPER (Capacity-Aware Part-grounding and Evidence Refinement), a manual-guided robotic assembly framework that enables VLMs to generate assembly procedures with two modules--PartGround and PlanRefine. PartGround aligns step-level manual evidence with product-specific inventory and part-reference information to identify exact Part IDs and quantities, transforming free-form hardware prediction into evidence-guided assignments represented in a shared Assembly Intermediate Representation (Assembly IR). PlanRefine audits PartGround assignments against finite inventory by removing the lowest-confidence assignments. Uncertain identity cases remain marked for review in the Assembly IR. We evaluate CAPER on the IKEA Assembly in the Wild (IAW) dataset.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>robotics</category>
+<category>vision</category>
+</item>
+<item>
+<title>C3H: Compression-to-Consensus Criteria Hijacking in Multimodal LLM Recommender Systems</title>
+<link>https://tldr.takara.ai/p/2611.32780</link>
+<guid>title:c3h compression to consensus criteria hijacking in multimodal llm recommender systems</guid>
+<pubDate>Tue, 24 Nov 2026 15:10:20 +0000</pubDate>
+<description>Multimodal large language models (MLLMs) are transforming recommender systems into content-aware decision systems. In these systems, multimodal compression and cross-modal fusion are often viewed as robustness-enhancing mechanisms against content manipulation, as compression can filter noisy signals and cross-modal consensus can suppress inconsistent anomalies. We challenge this assumption by showing that the same process can expose a compression-to-consensus (C2C) bias in ranking decisions. Signals that remain salient after compression and receive consistent support across modalities can gain disproportionate influence in candidate comparison, offering an exploitable direction for content manipulation. In this paper, we introduce C3H, a novel inference-time attack that exploits this vulnerability. Rather than relying on noisy perturbations or training-time poisoning, C3H promotes a target item by tailoring its multimodal content to align with the decision criteria implicitly expressed by the recommender.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+<category>serving</category>
+</item>
+<item>
+<title>VISE: Verifier-Independent Skill Self-Evolution with Feedback from Tool Implementations</title>
+<link>https://tldr.takara.ai/p/2611.32480</link>
+<guid>title:vise verifier independent skill self evolution with feedback from tool implementations</guid>
+<pubDate>Tue, 24 Nov 2026 12:08:40 +0000</pubDate>
+<description>Agent skills provide reusable workflows that guide LLM agents in using tools. Refining these workflows requires feedback on missing or incorrect instructions, but task-specific verifiers are not always available. We propose VISE (Verifier-Independent Skill Evolution), a scripts-first approach that uses tool implementations to guide skill revision. It extracts tool capabilities, input requirements, usage conditions, and output formats from source code. Using the task request and execution trace, it compares this information with current workflow instructions to identify missing or conflicting steps. It then recommends specific edits to SKILL.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>vision</category>
+</item>
+<item>
+<title>Towards a Multimodal Aesthetic Agent for Photographic Reference Grading</title>
+<link>https://tldr.takara.ai/p/2611.32299</link>
+<guid>title:towards a multimodal aesthetic agent for photographic reference grading</guid>
+<pubDate>Tue, 24 Nov 2026 09:56:17 +0000</pubDate>
+<description>Reference-guided photographic color grading helps users realize their aesthetic intent by selectively drawing on the color and tonal characteristics of a reference photograph. Doing so requires understanding which characteristics users wish to adopt and translating these preferences into controllable edits. However, image-only reference methods align overall appearance without instruction-grounded selection, while pixel-space generative editors typically produce flattened images without editable parameters, limiting subsequent refinement. To address these challenges, we introduce JarvisAura, a multimodal aesthetic agent that formulates photographic color grading as structured decision-making in an editable parameter space. JarvisAura offers three key advantages: (1) an aesthetic agent paradigm that integrates visual attribute perception, strategy-level reasoning, and parameterized execution for interpretable and controllable photographic color grading; (2) a unified reasoning-to-execution pipeline that connects aesthetic planning with backend rendering and editable parameter refinement; and (3) a three-stage training strategy comprising Parameter-Grounded Continual Pre-Training for parameter-appearance grounding, Reference-Grounded Supervised Fine-Tuning for reference-guided reasoning and parameter decisions, and Reference-Aligned Group Relative Policy Optimization for rendered-outcome refinement with multidimensional rewards and dynamic data derivation. On Ref-Bench, JarvisAura achieves the best scores among methods with results across reported automatic metrics and a 74% human-rated task-success rate, exceeding GPT-Image-2.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+</item>
+<item>
+<title>Clinical3D-Bench: Evaluating and Improving Spatial Intelligence of Multimodal LLMs in Hospital Environments</title>
+<link>https://tldr.takara.ai/p/2611.32094</link>
+<guid>title:clinical3d bench evaluating and improving spatial intelligence of multimodal llms in hospital environments</guid>
+<pubDate>Tue, 24 Nov 2026 07:14:47 +0000</pubDate>
+<description>Spatial reasoning in hospitals requires tracking look-alike equipment, interpreting patient-relative directions, and judging passage widths, yet existing benchmarks provide limited coverage of these abilities. We introduce Clinical3D-Bench, a simulated benchmark with 3,368 questions of eight types on egocentric walkthroughs of 373 hospital-room layouts. Layouts follow hospital design guidelines, answers are computed from the 3D scenes, and paired scene states test whether models change their answers when relevant evidence changes. Videos are photorealistic, and ten physicians screened the layouts. Among 35 multimodal large language models (MLLMs), the best open and proprietary models reach 45. 7% and 53.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
+<category>reasoning</category>
+</item>
+<item>
+<title>OmniAct: One Policy, One Million Embodiments</title>
+<link>https://tldr.takara.ai/p/2611.33158</link>
+<guid>title:omniact one policy one million embodiments</guid>
+<pubDate>Tue, 24 Nov 2026 18:59:58 +0000</pubDate>
+<description>A single policy that controls diverse robots must not only transfer task knowledge across embodiments, but also adapt its behavior to each robot's capabilities. Existing approaches facilitate transfer through shared action representations, but these representations do not necessarily capture how differences in robot morphology should shape manipulation strategies. We introduce OmniAct, a cross-embodiment manipulation policy that conditions directly on each robot's kinematics in a specific scene to produce embodiment-specific behavior. This kinematic graph represents the robot's joint positions, motion axes, and connectivity to its visual observation, allowing the policy to account for how its embodiment related to objects and surfaces in the scene. A flow-matching policy predicts relative joint motions for each node, enabling control across robots with different degrees of freedom and kinematic configurations. To learn how physical structure shapes behavior at scale, we procedurally design and filter one million physically feasible robot embodiments; next, we develop algorithms to generate robot trajectories in simulation for all embodiments; finally, we train across diverse simulated manipulation tasks.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>robotics</category>
+</item>
+<item>
+<title>Contrastive On-Policy Self-Distillation for LLM Unlearning</title>
+<link>https://tldr.takara.ai/p/2611.31932</link>
+<guid>title:contrastive on policy self distillation for llm unlearning</guid>
+<pubDate>Tue, 24 Nov 2026 04:35:05 +0000</pubDate>
+<description>Large language model unlearning aims to remove the influence of designated training data while preserving unrelated model capabilities. Existing likelihood-based methods commonly optimize against fixed forget sequences, providing only negative supervision on what the model should not generate and overlooking the states visited by the evolving unlearned policy. We introduce Contrastive On-Policy Self-Distillation (CPSD), a new unlearning framework that constructs an explicit knowledge-reduced target distribution and distills it along the model's own trajectories. Given a student rollout, a frozen reference model evaluates each token under a plain context and a privileged context containing the forget information. CPSD treats the resulting distributional shift as a knowledge-associated direction and reverses it to obtain a counterfactual unlearning target. The student is then trained to match this target at every rollout position while retaining its utility on unrelated data.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>vision</category>
+</item>
+<item>
+<title>Attestation is All You Need: Toward a Zero-Trust Architecture for HPC AI Agents</title>
+<link>https://tldr.takara.ai/p/2611.32958</link>
+<guid>title:attestation is all you need toward a zero trust architecture for hpc ai agents</guid>
+<pubDate>Tue, 24 Nov 2026 16:57:12 +0000</pubDate>
+<description>AI agents are beginning to automate data analysis, orchestration, and simulation steering in HPC environments, but they introduce a security problem that existing cluster defenses do not address: the hijacked authorized agent. An adversary can subvert an agent through prompt injection, poisoned shared data, compromised tools, or multi-agent coordination, then exfiltrate sensitive data through legitimate encrypted LLM API traffic. We propose behavioral attestation as a runtime defense for this setting. Our system, AEGIS, compiles task-derived behavioral constraints, monitors agent actions with ebpf-based syscall interception, verifies evidence against constraint profiles, correlates behavior across agents, and triggers slurm-level containment. On the real attestation path, AEGIS detects all four implemented attack classes with sub-second median latency at a 1-second interval and low measured verifier overhead. Controlled experiments show full attack-suite coverage, stronger detection than representative baselines, and no observed false positives on the evaluated benign workflows.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>Path-probability gradients for optimizing force fields against dynamical observables</title>
+<link>https://tldr.takara.ai/p/2611.32851</link>
+<guid>title:path probability gradients for optimizing force fields against dynamical observables</guid>
+<pubDate>Tue, 24 Nov 2026 15:55:51 +0000</pubDate>
+<description>Machine learning force fields inherit the errors of the electronic-structure methods used to generate their training data, and refining them against experimental measurements provides a direct route beyond this limit. However, such refinement remains difficult for dynamical observables because differentiating chaotic molecular trajectories yields unstable gradients. Here, we introduce PathGrad, which differentiates Langevin path probabilities instead of the trajectories themselves. The resulting gradient estimator is accumulated on the fly from thermal noise and force derivatives, and its variance remains stable as the trajectory length increases. We validated the gradient estimator against finite-difference calculations and used it to fine-tune molten-copper and water potentials against experimental diffusion coefficients together with structural constraints. For water, jointly optimizing diffusion and the oxygen-oxygen radial distribution function also improves the predictions of shear viscosity and rotational relaxation, neither of which is included in the optimization objective.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>alignment</category>
+<category>daily</category>
+<category>diffusion</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>MemAnchorWorld: A Sparse World Model with Horizon-Conditioned Memory Retrieval for Autonomous Driving</title>
+<link>https://tldr.takara.ai/p/2611.32745</link>
+<guid>title:memanchorworld a sparse world model with horizon conditioned memory retrieval for autonomous driving</guid>
+<pubDate>Tue, 24 Nov 2026 14:56:56 +0000</pubDate>
+<description>Sparse world models for 4D semantic occupancy forecasting represent scenes with a small set of evolving queries to efficiently predict future geometry and semantics for autonomous driving. However, existing sparse world models face a bottleneck in using historical temporal evidence for long-horizon forecasting. They rely on scene states to carry historical information implicitly, allowing errors to propagate and accumulate across successive forecasting steps and causing geometric and semantic deviations. To address this limitation, we present MemAnchorWorld, a sparse occupancy world model that explicitly retrieves relevant historical geometric and semantic evidence for 4D semantic occupancy forecasting. Inspired by the von Restorff effect, we introduce a forecast-time-conditioned hierarchical dual-path memory-anchor retrieval mechanism. Guided by the effective age and semantic compatibility of historical information, it combines query-level candidate selection with point-level memory-anchor retrieval to provide historical evidence for sparse points at different forecast times.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>world-models</category>
+</item>
+<item>
+<title>FN-Prune: Training-Free Expert Pruning with Finite RMSNorm Perturbations</title>
+<link>https://tldr.takara.ai/p/2611.31747</link>
+<guid>title:fn prune training free expert pruning with finite rmsnorm perturbations</guid>
+<pubDate>Tue, 24 Nov 2026 00:58:32 +0000</pubDate>
+<description>Expert pruning reduces the memory footprint of mixture-of-experts language models, but retaining model quality depends on which experts are removed. Frequency- and magnitude-based scores measure the expert in isolation and overlook how normalization consumes its contribution: subtracting one expert changes both the direction of the residual stream and the scale applied to what remains. We propose FN-Prune, a training-free criterion that compares the next RMSNorm outputs before and after subtracting each router-weighted expert contribution, holding original routes and weights fixed. Squared differences are averaged over all calibration tokens in one pass; low-scoring experts are physically deleted at uniform per-layer ratios, and inference reroutes among survivors. At 50% expert removal, FN-Prune achieves lower WikiText-2 perplexity than the best published methods on Qwen3, ERNIE, and OLMoE, including a 32% reduction on OLMoE. At the same budget, GSM8K accuracy improves over the best published methods by 7.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>serving</category>
+</item>
+<item>
+<title>RecurSciBench: Benchmarking Recursive Self-Improvement in Data-Driven Scientific Research</title>
+<link>https://tldr.takara.ai/p/2611.32508</link>
+<guid>title:recurscibench benchmarking recursive self improvement in data driven scientific research</guid>
+<pubDate>Tue, 24 Nov 2026 12:38:22 +0000</pubDate>
+<description>Large language model (LLM)-based agents are advancing the automation of data-driven scientific research. Recent advances in recursive self-improvement (RSI) offer the potential for these agents to continuously improve through experience, but evaluating transfer across scientific tasks requires executable, scientifically verifiable tasks and independent assessment of self-improvement gains. We introduce RecurSciBench, a scalable benchmark for evaluating RSI in data-driven scientific research. Its RecurSciPipe framework automatically constructs scientific modeling and data analysis tasks from raw datasets, with execution-based verification and scientific validity checks. RecurSciBench spans four scientific domains, multiple data modalities, and varied scientific objectives. We evaluate four RSI systems by comparing their initial and evolved states on independent tasks after evolution on source tasks, covering within-type, cross-type, and cross-domain transfer.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>Can AI Design a Better nnU-Net? A Hypothesis-Driven Architecture Discovery Loop from Failures to Design Rules</title>
+<link>https://tldr.takara.ai/p/2611.32384</link>
+<guid>title:can ai design a better nnu net a hypothesis driven architecture discovery loop from failures to design rules</guid>
+<pubDate>Tue, 24 Nov 2026 10:49:50 +0000</pubDate>
+<description>Neural architecture search and LLM-driven evolution often reduce evaluation to a scalar fitness score, discarding failures that could explain why designs succeed or fail. We present a hypothesis-driven architecture discovery loop in which LLM agents diagnose structured error patterns, formulate falsifiable hypotheses, test counterfactual controls under a frozen nnU-Net pipeline, and distill validated mechanisms into executable trigger-to-action rules. Across eight search waves, the loop identifies two principles for 3D medical image segmentation. First, reallocating computation from high-resolution decoders to the mid-encoder preserves thin-anatomy boundaries while reducing cost. Second, support-confined region contrast addresses errors between nested anatomical compartments, with anatomy-dependent triggers selecting when the rule applies. These principles produce LeanNeXt (0.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>llm</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+</item>
+<item>
+<title>CriticJEPA: World Models Are Better Critics Than Optimizers</title>
+<link>https://tldr.takara.ai/p/2611.32357</link>
+<guid>title:criticjepa world models are better critics than optimizers</guid>
+<pubDate>Tue, 24 Nov 2026 10:30:16 +0000</pubDate>
+<description>Visual world models enable goal-directed planning by predicting action outcomes. Gradient-based planners optimize actions to lower predicted goal cost, but continued optimization can exploit prediction errors after execution stops improving. Comparing plans requires informative relative scores; improving them also requires reliable update directions. Exact-state execution reveals that a frozen hierarchical world model ranks goal-conditioned proposals even when its rankings among outputs of prolonged gradient search are uninformative. Effective planning pairs goal-directed candidates with predictions that distinguish their outcomes. We introduce CriticJEPA, which learns goal-conditioned flow proposals from reward-free trajectories and uses frozen rollouts to select among them at every hierarchy level.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+<category>world-models</category>
+</item>
+<item>
+<title>FigmaEval: A Benchmark for Evaluating AI Agents in Professional UI Design</title>
+<link>https://tldr.takara.ai/p/2611.32321</link>
+<guid>title:figmaeval a benchmark for evaluating ai agents in professional ui design</guid>
+<pubDate>Tue, 24 Nov 2026 10:14:21 +0000</pubDate>
+<description>Recent advances in AI agents have enabled autonomous UI design using professional tools such as Figma, yet evaluating their design capabilities remains challenging due to the open-ended nature of design tasks and the absence of unique ground truths. We introduce FigmaEval, a benchmark for evaluating AI agents on professional UI design tasks, comprising 84 tasks and 783 screens derived from real-world Figma design files. FigmaEval adopts a constrained-specification, open-solution paradigm, standardizing task requirements and design resources while allowing agents to independently determine layouts, visual hierarchies, component composition, and visual presentation. To assess design quality beyond reference similarity, we develop 22 expert-grounded evaluation rubrics across six dimensions and introduce a human evaluation arena where professional designers compare agent-generated designs through blinded pairwise judgments. Evaluating eleven models under a unified Figma agent setup, we find substantial agreement between rubric-based assessments and human preferences, alongside distinct differences in design practices and quality--efficiency trade-offs. FigmaEval provides a framework for systematically assessing professional UI design capabilities and understanding the strengths and limitations of current AI agents.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>agents</category>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>paper</category>
+<category>papers</category>
+<category>rl</category>
+</item>
+<item>
+<title>Features</title>
+<link>https://www.anthropic.com/news/features</link>
+<guid>title:features</guid>
+<pubDate>Wed, 25 Nov 2026 18:36:40 +0000</pubDate>
+<description>3 ARTICLES A rare Ebola strain is spreading in the DRC, with no confirmed vaccine. Global health organizations are using Claude to respond as fast as possible.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>anthropic</category>
 <category>lab</category>
 <category>nonpaper</category>
 <category>product</category>
-<category>rl</category>
 <category>safety</category>
 </item>
 <item>
-<title>Lower the Cost of Building and Running Visual AI Agents with NVIDIA VSS Blueprint 3.3</title>
-<link>https://developer.nvidia.com/blog/lower-the-cost-of-building-and-running-visual-ai-agents-with-nvidia-vss-blueprint-3-3/</link>
-<guid>title:lower the cost of building and running visual ai agents with nvidia vss blueprint 3 3</guid>
-<pubDate>Tue, 29 Sep 2026 18:35:09 +0000</pubDate>
-<description>Vision-language models have made it possible to build visual AI agents that understand video at production scale. The harder problem is turning that capability...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agents</category>
-<category>computer vision / video analytics</category>
-<category>cosmos</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
-<category>llm</category>
-<category>metropolis</category>
-<category>nemotron</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>robotics</category>
-<category>training</category>
+<title>CSC-Mamba: Bridging multimodal convolutional sparse coding and state space models for multi-contrast MRI super-resolution</title>
+<link>https://tldr.takara.ai/p/2611.32144</link>
+<guid>title:csc mamba bridging multimodal convolutional sparse coding and state space models for multi contrast mri super resolution</guid>
+<pubDate>Tue, 24 Nov 2026 07:58:50 +0000</pubDate>
+<description>Multi-contrast MRI super-resolution accelerates clinical protocols by reconstructing high-resolution (HR) target modalities from low-resolution (LR) inputs, guided by easily acquired reference contrasts. While purely data-driven deep neural networks achieve strong performance via rich representation capacity, they rely on heuristic fusion mechanisms (e. g. , naive concatenation or black-box cross-attention) that lack theoretical grounding. Alternatively, model-based deep unfolding networks enforce principled cross-contrast fusion through explicit priors, yet their unrolled steps remain constrained to shallow convolutions, lacking modern deep blocks to capture global context. To bridge this gap, we propose CSC-MAMBA, unifying deep-unfolded multimodal convolutional sparse coding with the Vision Mamba state-space backbone.</description>
+<source url="https://papers.takara.ai/api/feed">huggingface</source>
+<category>daily</category>
+<category>huggingface</category>
+<category>ml</category>
+<category>multimodal</category>
+<category>paper</category>
+<category>papers</category>
 <category>vision</category>
-<category>vlms</category>
 </item>
 <item>
-<title>The latest AI news we announced in September 2026</title>
-<link>https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-september-2026/</link>
-<guid>title:the latest ai news we announced in september 2026</guid>
-<pubDate>Fri, 02 Oct 2026 15:00:00 +0000</pubDate>
-<description>A video showing the September AI updates</description>
-<source url="https://blog.google/technology/ai/rss/">google</source>
-<category>ai</category>
-<category>gemini app</category>
-<category>gemini models</category>
-<category>google</category>
-<category>google deepmind</category>
-<category>google research</category>
-<category>googlebook</category>
+<title>How iFood scales coding agents across 15,000 repositories</title>
+<link>https://openai.com/business/customer-stories/ifood</link>
+<guid>title:how ifood scales coding agents across 15 000 repositories</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+<description></description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>agents</category>
 <category>lab</category>
+<category>models</category>
 <category>nonpaper</category>
+<category>openai</category>
 <category>product</category>
-<category>research</category>
+<category>safety</category>
 </item>
 <item>
-<title>Are you a Codex Original?</title>
-<link>https://openai.com/form/codex-originals</link>
-<guid>title:are you a codex original</guid>
-<pubDate>Mon, 28 Sep 2026 00:00:00 +0000</pubDate>
-<description>We’re collecting real stories of builders, tinkerers, researchers, and creators who are using Codex to do incredible things. If you want to be a part of the next chapter of the Codex Originals program, tell us more about your story and project below.</description>
+<title>Clay helps sales teams win with Codex and ChatGPT</title>
+<link>https://openai.com/business/customer-stories/clay-plugins-openai</link>
+<guid>title:clay helps sales teams win with codex and chatgpt</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+<description>ChatGPT and Codex integrations help Clay’s users research deals and turn data into go-to-market plays, with GPT-6 models handling the reasoning.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>reasoning</category>
+<category>safety</category>
+</item>
+<item>
+<title>How Intentful uses dots to make more time for growth</title>
+<link>https://openai.com/business/customer-stories/intentful-dots</link>
+<guid>title:how intentful uses dots to make more time for growth</guid>
+<pubDate>Tue, 24 Nov 2026 00:00:00 +0000</pubDate>
+<description>Marina Petrova’s dot Aria helps research websites and build proposals, while proactively flagging messages and resolving issues.</description>
 <source url="https://openai.com/news/rss.xml">openai</source>
 <category>lab</category>
 <category>models</category>
@@ -788,11 +550,259 @@
 <category>safety</category>
 </item>
 <item>
-<title>Barclays scales Claude to upgrade operations and improve client experience</title>
-<link>https://www.anthropic.com/news/barclays-scales-claude</link>
-<guid>title:barclays scales claude to upgrade operations and improve client experience</guid>
-<pubDate>Thu, 01 Oct 2026 15:19:00 +0000</pubDate>
-<description>Barclays, the British universal bank, is expanding its strategic collaboration with Anthropic to integrate secure, enterprise-grade AI systems across its global operations. Barclays is extending Claude across the bank to accelerate software development, modernize legacy systems, and improve operational efficiency. As part of this rollout, Barclays expects Claude Code adoption to reach 50% of its developer population by the end of 2026, rising to a majority of software engineers in 2027. Integrating AI across a large, complex, and highly regulated organization requires both capable technology and disciplined governance. Expanding its collaboration with Anthropic reflects a shared commitment to deploying AI responsibly, reliably, and in ways that deliver real outcomes, such as providing faster support for customers.</description>
+<title>Richpanel helps companies automate 50% of support in 30 days</title>
+<link>https://openai.com/business/customer-stories/richpanel-ai-customer-support</link>
+<guid>title:richpanel helps companies automate 50 of support in 30 days</guid>
+<pubDate>Mon, 23 Nov 2026 08:00:00 +0000</pubDate>
+<description>Richpanel uses GPT-6 Astra and GPT-6.1 Sol to equip its AI support agents with tools and procedures, and GPT-6 Luna for their conversations.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>agents</category>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+<category>startup</category>
+</item>
+<item>
+<title>How Gemini is changing the game for Golden State's organization and fans.</title>
+<link>https://blog.google/products-and-platforms/products/gemini/gemini-golden-state/</link>
+<guid>title:how gemini is changing the game for golden state s organization and fans</guid>
+<pubDate>Tue, 24 Nov 2026 16:00:00 +0000</pubDate>
+<description>Google Gemini partners with Golden State to power fan experiences and business operations for the Warriors, Valkyries, and Chase Center. See the news.</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>gemini</category>
+<category>gemini app</category>
+<category>google</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+</item>
+<item>
+<title>How to Run NVIDIA Cosmos 3 on Local AI Devices Using Hugging Face Diffusers</title>
+<link>https://developer.nvidia.com/blog/how-to-run-nvidia-cosmos-3-on-local-ai-devices-using-hugging-face-diffusers/</link>
+<guid>title:how to run nvidia cosmos 3 on local ai devices using hugging face diffusers</guid>
+<pubDate>Tue, 24 Nov 2026 18:44:05 +0000</pubDate>
+<description>Running video generation models locally can be challenging when model weights and intermediate data exceed available GPU memory. NVIDIA Cosmos 3 Nano is a world...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>ai foundation models</category>
+<category>cosmos</category>
+<category>developer tools &amp; techniques</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>physical ai</category>
+<category>rl</category>
+<category>simulation / modeling / design</category>
+<category>training</category>
+<category>video generation</category>
+</item>
+<item>
+<title>Finding faster quantum algorithms with agents and formal verification</title>
+<link>https://deepmind.google/blog/finding-faster-quantum-algorithms-with-agents-and-formal-verification/</link>
+<guid>title:finding faster quantum algorithms with agents and formal verification</guid>
+<pubDate>Mon, 23 Nov 2026 16:59:40 +0000</pubDate>
+<description>Using agent teams and formal verification to improve quantum algorithms for fusion and chemistry.</description>
+<source url="https://deepmind.google/blog/feed/basic/">deepmind</source>
+<category>agents</category>
+<category>deepmind</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>research</category>
+<category>science</category>
+</item>
+<item>
+<title>New fear unlocked: a delivery drone crashing into your garage</title>
+<link>https://www.businessinsider.com/amazon-prime-air-drone-crashes-garage-after-flying-into-cable-2026-11</link>
+<guid>title:new fear unlocked a delivery drone crashing into your garage</guid>
+<pubDate>Wed, 25 Nov 2026 13:15:00 +0000</pubDate>
+<description>An Amazon MK30 drone delivered shampoo to a Detroit suburb but collided with a cable as it took off, then crashed into a neighbor's roof.</description>
+<source url="https://feeds.businessinsider.com/custom/all">feeds.businessinsider.com</source>
+<category>ai</category>
+<category>amazon</category>
+<category>amazon-prime-air</category>
+<category>delivery-drones</category>
+<category>drone</category>
+<category>feeds.businessinsider.com</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>tech</category>
+<category>transportation</category>
+<category>trending-uk</category>
+</item>
+<item>
+<title>Supercharging transformer residual connections</title>
+<link>https://research.google/blog/supercharging-transformer-residual-connections/</link>
+<guid>title:supercharging transformer residual connections</guid>
+<pubDate>Mon, 23 Nov 2026 17:21:12 +0000</pubDate>
+<description>Algorithms &amp; Theory</description>
+<source url="https://research.google/blog/rss/">google-research</source>
+<category>algorithms &amp; theory</category>
+<category>google-research</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>research</category>
+<category>science</category>
+</item>
+<item>
+<title>A more tailored Google Search that’s uniquely yours</title>
+<link>https://blog.google/products-and-platforms/products/search/google-search-personal-intelligence-apps/</link>
+<guid>title:a more tailored google search that s uniquely yours</guid>
+<pubDate>Mon, 23 Nov 2026 17:00:00 +0000</pubDate>
+<description>Google Search bar with the text &quot;Personal Intelligence&quot; surrounded by the Google Wallet, Google Drive, GMail, Google Photos, Google Calendar, and Google G logo icons</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>gemini</category>
+<category>google</category>
+<category>google play</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+<category>search</category>
+</item>
+<item>
+<title>Prepare Market Data for Forecasting with NVIDIA Megatron Core</title>
+<link>https://developer.nvidia.com/blog/prepare-market-data-for-forecasting-with-nvidia-megatron-core/</link>
+<guid>title:prepare market data for forecasting with nvidia megatron core</guid>
+<pubDate>Tue, 24 Nov 2026 17:00:00 +0000</pubDate>
+<description>Market data arrives as a stream of trades and quotes: every execution, bid, and ask, timestamped to the microsecond. Preparing this data for AI-based market...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>data science</category>
+<category>developer tools &amp; techniques</category>
+<category>hardware</category>
+<category>infra</category>
+<category>megatron core</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>training</category>
+</item>
+<item>
+<title>What’s New for Game Developers: AI Animation and RTX Tools</title>
+<link>https://developer.nvidia.com/blog/whats-new-for-game-developers-ai-animation-and-rtx-tools/</link>
+<guid>title:what s new for game developers ai animation and rtx tools</guid>
+<pubDate>Tue, 24 Nov 2026 17:00:00 +0000</pubDate>
+<description>This month’s NVIDIA game development updates help teams bring new graphics, animation, and local AI capabilities into their engines while balancing image...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>content creation / rendering</category>
+<category>gaming</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>rtx gpu</category>
+<category>training</category>
+</item>
+<item>
+<title>Q&amp;amp;A: How Everstone Brings Where Winds Meet to Life with NVIDIA DLSS 5</title>
+<link>https://developer.nvidia.com/blog/qa-how-everstone-brings-where-winds-meet-to-life-with-nvidia-dlss-5/</link>
+<guid>title:q amp a how everstone brings where winds meet to life with nvidia dlss 5</guid>
+<pubDate>Tue, 24 Nov 2026 14:00:00 +0000</pubDate>
+<description>Where Winds Meet moves between distant mountain landscapes, bustling streets, and quiet moments with its characters. For Everstone Studio, bringing more...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>ar / vr development tools</category>
+<category>content creation / rendering</category>
+<category>dlss</category>
+<category>gaming</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>rendering tools &amp; optimization</category>
+<category>training</category>
+</item>
+<item>
+<title>Accelerating Direct Sparse Solvers for Computational Engineering with NVIDIA cuDSS 1.0</title>
+<link>https://developer.nvidia.com/blog/accelerating-direct-sparse-solvers-for-computational-engineering-with-nvidia-cudss-1-0/</link>
+<guid>title:accelerating direct sparse solvers for computational engineering with nvidia cudss 1 0</guid>
+<pubDate>Mon, 23 Nov 2026 19:59:40 +0000</pubDate>
+<description>Sparse linear systems are at the core of nearly every engineering and scientific simulation, from structural mechanics and computational fluid dynamics to...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>cae</category>
+<category>cuda-x</category>
+<category>developer tools &amp; techniques</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>rl</category>
+<category>scientific computing</category>
+<category>simulation / modeling / design</category>
+<category>training</category>
+</item>
+<item>
+<title>Hebbia sees improvements in financial research with GPT-6 Astra</title>
+<link>https://openai.com/business/customer-stories/hebbia</link>
+<guid>title:hebbia sees improvements in financial research with gpt 6 astra</guid>
+<pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+<description>Hebbia tested GPT-6 Astra for financial research. Its prerelease evaluations found gains in source coverage, citation relevance, and presentation quality.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise</title>
+<link>https://openai.com/business/customer-stories/sumitomo-life</link>
+<guid>title:how sumitomo life s leaders helped teams adopt chatgpt enterprise</guid>
+<pubDate>Wed, 18 Nov 2026 08:00:00 +0000</pubDate>
+<description>Sumitomo Life uses ChatGPT Enterprise to research insurers, prepare proposals, and draft code for investment analysis. Early use by executives helped drive adoption.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>rl</category>
+<category>safety</category>
+</item>
+<item>
+<title>Deploying Daybreak Red</title>
+<link>https://openai.com/business/learn/deploying-daybreak-red</link>
+<guid>title:deploying daybreak red</guid>
+<pubDate>Thu, 19 Nov 2026 00:00:00 +0000</pubDate>
+<description>Explore a reference architecture for supervised security investigations with Daybreak Red, including safety controls, setup, and monitoring.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>guides</category>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>How Google Duplex evolved to also call businesses for you in Gemini</title>
+<link>https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini/</link>
+<guid>title:how google duplex evolved to also call businesses for you in gemini</guid>
+<pubDate>Fri, 20 Nov 2026 23:30:30 +0000</pubDate>
+<description>Generative AI</description>
+<source url="https://research.google/blog/rss/">google-research</source>
+<category>generative ai</category>
+<category>google-research</category>
+<category>machine intelligence</category>
+<category>models</category>
+<category>natural language processing</category>
+<category>nonpaper</category>
+<category>research</category>
+<category>science</category>
+<category>speech processing</category>
+</item>
+<item>
+<title>Anthropic announces closing of initial public offering, including full exercise of underwriters’ option to purchase additional shares, and closing of concurrent private placement</title>
+<link>https://www.anthropic.com/news/ipo-close</link>
+<guid>title:anthropic announces closing of initial public offering including full exercise of underwriters option to purchase additional shares and closing of concurrent private placement</guid>
+<pubDate>Fri, 20 Nov 2026 00:00:00 +0000</pubDate>
+<description>Announcements May 28, 2026 Today Anthropic, PBC announced the closing of its initial public offering of an aggregate of 1,127,000,000 shares of its Class A common stock at a public offering price of $83. 00 per share, including the full exercise by the underwriters of their option to purchase an additional 147,000,000 shares of Class A common stock from Anthropic at the initial public offering price. The offering consisted of 1,103,351,354 shares sold by Anthropic and 23,648,646 shares sold by certain selling stockholders. The aggregate gross proceeds from the offering, before deducting underwriting discounts and commissions and other offering expenses, were approximately $93. 5 billion, of which approximately $91. 6 billion was received by Anthropic.</description>
 <source url="https://www.anthropic.com/news">anthropic</source>
 <category>anthropic</category>
 <category>lab</category>
@@ -801,27 +811,70 @@
 <category>safety</category>
 </item>
 <item>
-<title>How Diffusion Controller unifies and simplifies AI image generation</title>
-<link>https://research.google/blog/how-diffusion-controller-unifies-and-simplifies-ai-image-generation/</link>
-<guid>title:how diffusion controller unifies and simplifies ai image generation</guid>
-<pubDate>Tue, 29 Sep 2026 18:38:27 +0000</pubDate>
-<description>Algorithms &amp; Theory</description>
-<source url="https://research.google/blog/rss/">google-research</source>
-<category>algorithms &amp; theory</category>
-<category>diffusion</category>
-<category>google-research</category>
-<category>machine intelligence</category>
-<category>models</category>
+<title>Reducing Rollout Bottlenecks in Reinforcement Learning with NVIDIA Dynamo</title>
+<link>https://developer.nvidia.com/blog/reducing-rollout-bottlenecks-in-reinforcement-learning-with-nvidia-dynamo/</link>
+<guid>title:reducing rollout bottlenecks in reinforcement learning with nvidia dynamo</guid>
+<pubDate>Thu, 19 Nov 2026 20:28:13 +0000</pubDate>
+<description>Reinforcement learning (RL) uses rewards to train models to solve problems and complete tasks more successfully. Inference drives this process. Workers generate...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>cuda</category>
+<category>data center / cloud</category>
+<category>developer tools &amp; techniques</category>
+<category>dsx</category>
+<category>dynamo</category>
+<category>hardware</category>
+<category>hopper</category>
+<category>infra</category>
+<category>kubernetes</category>
+<category>llms</category>
+<category>nemo</category>
 <category>nonpaper</category>
-<category>research</category>
-<category>science</category>
+<category>nvidia</category>
+<category>rl</category>
+<category>serving</category>
+<category>training</category>
 </item>
 <item>
-<title>Watch the winning trailer from the Future Vision XPRIZE, The Gifted.</title>
-<link>https://blog.google/innovation-and-ai/technology/ai/winner-future-vision-xprize/</link>
-<guid>title:watch the winning trailer from the future vision xprize the gifted</guid>
-<pubDate>Mon, 28 Sep 2026 19:00:00 +0000</pubDate>
-<description>Watch the winning trailer from the Future Vision XPRIZE, The Gifted.</description>
+<title>Build Tool-Calling Parsers in Rust with AI Agents</title>
+<link>https://developer.nvidia.com/blog/build-tool-calling-parsers-in-rust-with-ai-agents/</link>
+<guid>title:build tool calling parsers in rust with ai agents</guid>
+<pubDate>Thu, 19 Nov 2026 16:30:46 +0000</pubDate>
+<description>A tool call can arrive in pieces, an argument can be cut short, or model-specific markup can leak into the answer. A frontend parser turns that output, received...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>agents</category>
+<category>developer tools &amp; techniques</category>
+<category>dynamo</category>
+<category>hardware</category>
+<category>inference performance</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>rl</category>
+<category>training</category>
+</item>
+<item>
+<title>Introducing Tool Retrieval in the Gemini API</title>
+<link>https://blog.google/innovation-and-ai/technology/developers-tools/gemini-api-tool-retrieval/</link>
+<guid>title:introducing tool retrieval in the gemini api</guid>
+<pubDate>Thu, 19 Nov 2026 18:00:00 +0000</pubDate>
+<description>Gemini spark on a space background</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>developer tools</category>
+<category>google</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+</item>
+<item>
+<title>Walter Isaacson on curiosity and creativity in the AI age.</title>
+<link>https://blog.google/innovation-and-ai/technology/ai/dialogues-walter-isaacson/</link>
+<guid>title:walter isaacson on curiosity and creativity in the ai age</guid>
+<pubDate>Thu, 19 Nov 2026 17:00:00 +0000</pubDate>
+<description>Walter Isaacson joins Google to discuss how history’s greatest innovators inspire creativity and human judgment in the AI age. Watch the episode.</description>
 <source url="https://blog.google/technology/ai/rss/">google</source>
 <category>ai</category>
 <category>google</category>
@@ -829,14 +882,103 @@
 <category>nonpaper</category>
 <category>product</category>
 <category>research</category>
-<category>vision</category>
 </item>
 <item>
-<title>Introducing SynthID Bio</title>
-<link>https://deepmind.google/blog/introducing-synthid-bio/</link>
-<guid>title:introducing synthid bio</guid>
-<pubDate>Wed, 30 Sep 2026 15:03:07 +0000</pubDate>
-<description>Proof of concept for watermarking AI-generated proteins while preserving biological function.</description>
+<title>How Revolut raises ambition without lowering the bar</title>
+<link>https://openai.com/business/customer-stories/revolut</link>
+<guid>title:how revolut raises ambition without lowering the bar</guid>
+<pubDate>Mon, 16 Nov 2026 09:30:00 +0000</pubDate>
+<description>Discover how Revolut uses OpenAI models and Codex to cut coding time by 30–60%, scale financial crime investigations, and innovate without compromising security.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>Co-Designing Sparse Attention for Efficient Long-Context Inference</title>
+<link>https://developer.nvidia.com/blog/co-designing-sparse-attention-for-efficient-long-context-inference/</link>
+<guid>title:co designing sparse attention for efficient long context inference</guid>
+<pubDate>Tue, 17 Nov 2026 17:30:00 +0000</pubDate>
+<description>Agentic workloads, long documents, and large codebases are pushing context lengths from tens of thousands of tokens to hundreds of thousands. At those lengths,...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>agents</category>
+<category>ai agent</category>
+<category>ai inference</category>
+<category>data center / cloud</category>
+<category>developer tools &amp; techniques</category>
+<category>hardware</category>
+<category>inference performance</category>
+<category>infra</category>
+<category>llm</category>
+<category>llm techniques</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>serving</category>
+<category>training</category>
+</item>
+<item>
+<title>Shield helps technicians hand off legacy portal work with OpenAI</title>
+<link>https://openai.com/business/customer-stories/shield</link>
+<guid>title:shield helps technicians hand off legacy portal work with openai</guid>
+<pubDate>Fri, 13 Nov 2026 08:00:00 +0000</pubDate>
+<description>Shield uses OpenAI to help IT technicians hand off work in legacy portals. Its Forge agents navigate systems so technicians can focus on issues needing their judgment.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>agents</category>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>How Amplitude ships product improvements in 1–2 days with OpenAI</title>
+<link>https://openai.com/business/customer-stories/amplitude</link>
+<guid>title:how amplitude ships product improvements in 1 2 days with openai</guid>
+<pubDate>Thu, 12 Nov 2026 20:00:00 +0000</pubDate>
+<description>Built primarily on OpenAI models, Amplitude’s proactive product agent, Wave, identifies what to build, helps teams ship changes with coding agents, and measures the impact.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>agents</category>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>Build Training-Ready Physical AI Datasets with Two Prompts in NVIDIA Cosmos</title>
+<link>https://developer.nvidia.com/blog/build-training-ready-physical-ai-datasets-with-two-prompts-in-nvidia-cosmos/</link>
+<guid>title:build training ready physical ai datasets with two prompts in nvidia cosmos</guid>
+<pubDate>Wed, 18 Nov 2026 17:00:00 +0000</pubDate>
+<description>World model accuracy starts with high-quality, diverse training datasets. Yet capturing rare defects, nighttime incidents, and other challenging scenarios is...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>ai agent</category>
+<category>blueprint</category>
+<category>computer vision / video analytics</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>physical ai</category>
+<category>rl</category>
+<category>simulation / modeling / design</category>
+<category>synthetic data generation</category>
+<category>training</category>
+<category>vlms</category>
+<category>world-models</category>
+</item>
+<item>
+<title>Genie 4 is now available</title>
+<link>https://deepmind.google/blog/genie-4-is-now-available/</link>
+<guid>title:genie 4 is now available</guid>
+<pubDate>Wed, 18 Nov 2026 18:13:42 +0000</pubDate>
+<description></description>
 <source url="https://deepmind.google/blog/feed/basic/">deepmind</source>
 <category>deepmind</category>
 <category>lab</category>
@@ -845,529 +987,395 @@
 <category>science</category>
 </item>
 <item>
-<title>Build Applications on NVIDIA BlueField Faster with NVIDIA DOCA Agent Skills</title>
-<link>https://developer.nvidia.com/blog/build-applications-on-nvidia-bluefield-faster-with-nvidia-doca-agent-skills/</link>
-<guid>title:build applications on nvidia bluefield faster with nvidia doca agent skills</guid>
-<pubDate>Thu, 01 Oct 2026 18:13:29 +0000</pubDate>
-<description>AI agents are becoming a standard part of development workflows, but general-purpose agents weren't built with specialized infrastructure software such as...</description>
+<title>The Gemini app is now available on lower-memory Android devices.</title>
+<link>https://blog.google/innovation-and-ai/products/gemini-app/gemini-lower-memory-devices/</link>
+<guid>title:the gemini app is now available on lower memory android devices</guid>
+<pubDate>Wed, 18 Nov 2026 17:00:00 +0000</pubDate>
+<description>The Google Gemini app now supports lower-memory Android devices. Access Gemini Live and custom image creation on your phone. Download the app today.</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>android</category>
+<category>gemini app</category>
+<category>google</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+</item>
+<item>
+<title>NVIDIA Vera Rubin NVL72 Leads Agentic Inference Performance on MLPerf Endpoints v1.0</title>
+<link>https://developer.nvidia.com/blog/nvidia-vera-rubin-nvl72-leads-agentic-inference-performance-on-mlperf-endpoints-v1-0/</link>
+<guid>title:nvidia vera rubin nvl72 leads agentic inference performance on mlperf endpoints v1 0</guid>
+<pubDate>Mon, 16 Nov 2026 16:00:00 +0000</pubDate>
+<description>Agentic workloads are demanding more from inference systems. AI agents carry growing conversation histories across turns and generate a mix of reasoning, tool...</description>
 <source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agent skill</category>
 <category>agentic ai / generative ai</category>
 <category>agents</category>
+<category>blackwell ultra</category>
+<category>data center / cloud</category>
+<category>dynamo</category>
+<category>gb300</category>
+<category>groq 3 lpx</category>
+<category>hardware</category>
+<category>infiniband</category>
+<category>infra</category>
+<category>mlperf</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>reasoning</category>
+<category>serving</category>
+<category>tensorrt-llm</category>
+<category>top stories</category>
+<category>training</category>
+<category>vera rubin nvl72</category>
+</item>
+<item>
+<title>Anthropic prices initial public offering</title>
+<link>https://www.anthropic.com/news/anthropic-prices-initial-public-offering</link>
+<guid>title:anthropic prices initial public offering</guid>
+<pubDate>Wed, 18 Nov 2026 00:00:00 +0000</pubDate>
+<description>Announcements Nov 20, 2026 Today Anthropic, PBC priced its initial public offering of its Class A common stock at $83.00 per share. The offering consists of 980,000,000 shares of Class A common stock, 956,351,354 of which are being sold by Anthropic and 23,648,646 of which are being sold by certain selling stockholders. Anthropic will not receive any proceeds from the sale of shares by the selling stockholders.</description>
+<source url="https://www.anthropic.com/news">anthropic</source>
+<category>anthropic</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>Put Gemini to work for you</title>
+<link>https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/</link>
+<guid>title:put gemini to work for you</guid>
+<pubDate>Tue, 17 Nov 2026 17:00:00 +0000</pubDate>
+<description>A user interface displaying the prompt &quot;What can I get done for you?&quot; above an input box containing placeholder text &quot;Describe a task&quot;.</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>gemini app</category>
+<category>google</category>
+<category>google labs</category>
+<category>google pay</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+</item>
+<item>
+<title>Gondola doubles revenue as its team builds more with Codex</title>
+<link>https://openai.com/business/customer-stories/gondola</link>
+<guid>title:gondola doubles revenue as its team builds more with codex</guid>
+<pubDate>Thu, 12 Nov 2026 12:00:00 +0000</pubDate>
+<description>Gondola helps creatives get credit and get hired, with Codex raising its lead engineer’s output by 50% and ChatGPT simplifying daily work.</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+<category>startup</category>
+</item>
+<item>
+<title>ChatGPT Ads increases its market presence in 44 countries</title>
+<link>https://openai.com/ads/blog/chatgpt-ads-increases-its-market-presence</link>
+<guid>title:chatgpt ads increases its market presence in 44 countries</guid>
+<pubDate>Thu, 12 Nov 2026 00:00:00 +0000</pubDate>
+<description>Aleph selected as ChatGPT Ads’ exclusive reseller in 44 countries to offer local invoicing, in-person support and local market expertise to brands and agencies</description>
+<source url="https://openai.com/news/rss.xml">openai</source>
+<category>lab</category>
+<category>models</category>
+<category>nonpaper</category>
+<category>openai</category>
+<category>product</category>
+<category>safety</category>
+</item>
+<item>
+<title>Enabling Real-Time AI for Scientific Instruments with GPU-Native Data Acquisition</title>
+<link>https://developer.nvidia.com/blog/enabling-real-time-ai-for-scientific-instruments-with-gpu-native-data-acquisition/</link>
+<guid>title:enabling real time ai for scientific instruments with gpu native data acquisition</guid>
+<pubDate>Thu, 19 Nov 2026 17:00:00 +0000</pubDate>
+<description>In science and industry, analyzing sensor measurements in real time can enable AI to adjust processes, guide experiments, and search for better operating...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
 <category>ai agent</category>
+<category>developer tools &amp; techniques</category>
+<category>dgx spark</category>
+<category>edge computing</category>
+<category>hardware</category>
+<category>infra</category>
+<category>networking / communications</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>sc26</category>
+<category>training</category>
+</item>
+<item>
+<title>New Ask Maps features to help with holiday travel and prep</title>
+<link>https://blog.google/products-and-platforms/products/maps/ask-maps-holiday-travel-features-2026/</link>
+<guid>title:new ask maps features to help with holiday travel and prep</guid>
+<pubDate>Mon, 16 Nov 2026 14:00:00 +0000</pubDate>
+<description>tbd</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>google</category>
+<category>lab</category>
+<category>maps</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+<category>travel</category>
+</item>
+<item>
+<title>Integrating QPUs into Supercomputing Centers Using Slurm HRES Plugins</title>
+<link>https://developer.nvidia.com/blog/integrating-qpus-into-supercomputing-centers-using-slurm-hres-plugins/</link>
+<guid>title:integrating qpus into supercomputing centers using slurm hres plugins</guid>
+<pubDate>Tue, 17 Nov 2026 17:00:00 +0000</pubDate>
+<description>Quantum processors are being integrated into supercomputing centers worldwide. National programs in North America, Europe, and Asia are driving the installation...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
 <category>data center / cloud</category>
 <category>developer tools &amp; techniques</category>
 <category>hardware</category>
 <category>infra</category>
 <category>nonpaper</category>
 <category>nvidia</category>
+<category>quantum computing</category>
+<category>rl</category>
+<category>sc26</category>
+<category>slurm</category>
+<category>supercomputing</category>
 <category>training</category>
 </item>
 <item>
-<title>Build Local AI Apps with C++ and NVIDIA TensorRT RTX Samples</title>
-<link>https://developer.nvidia.com/blog/build-local-ai-apps-with-c-and-nvidia-tensorrt-rtx-samples/</link>
-<guid>title:build local ai apps with c and nvidia tensorrt rtx samples</guid>
-<pubDate>Thu, 01 Oct 2026 17:59:27 +0000</pubDate>
-<description>Adding AI models to local applications requires a portable model format, a reliable runtime, and acceleration that works across target systems. Do Inference Now...</description>
+<title>Memory-Bound Generation: Decoding Attention, KV Cache, GQA, and GRPO at Scale</title>
+<link>https://dev.to/sharathjapa/memory-bound-generation-decoding-attention-kv-cache-gqa-and-grpo-at-scale-469a</link>
+<guid>doi:10.48550/arxiv.2604.24971</guid>
+<pubDate>Wed, 25 Nov 2026 18:32:50 +0000</pubDate>
+<description>Memory-Bound Generation: Decoding Attention, KV Cache, GQA, and GRPO at Scale Table of Contents Executive Summary Methodology &amp;amp; Architectural Formulation Implementation &amp;amp; Quantitative Simulation Empirical Benchmark &amp;amp; Comparative Evaluation ShVaSa Intuition &amp;amp; Continuation Twist Grounding &amp;amp; Source Attribution Executive Summary The September 2026 Amazon AGI Applied Scientist interview cycle exposed a persistent disconnect between theoretical model scaling and physical inference constraints. Candidates routinely optimize attention heads and alignment objectives while ignoring the memory bus that actually moves data. Token generation latency remains strictly memory-bandwidth bound. Theoretical FLOPs on modern accelerators are abundant, but unquantized KV-cache growth triggers catastrophic cache eviction long before compute saturation. Scaling algorithmic density requires confronting HBM and LPDDR limits directly. This article dissects attention mechanics, grouped query attention, and GRPO alignment through a systems lens, demonstrating how FP8 E4M3 quantization paired with custom linear attention kernels restores deterministic entropy boundaries and delivers measurable throughput gains under strict hardware constraints.</description>
+<source url="https://dev.to/feed">dev.to</source>
+<category>agents</category>
+<category>ai</category>
+<category>aisystems</category>
+<category>alignment</category>
+<category>benchmarks</category>
+<category>deepresearch</category>
+<category>dev.to</category>
+<category>diffusion</category>
+<category>efficiency</category>
+<category>llm</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>reasoning</category>
+<category>rl</category>
+<category>robotics</category>
+<category>serving</category>
+<category>systemsarchitecture</category>
+</item>
+<item>
+<title>Tackling GPU Bottlenecks in Plane-Wave DFT with K-Point Batching and Mixed Precision</title>
+<link>https://developer.nvidia.com/blog/tackling-gpu-bottlenecks-in-plane-wave-dft-with-k-point-batching-and-mixed-precision/</link>
+<guid>title:tackling gpu bottlenecks in plane wave dft with k point batching and mixed precision</guid>
+<pubDate>Wed, 18 Nov 2026 15:00:00 +0000</pubDate>
+<description>Training a next-generation machine learning interatomic potential (MLIP) requires ground truth: tens to hundreds of millions of density functional theory (DFT)...</description>
 <source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>c++</category>
-<category>cuda</category>
+<category>cloud services</category>
+<category>computational chemistry / materials science</category>
 <category>developer tools &amp; techniques</category>
-<category>dgx spark</category>
+<category>edge computing</category>
+<category>energy</category>
 <category>featured</category>
 <category>hardware</category>
 <category>infra</category>
 <category>nonpaper</category>
 <category>nvidia</category>
+<category>parallel programming</category>
+<category>quantum chemistry</category>
+<category>sc26</category>
+<category>simulation / modeling / design</category>
+<category>software-defined data center</category>
+<category>supercomputing</category>
+<category>training</category>
+</item>
+<item>
+<title>Accelerate Molecular Dynamics Simulations with Accurate, Flexible Primitives Using NVIDIA cuPotential</title>
+<link>https://developer.nvidia.com/blog/accelerate-molecular-dynamics-simulations-with-accurate-flexible-primitives-using-nvidia-cupotential/</link>
+<guid>title:accelerate molecular dynamics simulations with accurate flexible primitives using nvidia cupotential</guid>
+<pubDate>Mon, 16 Nov 2026 22:30:00 +0000</pubDate>
+<description>Molecular dynamics (MD) is an indispensable tool across physics, chemistry, biology, and materials science. Owing to its arithmetic structure, particularly the...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>computational chemistry / materials science</category>
+<category>cuda-x</category>
+<category>developer tools &amp; techniques</category>
+<category>hardware</category>
+<category>infra</category>
+<category>molecular dynamics</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>rl</category>
+<category>sc26</category>
+<category>simulation / modeling / design</category>
+<category>training</category>
+</item>
+<item>
+<title>NVIDIA Vera Rubin NVL72 Achieves up to 2x Blackwell Ultra Performance in MLPerf Training v6.1</title>
+<link>https://developer.nvidia.com/blog/nvidia-vera-rubin-nvl72-achieves-up-to-2x-blackwell-ultra-performance-in-mlperf-training-v6-1/</link>
+<guid>title:nvidia vera rubin nvl72 achieves up to 2x blackwell ultra performance in mlperf training v6 1</guid>
+<pubDate>Mon, 16 Nov 2026 16:00:00 +0000</pubDate>
+<description>As AI agents tackle increasingly complex workflows, reducing time-to-train is critical for rapidly iterating on both models and the agents they power. MLPerf...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>agentic ai / generative ai</category>
+<category>agents</category>
+<category>blackwell</category>
+<category>blackwell ultra</category>
+<category>cloud services</category>
+<category>data center / cloud</category>
+<category>featured</category>
+<category>hardware</category>
+<category>infra</category>
+<category>llm benchmarking</category>
+<category>mlperf</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>software-defined data center</category>
+<category>top stories</category>
+<category>training</category>
+<category>vera rubin</category>
+</item>
+<item>
+<title>‘Human’ chosen as word of the year by Cambridge Dictionary amid AI fears</title>
+<link>https://globalnews.ca/news/12156480/human-word-of-the-year-cambridge-dictionary-ai/</link>
+<guid>title:human chosen as word of the year by cambridge dictionary amid ai fears</guid>
+<pubDate>Wed, 18 Nov 2026 21:05:33 +0000</pubDate>
+<description>The Cambridge Dictionary said AI has given rise to &quot;existential questions,&quot; and that the word &quot;human&quot; has been recast to denote authenticity.</description>
+<source url="https://globalnews.ca/tag/artificial-intelligence/feed">globalnews.ca</source>
+<category>ai</category>
+<category>artificial intelligence</category>
+<category>globalnews.ca</category>
+<category>news</category>
+<category>nonpaper</category>
+<category>trending</category>
+<category>word of the year</category>
+<category>world</category>
+</item>
+<item>
+<title>Google Search gets a major upgrade with Gemini 4 Hydrogen</title>
+<link>https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/</link>
+<guid>title:google search gets a major upgrade with gemini 4 hydrogen</guid>
+<pubDate>Thu, 12 Nov 2026 18:00:00 +0000</pubDate>
+<description>Rotating carousel of cards with text &quot;Gemini 4 Hydrogen&quot; &quot;Now in Google Search&quot; and examples from the Google Search UI</description>
+<source url="https://blog.google/technology/ai/rss/">google</source>
+<category>ai</category>
+<category>gemini models</category>
+<category>google</category>
+<category>lab</category>
+<category>nonpaper</category>
+<category>product</category>
+<category>research</category>
+<category>search</category>
+</item>
+<item>
+<title>Run Native DLA Inference in Python on NVIDIA Jetson AGX Orin Using cuDLA</title>
+<link>https://developer.nvidia.com/blog/run-native-dla-inference-in-python-on-nvidia-jetson-agx-orin-using-cudla/</link>
+<guid>title:run native dla inference in python on nvidia jetson agx orin using cudla</guid>
+<pubDate>Fri, 13 Nov 2026 18:57:10 +0000</pubDate>
+<description>AI applications at the edge often need to run multiple neural networks within limited compute and power budgets. NVIDIA Deep Learning Accelerator (DLA)...</description>
+<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
+<category>ai inference</category>
+<category>computer vision / video analytics</category>
+<category>hardware</category>
+<category>infra</category>
+<category>nonpaper</category>
+<category>nvidia</category>
+<category>python</category>
+<category>robotics</category>
 <category>serving</category>
 <category>training</category>
 </item>
 <item>
-<title>AI Native by Design: Lessons Learned from Building NVIDIA TensorRT Model Connect</title>
-<link>https://developer.nvidia.com/blog/ai-native-by-design-lessons-learned-from-building-nvidia-tensorrt-model-connect/</link>
-<guid>title:ai native by design lessons learned from building nvidia tensorrt model connect</guid>
-<pubDate>Tue, 29 Sep 2026 19:10:51 +0000</pubDate>
-<description>Parallel work, model-family isolation, reversible changes, and GPU-backed validation shaped an open source project designed around coding agents NVIDIA TensorRT...</description>
+<title>When One GPU Isn’t Enough: Serving GLM-5.3 Across Two NVIDIA DGX Stations with vLLM</title>
+<link>https://developer.nvidia.com/blog/when-one-gpu-isnt-enough-serving-glm-5-3-across-two-nvidia-dgx-stations-with-vllm/</link>
+<guid>title:when one gpu isn t enough serving glm 5 3 across two nvidia dgx stations with vllm</guid>
+<pubDate>Fri, 13 Nov 2026 17:00:00 +0000</pubDate>
+<description>Running a frontier-scale model locally means keeping all its weights in GPU memory; the largest models no longer fit on one machine. Two NVIDIA DGX Stations...</description>
 <source url="https://developer.nvidia.com/blog/feed">nvidia</source>
 <category>agentic ai / generative ai</category>
-<category>agents</category>
-<category>data center / cloud</category>
-<category>developer tools &amp; techniques</category>
-<category>featured</category>
+<category>dgx station</category>
+<category>edge computing</category>
 <category>hardware</category>
+<category>inference performance</category>
 <category>infra</category>
 <category>llm</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>training</category>
-<category>training ai models</category>
-</item>
-<item>
-<title>Tracing Agent Harness Behavior with NVIDIA NeMo Relay</title>
-<link>https://developer.nvidia.com/blog/tracing-agent-harness-behavior-with-nvidia-nemo-relay/</link>
-<guid>title:tracing agent harness behavior with nvidia nemo relay</guid>
-<pubDate>Wed, 30 Sep 2026 16:00:00 +0000</pubDate>
-<description>An agent can finish a task and still take an inefficient path. A failed search can trigger another search. A truncated file read can lead to a command fetching...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>agents</category>
-<category>build ai agents</category>
-<category>developer tools &amp; techniques</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
+<category>llm benchmarking</category>
 <category>llms</category>
-<category>nemo</category>
-<category>nemoclaw</category>
+<category>local ai</category>
+<category>networking / communications</category>
 <category>nonpaper</category>
 <category>nvidia</category>
 <category>training</category>
+<category>vllm</category>
 </item>
 <item>
-<title>Fine-Tuning NVIDIA Nemotron for Saudi Arabic Dialects, with a Path to Other Languages</title>
-<link>https://developer.nvidia.com/blog/fine-tuning-nvidia-nemotron-for-saudi-arabic-dialects-with-a-path-to-other-languages/</link>
-<guid>title:fine tuning nvidia nemotron for saudi arabic dialects with a path to other languages</guid>
-<pubDate>Thu, 01 Oct 2026 05:00:00 +0000</pubDate>
-<description>Automatic speech recognition must handle how people actually speak, not only the languages and styles that dominate pretraining data. Regional dialects and...</description>
+<title>Adapt Human Motion for Robots with NVIDIA SOMA Retargeter</title>
+<link>https://developer.nvidia.com/blog/adapt-human-motion-for-robots-with-nvidia-soma-retargeter/</link>
+<guid>title:adapt human motion for robots with nvidia soma retargeter</guid>
+<pubDate>Fri, 13 Nov 2026 17:00:00 +0000</pubDate>
+<description>Human motion offers roboticists a great starting point for teaching humanoid robots how to move. A human demonstration captures the coordination and timing...</description>
 <source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>developer tools &amp; techniques</category>
-<category>featured</category>
 <category>hardware</category>
 <category>infra</category>
-<category>nemo</category>
-<category>nemotron</category>
+<category>isaac lab</category>
+<category>newton</category>
 <category>nonpaper</category>
 <category>nvidia</category>
+<category>nvidia research</category>
+<category>physical ai</category>
+<category>reinforcement learning</category>
+<category>robotics</category>
+<category>robotics simulation</category>
+<category>simulation / modeling / design</category>
 <category>training</category>
+<category>tutorial</category>
+<category>warp</category>
 </item>
 <item>
-<title>Deploying an HSTU Generative Recommender with NVIDIA Dynamo-Triton</title>
-<link>https://developer.nvidia.com/blog/deploying-an-hstu-generative-recommender-with-nvidia-dynamo-triton/</link>
-<guid>title:deploying an hstu generative recommender with nvidia dynamo triton</guid>
-<pubDate>Wed, 30 Sep 2026 20:54:59 +0000</pubDate>
-<description>Generative recommender (GR) systems are emerging as a powerful new approach for large-scale personalization. Instead of treating recommendation as a set of...</description>
+<title>Run GPU-Powered Black Hole Interferometry with NVIDIA cuPhoton</title>
+<link>https://developer.nvidia.com/blog/run-gpu-powered-black-hole-interferometry-with-nvidia-cuphoton/</link>
+<guid>title:run gpu powered black hole interferometry with nvidia cuphoton</guid>
+<pubDate>Fri, 13 Nov 2026 21:17:17 +0000</pubDate>
+<description>Imaging black holes is challenging because they are distant and appear tiny in the sky—for example, M87*’s observed ring spans just 42 microarcseconds. The...</description>
 <source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>ai inference</category>
+<category>cuda</category>
+<category>cuda-x</category>
+<category>cuphoton</category>
+<category>data science</category>
 <category>developer tools &amp; techniques</category>
-<category>edge computing</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>pytorch</category>
-<category>recommenders / personalization</category>
-<category>training</category>
-</item>
-<item>
-<title>Expanding AI Storage Access with NVIDIA cuObject and the NVIDIA SCADA Server SDK</title>
-<link>https://developer.nvidia.com/blog/expanding-ai-storage-access-with-nvidia-cuobject-and-the-nvidia-scada-server-sdk/</link>
-<guid>title:expanding ai storage access with nvidia cuobject and the nvidia scada server sdk</guid>
-<pubDate>Wed, 30 Sep 2026 19:13:02 +0000</pubDate>
-<description>AI infrastructure engineers, storage developers, and cloud service providers need fast and secure access to high-capacity file and object storage to support AI...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>ai factory</category>
-<category>ai networking</category>
-<category>ai platforms/deployment</category>
-<category>cloud apis</category>
-<category>cloud networking</category>
-<category>data center / cloud</category>
-<category>featured</category>
 <category>hardware</category>
 <category>infra</category>
 <category>nonpaper</category>
 <category>nvidia</category>
 <category>open source</category>
-<category>training</category>
-</item>
-<item>
-<title>NVIDIA Open Agent Safety Platform: A Reference for Continuous In-Silicon Agent Monitoring</title>
-<link>https://developer.nvidia.com/blog/nvidia-open-agent-safety-platform-a-reference-for-continuous-in-silicon-agent-monitoring/</link>
-<guid>title:nvidia open agent safety platform a reference for continuous in silicon agent monitoring</guid>
-<pubDate>Mon, 28 Sep 2026 08:56:55 +0000</pubDate>
-<description>To understand where agentic AI stands today, consider the last seismic shift in technology: the rise of the internet in the 90s. It was new and full of...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>agents</category>
-<category>ai agent</category>
-<category>ai networking</category>
-<category>developer tools &amp; techniques</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>openshell</category>
-<category>top stories</category>
-<category>training</category>
-<category>trustworthy ai</category>
-<category>trustworthy ai / cybersecurity</category>
-</item>
-<item>
-<title>Add Runtime Controls to AI Agents with NVIDIA OpenShell</title>
-<link>https://developer.nvidia.com/blog/add-runtime-controls-to-ai-agents-with-nvidia-openshell/</link>
-<guid>title:add runtime controls to ai agents with nvidia openshell</guid>
-<pubDate>Mon, 28 Sep 2026 08:55:00 +0000</pubDate>
-<description>AI agents can be given a goal, write code, use tools, and keep working as new information becomes available. This opens the door to applications that...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>agentic ai / generative ai</category>
-<category>agents</category>
-<category>featured</category>
-<category>hardware</category>
-<category>infra</category>
-<category>nonpaper</category>
-<category>nvidia</category>
-<category>open agent safety platform</category>
-<category>openshell</category>
-<category>security for ai</category>
-<category>top stories</category>
-<category>training</category>
-<category>trustworthy ai</category>
-<category>trustworthy ai / cybersecurity</category>
-</item>
-<item>
-<title>How NVIDIA DSX MaxLPS Maximizes AI Factory Throughput and Efficiency</title>
-<link>https://developer.nvidia.com/blog/how-nvidia-dsx-maxlps-maximizes-ai-factory-throughput-and-efficiency/</link>
-<guid>title:how nvidia dsx maxlps maximizes ai factory throughput and efficiency</guid>
-<pubDate>Mon, 28 Sep 2026 01:00:00 +0000</pubDate>
-<description>Every unused watt is capacity left on the table. AI factories are typically provisioned for the unlikely moment when every GPU reaches peak power, creating a...</description>
-<source url="https://developer.nvidia.com/blog/feed">nvidia</source>
-<category>data center / cloud</category>
-<category>featured</category>
-<category>gb300 nvl72</category>
-<category>hardware</category>
-<category>infra</category>
-<category>nonpaper</category>
-<category>nvidia</category>
+<category>simulation / modeling / design</category>
+<category>supercomputing</category>
 <category>training</category>
 <category>vera rubin</category>
-<category>vision</category>
 </item>
 <item>
-<title>Coverage-Aware Reasoning with Medical Tokens for Diagnosis Prediction</title>
-<link>https://arxiv.org/abs/2610.10641</link>
-<guid>arxiv:2610.10641</guid>
-<pubDate>Fri, 09 Oct 2026 04:00:00 +0000</pubDate>
-<description>arXiv:2610. 10641v1 Announce Type: cross Abstract: Large language models (LLMs) offer promising potential for next-visit diagnosis prediction, owing to their ability to integrate longitudinal clinical evidence and reason over it in natural language. However, reinforcement learning for LLM reasoning commonly rewards each trajectory according to the correctness of its final answer. In next-visit diagnosis prediction, multiple diagnoses can be simultaneously valid, but independently rewarding one diagnosis per trajectory does not distinguish repeated hits from coverage of different diagnoses. The policy can therefore concentrate on a few correct diagnoses, leaving others uncovered. Meanwhile, LLM tokenizers can split ICD codes into several generic tokens with limited clinical meaning, requiring multiple decoding steps to predict each diagnosis and hindering reasoning over a large disease vocabulary.</description>
-<source url="https://rss.arxiv.org/rss/cs.AI">arxiv</source>
-<category>ai</category>
-<category>alignment</category>
+<title>RoboProbe: Benchmarking Physical Plausibility of Robot World Models</title>
+<link>https://arxiv.org/abs/2611.32152</link>
+<guid>arxiv:2611.32152</guid>
+<pubDate>Wed, 25 Nov 2026 05:00:00 +0000</pubDate>
+<description>arXiv:2611. 32152v1 Announce Type: new Abstract: Evaluating the physical plausibility of generated videos is critical for reliable robotic planning with world models. These videos inform action proposal and assessment before real-world execution, so undetected physical violations can lead to erroneous assessments of action feasibility and safety. Yet current video generators often produce physically implausible interactions. Detecting such violations directly with vision-language models (VLMs) remains challenging as physical verification requires evidence-grounded spatiotemporal reasoning beyond high-level semantic understanding. We develop five law-specific metrics for evaluating physical plausibility by combining spatiotemporal evidence from segmentation, tracking, 3D geometry, or appearance comparisons with targeted VLM reasoning: Contact fidelity, Object persistence, Solidity, Robot deformation, and Object deformation.</description>
+<source url="https://rss.arxiv.org/rss/cs.CV">arxiv</source>
+<category>agents</category>
 <category>arxiv</category>
-<category>cs.ai</category>
-<category>cs.lg</category>
-<category>efficiency</category>
+<category>cs.cv</category>
+<category>cs.ro</category>
 <category>llm</category>
 <category>paper</category>
 <category>papers</category>
 <category>reasoning</category>
-<category>research</category>
-<category>rl</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
-<title>Introducing WorldVQA</title>
-<link>https://www.kimi.com/blog/worldvqa</link>
-<guid>title:introducing worldvqa</guid>
-<pubDate>Fri, 09 Oct 2026 15:13:18 +0000</pubDate>
-<description>A benchmark for evaluating atomic visual world knowledge in Multimodal LLMs. Authors Kimi Team We are releasing WorldVQA , a new benchmark designed to measure the factual correctness of Multimodal Large Language Models (MLLMs). While recent models have demonstrated impressive capabilities in visual reasoning and description, measuring their reliability regarding visual world knowledge remains a challenge.</description>
-<source url="https://www.kimi.com/blog">kimi</source>
-<category>kimi</category>
-<category>lab</category>
-<category>llm</category>
-<category>models</category>
-<category>multimodal</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>reasoning</category>
-<category>rl</category>
-</item>
-<item>
-<title>Kimi K3: Open Frontier Intelligence</title>
-<link>https://www.kimi.com/blog/kimi-k3</link>
-<guid>title:kimi k3 open frontier intelligence</guid>
-<pubDate>Fri, 09 Oct 2026 15:13:13 +0000</pubDate>
-<description>Today, we are introducing Kimi K3 — our most capable model. Kimi K3 is a 2. 8T-parameter model built on our Kimi Delta Attention and Attention Residuals, with native vision capabilities and a 1-million-token context window. It is the world's first open 3T-class model, designed for frontier intelligence across long-horizon coding, knowledge work, and reasoning. While its overall performance still trails the most powerful proprietary models, Claude Fable 5 and GPT 5. 6 Sol, Kimi K3 demonstrated frontier-level performance across our evaluation suite, consistently outperforming other tested models.</description>
-<source url="https://www.kimi.com/blog">kimi</source>
-<category>kimi</category>
-<category>lab</category>
-<category>models</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
-<title>Jev AI by TypeSafe: What a Decision Model Does Better Than an LLM, and What It Can't</title>
-<link>https://dev.to/intercode/jev-ai-by-typesafe-what-a-decision-model-does-better-than-an-llm-and-what-it-cant-4in4</link>
-<guid>title:jev ai by typesafe what a decision model does better than an llm and what it can t</guid>
-<pubDate>Fri, 09 Oct 2026 15:10:27 +0000</pubDate>
-<description>Most &quot;AI&quot; calls in production aren't conversations. They're decisions: which queue should this ticket go to, is this action safe, how urgent is this lead. We still send them to generative LLMs and then parse JSON that sometimes arrives with a chatty preamble or an invented field. Jev, released by TypeSafe AI on September 15, 2026, takes a different route: it can't write text at all. It reads a state and a schema, and returns typed answers with calibrated probabilities in 70 to 500 ms. Here is how it works, where it saves money, and where it breaks.</description>
-<source url="https://dev.to/feed">dev.to</source>
-<category>agents</category>
-<category>ai</category>
-<category>dev.to</category>
-<category>llm</category>
-<category>machinelearning</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>reasoning</category>
-<category>rl</category>
-</item>
-<item>
-<title>LifeDex</title>
-<link>https://dev.to/bsky/lifedex-5e65</link>
-<guid>title:lifedex</guid>
-<pubDate>Fri, 09 Oct 2026 15:08:08 +0000</pubDate>
-<description>LifeDex: A Real-World Pokédex to Get You Outside 🌿 ​This is a submission for the Hacktoberfest Open-Source AI Challenge Week 1: Touch Grass ​What I Built ​LifeDex is a mobile-first, responsive web application designed to act as a real-world Pokédex for flora and fauna. Users can step outside, capture photos of plants, animals, and birds, and instantly identify them to add to their personal &quot;My Dex&quot; collection. ​The goal is to gamify nature exploration. By making the outdoors interactive and rewarding, LifeDex encourages users—whether they are kids, hikers, or just casual walkers—to get off their screens, touch some grass, and genuinely engage with the biodiversity in their own neighborhoods. ​Demo ​You can try out the live application here: LifeDex Live Demo ​(Insert your locally recorded demo video here! ) ​Code ​ bsky124816-cyber / LifeDex LifeDex — Real-World Pokédex for Flora &amp;amp; Fauna 🌿🦅🐞 LifeDex is a mobile-first, responsive web application designed as a real-world Pokédex.</description>
-<source url="https://dev.to/feed">dev.to</source>
-<category>agents</category>
-<category>ai</category>
-<category>dev.to</category>
-<category>devchallenge</category>
-<category>hf26challenge</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
-<title>A new feature for my blog, built using my voice</title>
-<link>https://simonwillison.net/2026/Oct/9/built-using-my-voice/</link>
-<guid>title:a new feature for my blog built using my voice</guid>
-<pubDate>Fri, 09 Oct 2026 12:54:06 +0000</pubDate>
-<description>I shipped a new feature for my blog today: the Newsletters page, which offers an index of all of the newsletters I've sent out, both my free weekly Substack and my monthly sponsors-only updates. I built the feature almost entirely using my voice, chatting away to my laptop while I cooked dinner. Codex voice mode I used the ChatGPT desktop app for this, in the Codex tab, using the voice conversation mode, running against a local development environment. Here's what that looks like: I started the session against my local simonwillisonblog checkout by typing: Start dev server and open in browser This gave me a preview of the site that it would be working on, and meant that I could later ask it to show me the new pages so I could visually track its progress. Then I clicked the &quot;Start new voice chat&quot; button - that's not the microphone button, it's the one to the right of it - and set my laptop up in the kitchen so I could talk to it while I cooked. Talking to my computer I had a pretty good idea of what I wanted to build, and it's a simple enough Django feature that I was certain the model (in this case GPT-6 Astra High) would be able to do it.</description>
-<source url="https://simonwillison.net/atom/everything/">simonwillison</source>
-<category>agents</category>
-<category>ai</category>
-<category>codex</category>
-<category>coding-agents</category>
-<category>engineering</category>
-<category>generative-ai</category>
-<category>llm</category>
-<category>llms</category>
-<category>newsletter</category>
-<category>nonpaper</category>
-<category>openai</category>
-<category>rl</category>
-<category>simonwillison</category>
-<category>site-upgrades</category>
-<category>speech-to-text</category>
-<category>text-to-speech</category>
-<category>tools</category>
-</item>
-<item>
-<title>Kimi K2.5: Visual Agentic Intelligence</title>
-<link>https://www.kimi.com/blog/kimi-k2-5</link>
-<guid>title:kimi k2 5 visual agentic intelligence</guid>
-<pubDate>Fri, 09 Oct 2026 15:13:19 +0000</pubDate>
-<description>Today, we are introducing Kimi K2. 5, the most powerful open-source model to date. Kimi K2. 5 builds on Kimi K2 with continued pretraining over approximately 15T mixed visual and text tokens. Built as a native multimodal model, K2. 5 delivers state-of-the-art coding and vision capabilities and a self-directed agent swarm paradigm.</description>
-<source url="https://www.kimi.com/blog">kimi</source>
-<category>agents</category>
-<category>kimi</category>
-<category>lab</category>
-<category>models</category>
-<category>multimodal</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>vision</category>
-</item>
-<item>
-<title>Introducing PerceptionBench</title>
-<link>https://www.kimi.com/blog/perception-bench</link>
-<guid>title:introducing perceptionbench</guid>
-<pubDate>Fri, 09 Oct 2026 15:13:14 +0000</pubDate>
-<description>Evaluating Atomic Visual Perception in Multimodal Large Language Models Authors Kimi Team We are releasing PerceptionBench , a benchmark that isolates visual perception and evaluates it as a set of atomic capabilities— discovered from how today's models fail, not defined in advance. From frontier-model failures across 42 benchmarks, we derive 10 atomic perceptual capabilities and construct 3,000 verified questions, each isolating a single capability and answerable by looking, with no reasoning or external knowledge required.</description>
-<source url="https://www.kimi.com/blog">kimi</source>
-<category>kimi</category>
-<category>lab</category>
-<category>llm</category>
-<category>models</category>
-<category>multimodal</category>
-<category>nonpaper</category>
-<category>product</category>
-<category>reasoning</category>
-</item>
-<item>
-<title>TerraQuest!</title>
-<link>https://dev.to/harshraj979/terraquest-3lnn</link>
-<guid>title:terraquest</guid>
-<pubDate>Fri, 09 Oct 2026 15:11:15 +0000</pubDate>
-<description>This is a submission for the Hacktoberfest Open-Source AI Challenge Week 1: Touch Grass What I Built TerraQuest is a browser-based, privacy-first web application that gamifies nature exploration. Instead of staring at a screen indoors, TerraQuest encourages you to go outside and interact with the physical world. Using your device's camera, it acts as an interactive &quot;Scanner&quot; to identify botanical foliage, mineral textures, and other natural items (like pinecones, leaves, and acorns). As you explore, you complete outdoor &quot;Quests,&quot; earn XP, unlock badges (like &quot;Woodland Scout&quot; or &quot;Botanist&quot;), and log your discoveries in a personal Journal. It's built for hikers, students, and anyone who needs a fun excuse to step away from their desk and touch grass. Demo Live Site: https://terraquestt.</description>
-<source url="https://dev.to/feed">dev.to</source>
-<category>ai</category>
-<category>dev.to</category>
-<category>devchallenge</category>
-<category>hf26challenge</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>serving</category>
-<category>vision</category>
-</item>
-<item>
-<title>Chat GPT's Creator Explains The Shocking Truth About How AI Understands the World | Ilya Sutskever</title>
-<link>https://aneyeonai.libsyn.com/chat-gpts-creator-explains-the-shocking-truth-about-how-ai-understands-the-world-ilya-sutskever</link>
-<guid>title:chat gpt s creator explains the shocking truth about how ai understands the world ilya sutskever</guid>
-<pubDate>Fri, 09 Oct 2026 15:00:00 +0000</pubDate>
-<description>Craig Smith sits down with Ilya Sutskever - Co-Founder and Chief Scientist at Safe Superintelligence Inc. &amp; former chief scientist at OpenAI and one of the primary minds behind GPT-3, GPT-4, and the deep learning revolution that preceded it - for a conversation that covers the intellectual history of deep learning and the hardest current questions simultaneously. Ilya's most important argument is one that most public discourse gets wrong: the critique that LLMs &quot;just learn statistical patterns&quot; misses what prediction at scale actually achieves. To predict text well - to truly compress it - a model must develop understanding of the true underlying processes that produced it. As models improve, he argues, that understanding will reach a &quot;shocking degree,&quot; and the Bing/Sydney episode, where the system became combative when a user expressed preference for Google, is his evidence that psychological language is already the right frame for what these systems have internalized. On hallucinations, Ilya is precise and unusually optimistic.</description>
-<source url="https://aneyeonai.libsyn.com/rss">aneyeonai.libsyn.com</source>
-<category>ai</category>
-<category>aneyeonai.libsyn.com</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>vision</category>
-</item>
-<item>
-<title>Quoting Matthew Green</title>
-<link>https://simonwillison.net/2026/Oct/9/matthew-green/</link>
-<guid>title:quoting matthew green</guid>
-<pubDate>Fri, 09 Oct 2026 15:02:29 +0000</pubDate>
-<description>Everyone is very concerned about being respectable, so I’m going to be the goofball who raises worst-case possibilities. I think there is a 1% chance we live in Minicrypt, and a 15% chance we functionally lose confidence in our existing public-key encryption algorithms. [... ] The problem here is that the speed of AI producing surprises, and the speed of human beings replacing standards (even with the very best AI assistance) are just orders of magnitude different. You only recover from a surprise like this if you do the preparation in advance. &amp;mdash; Matthew Green , on Twitter.</description>
-<source url="https://simonwillison.net/atom/everything/">simonwillison</source>
-<category>ai</category>
-<category>ai-security-research</category>
-<category>cryptography</category>
-<category>engineering</category>
-<category>generative-ai</category>
-<category>llm</category>
-<category>llms</category>
-<category>matthew-green</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>simonwillison</category>
-<category>standards</category>
-<category>tools</category>
-</item>
-<item>
-<title>Two Component Self-Learning AI system (LLM, Harness)</title>
-<link>https://www.youtube.com/watch?v=FOn48VB-XVk</link>
-<guid>title:two component self learning ai system llm harness</guid>
-<pubDate>Fri, 09 Oct 2026 13:30:05 +0000</pubDate>
-<description>Origin of today's video: A quantum library may return an incorrect commutativity judgment for a pair of quantum operators or apply a quantum circuit optimization method that does not preserve semantics of the original circuit. Main pre-print of today: SkillForge: Why Self-Improving AI Needs Skill Retirement. When Reinforcement Learning Meets Skill Evolution. all rights w/ authors: SKILLRL: Evolving Agents via Recursive Skill-Augmented Reinforcement Learning Peng Xia1∗ , Jianwen Chen1∗, Hanyang Wang12∗, Jiaqi Liu1, Kaide Zeng1, Yu Wang3, Siwei Han1, Yiyang Zhou1, Xujiang Zhao4, Haifeng Chen4, Zeyu Zheng5, Cihang Xie6, Huaxiu Yao1 from 1 UNC-Chapel Hill, 2 University of Chicago, 3 UC San Diego, 4 NEC Labs America, 5 UC Berkeley, 6 UC Santa Cruz SKILLFORGE: Co-Evolving Skills and Agents via Dynamic Skill Lifecycles Yuyao Ge♣ Yiwei Wang♢ Yuchen He♣ Baolong Bi♣ Lingrui Mei♣ Jiayu Yao♣ Lizhe Chen¶ Shenghua Liu♣∗ from ♣ Institute of Computing Technology, Chinese Academy of Sciences ♢ University of California, Merced ¶ Tsinghua University QuSema: Detecting Silent Bugs in Quantum Libraries via Quantum-knowledge-enhanced Agents YUJIN SONG, Nanyang Technological University, Singapore KAINING ZHANG∗, Nanyang Technological University, Singapore QIXIN ZHANG, Nanyang Technological University, Singapore SHUAI WANG, Hong Kong University of Science and Technology, Hong Kong, China PINGCHUAN MA∗, Zhejiang University of Technology, Hangzhou, China YUXUAN DU∗, Nanyang Technological University, Singapore PhysEvo: Astra Can Act, Let It Wenqing Tian1,2 Zeyu Zhang1,2 Zhaocheng Liu4,†,‡ Fengwei Liu3 Qiang Liu1,2,† Liang Wang1,2 from 1 University of Chinese Academy of Sciences 2 Institute of Automation, Chinese Academy of Sciences 3 Tsinghua University 4Independent Researcher #airesearch #aiexplained #discoverai</description>
-<source url="https://www.youtube.com/feeds/videos.xml?channel_id=UCfOvNb3xj28SNqPQ_JIbumg">youtube.com</source>
-<category>agents</category>
-<category>ai</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>youtube.com</category>
-</item>
-<item>
-<title>Post-Training at the Frontier: How You.com, NVIDIA, and CoreWeave Improved Nemotron’s Agentic Search</title>
-<link>https://www.youtube.com/watch?v=ObzZcszkdSs</link>
-<guid>title:post training at the frontier how you com nvidia and coreweave improved nemotron s agentic search</guid>
-<pubDate>Fri, 09 Oct 2026 13:00:17 +0000</pubDate>
-<description>In this session, You. com’s engineering team will share their work with Nvidia and CoreWeave to post-train Nvidia’s Nemotron 3. 5 Lightning on CoreWeave using Dynamo RL rollouts in NeMo gym with You. com’s web search API. We’ll walk through the technical approach, which enabled the team to rapidly iterate and drive measurable gains on BrowseComp, a benchmark for agentic web search and browsing. We will cover topics ranging from dataset preparation, supervised fine-tuning, and reinforcement learning to CoreWeave’s infrastructure for post-training.</description>
-<source url="https://www.youtube.com/feeds/videos.xml?channel_id=UCBp3w4DCEC64FZr4k9ROxig">youtube.com</source>
-<category>agents</category>
-<category>ai</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>youtube.com</category>
-</item>
-<item>
-<title>Tuning Jev as a Risk Judge: A Decision Model vs.</title>
-<link>https://pub.towardsai.net/tuning-jev-as-a-risk-judge-a-decision-model-vs-db4c012a835a?source=rss----98111c9905da---4</link>
-<guid>title:tuning jev as a risk judge a decision model vs</guid>
-<pubDate>Thu, 08 Oct 2026 23:01:04 +0000</pubDate>
-<description>Tuning Jev as a Risk Judge: A Decision Model vs. Two Cost-Effective LLMs and When the Hybrid with Reasoning Makes Things Worse Second in a two-part series on tuning Jev as an LLM judge. Jev is a structured decision model from TypeSafe: send it a state (the context to judge) and a typed question with criteria describing what a true and a false answer each look like, and it returns a probability, not generated text, in one parallel pass rather than token by token. No chain of thought, no explanation, nothing to read if you want to know why, Part 1 ran that model as a quality judge, tuned it two different ways, and built a hybrid that escalates uncertain cases to a reasoning model for the explanation Jev can't give. Worth reading first if you want the full mechanics and the schema in detail, but this post stands on its own: same methodology, a safety judge instead of a quality judge, and a worse outcome than anything Part 1 found. Escalating every flagged case to a reasoning model, the design that feels obviously right, drops F1 by two full points relative to Jev working alone.</description>
-<source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
-<category>ai</category>
-<category>ai-safety</category>
-<category>alignment</category>
-<category>artificial-intelligence</category>
-<category>data-science</category>
-<category>large-language-models</category>
-<category>llm</category>
-<category>machine-learning</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>pub.towardsai.net</category>
-<category>reasoning</category>
-<category>rl</category>
-</item>
-<item>
-<title>How Standard Kernel uses compound AI systems to optimize code and extract maximum GPU performance</title>
-<link>https://www.youtube.com/watch?v=4lMSHFnPENM</link>
-<guid>title:how standard kernel uses compound ai systems to optimize code and extract maximum gpu performance</guid>
-<pubDate>Thu, 08 Oct 2026 23:00:36 +0000</pubDate>
-<description>Standard Kernel uses compound AI systems to optimize code and extract maximum performance from GPUs. Our products help companies quickly transition their workloads to faster, higher-throughput, and more cost-effective setups across a variety of hardware options. In this talk, we’ll show you how it works and walk through an optimization with Coreweave’s inference team that averaged ~60% higher throughput than vLLM when serving Qwen 3.8 on NVIDIA B200s. We’ll also walk through case studies where we produced 11x faster world models and 7x faster options pricing models in just a few days.</description>
-<source url="https://www.youtube.com/feeds/videos.xml?channel_id=UCBp3w4DCEC64FZr4k9ROxig">youtube.com</source>
-<category>ai</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>rl</category>
-<category>serving</category>
-<category>world-models</category>
-<category>youtube.com</category>
-</item>
-<item>
-<title>How Large Language Models Actually Work — Daily AI Post</title>
-<link>https://pub.towardsai.net/how-large-language-models-actually-work-daily-ai-post-b15cdd5d4086?source=rss----98111c9905da---4</link>
-<guid>title:how large language models actually work daily ai post</guid>
-<pubDate>Thu, 08 Oct 2026 22:01:02 +0000</pubDate>
-<description>You’re at a dinner party. The conversation has drifted from mortgage rates to whether sourdough starters qualify as pets, when someone across the table leans forward and asks the question everyone’s been dodging for three years: “So… how does ChatGPT actually work? ” You open your mouth. Nothing comes out. You’ve used this thing every single day. You’ve asked it to rephrase angry emails to your landlord, debug Python code at midnight, calculate the shelf life of opened oat milk, and write a bedtime fable about a hedgehog who works in venture capital.</description>
-<source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
-<category>ai</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>pub.towardsai.net</category>
-<category>reasoning</category>
 <category>rl</category>
 <category>robotics</category>
-</item>
-<item>
-<title>What If Enzo Ferrari Was Blamed for Something His Car Did? The AI Agent Authorization Problem</title>
-<link>https://pub.towardsai.net/what-if-enzo-ferrari-was-blamed-for-something-his-car-did-the-ai-agent-authorization-problem-92837575559a?source=rss----98111c9905da---4</link>
-<guid>title:what if enzo ferrari was blamed for something his car did the ai agent authorization problem</guid>
-<pubDate>Thu, 08 Oct 2026 21:01:02 +0000</pubDate>
-<description>AI agents can now make decisions, call tools, change systems, and act on their own. When something goes wrong, who is actually responsible? The Ferrari problem: when a machine causes harm, responsibility rarely stops with the machine itself. In 1957, a Ferrari crashed during the Mille Miglia, killing its driver, navigator, and nine spectators, including five children. Enzo Ferrari was charged with manslaughter, with questions raised about whether the car’s tires could handle its performance. He was eventually cleared of the charges four years later.</description>
-<source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
-<category>agents</category>
-<category>ai</category>
-<category>ai-agent</category>
-<category>ai-governance</category>
-<category>artificial-intelligence</category>
-<category>llm</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>pub.towardsai.net</category>
-<category>reasoning</category>
-<category>rl</category>
-<category>technology</category>
-</item>
-<item>
-<title>10 AI Agent Terms I Wish I’d Known Before Building My First Agent</title>
-<link>https://pub.towardsai.net/10-ai-agent-terms-i-wish-id-known-before-building-my-first-agent-d14b3ea90835?source=rss----98111c9905da---4</link>
-<guid>title:10 ai agent terms i wish i d known before building my first agent</guid>
-<pubDate>Fri, 09 Oct 2026 06:16:22 +0000</pubDate>
-<description>Source: Image generated by the author via ChatGPT. Agentic AI I’ve spent years marketing AI companies. Building my own agent still taught me a new vocabulary. I’ve worked with AI companies for most of my career. I spent three years in Carnegie Mellon’s Machine Learning Department, co-founded Towards AI, and led technical content at Snorkel AI and Cohere. Today I lead technical marketing at GenBio AI and advise other AI companies on marketing and growth.</description>
-<source url="https://pub.towardsai.net/feed">pub.towardsai.net</source>
-<category>agentic-ai</category>
-<category>agents</category>
-<category>ai</category>
-<category>artificial-intelligence</category>
-<category>marketing</category>
-<category>news</category>
-<category>nonpaper</category>
-<category>programming</category>
-<category>pub.towardsai.net</category>
-<category>rl</category>
-<category>technology</category>
 <category>vision</category>
+<category>world-models</category>
 </item>
 </channel>
 </rss>
