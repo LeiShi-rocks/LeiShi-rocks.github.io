@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teaching a Frozen Tabular Foundation Model to Read a Network</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false});"></script>
+<style>
+  :root {
+    --adapter: #d9480f; --fixed: #1c7ed6; --raw: #868e96; --base: #2b8a3e;
+    --text: #222; --muted: #666; --rule: #e5e5e5; --code-bg: #f6f8fa;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--text); background: #fff;
+    font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  header.hero { border-bottom: 1px solid var(--rule); padding: 64px 24px 32px; }
+  .col { max-width: 720px; margin: 0 auto; }
+  .wide { max-width: 980px; margin: 28px auto; padding: 0 24px; }
+  main { padding: 0 24px 80px; }
+  h1 { font-size: 2.6em; line-height: 1.15; margin: 0 0 16px; font-weight: 700; letter-spacing: 0; }
+  .subtitle { font-size: 1.25em; color: #444; line-height: 1.5; margin: 0 0 20px; }
+  .byline { font-size: .85em; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 12px; }
+  h2 { font-size: 1.6em; line-height: 1.25; margin: 56px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 6px; }
+  h3 { font-size: 1.2em; margin: 36px 0 8px; }
+  p { margin: 0 0 1em; }
+  a { color: #1864ab; }
+  figure { margin: 0; }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: .85em; color: #555; line-height: 1.5; margin-top: 10px; max-width: 720px; }
+  .wide figcaption { margin-left: auto; margin-right: auto; }
+  figcaption b { color: #222; }
+  .takeaway {
+    border-left: 4px solid var(--adapter); background: #fff4e6; padding: 10px 16px;
+    margin: 20px 0; font-size: .95em;
+  }
+  .note { border-left: 4px solid var(--fixed); background: #e7f5ff; padding: 10px 16px; margin: 20px 0; font-size: .95em; }
+  pre { background: var(--code-bg); padding: 14px 16px; border-radius: 4px; overflow-x: auto;
+        font-size: .78em; line-height: 1.5; }
+  code { font-family: "SFMono-Regular", Menlo, Consolas, monospace; font-size: .9em; }
+  p code { background: var(--code-bg); padding: 1px 4px; border-radius: 3px; }
+  table { border-collapse: collapse; width: 100%; font-size: .85em; margin: 8px 0 4px; }
+  th, td { padding: 5px 8px; text-align: right; border-bottom: 1px solid var(--rule); }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { border-bottom: 2px solid #999; font-weight: 600; }
+  tr.ours td { color: var(--adapter); font-weight: 600; }
+  .c-adapter { color: var(--adapter); font-weight: 600; }
+  .c-fixed { color: var(--fixed); font-weight: 600; }
+  .c-raw { color: var(--raw); font-weight: 600; }
+  .c-base { color: var(--base); font-weight: 600; }
+  sup.fn a { text-decoration: none; font-size: .75em; padding: 0 1px; }
+  ol.footnotes { font-size: .85em; color: #444; }
+  ol.footnotes li { margin-bottom: 8px; }
+  .refs { font-size: .85em; color: #444; }
+  .refs p { margin-bottom: 6px; padding-left: 1.5em; text-indent: -1.5em; }
+  .katex-display { overflow-x: auto; overflow-y: hidden; padding: 4px 0; }
+  svg text { font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  .toc { font-size: .9em; color: #444; margin: 20px 0 0; }
+  .toc ol { margin: 4px 0 0; padding-left: 20px; }
+  @media (max-width: 600px) {
+    header.hero { padding-top: 36px; }
+    h1 { font-size: 30px; }
+    table { display: block; max-width: 100%; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="blog-nav" aria-label="Site navigation">
+  <a class="blog-brand" href="../../index.html">Lei Shi</a>
+  <div class="blog-nav-links">
+    <a href="../../blog.html">Blog</a>
+    <a href="../../index.html">Home</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="col">
+    <h1>Teaching a Frozen Tabular Foundation Model to Learn Network Causal Effects</h1>
+    <p class="subtitle">TabPFN can act as the outcome model for causal effects on a network, but it only sees what we put in its rows. Learning those graph features <em>through</em> the frozen model helps when hand-built summaries miss the statistic that matters, and it doesn't help when they already contain it.</p>
+    <div class="byline">A research explainer based on our paper <em>TANI: Tabular Foundation Model Adaptation for Causal Inference under Network Interference</em> (2026).</div>
+  </div>
+</header>
+
+<div class="wide">
+  <figure>
+    <img src="figures/hero.png" alt="Bar charts of individual-effect PEHE for raw TabPFN, best fixed graph features, and the learned PNA adapter in two experiments.">
+    <figcaption><b>The adapter wins when fixed features miss the relevant structure, and loses when they already contain it.</b> Error in individual treatment-effect estimates (PEHE, lower is better; bars are means over five simulated realizations, whiskers one SD) on two real social graphs. <em>Left:</em> each node's effect depends on how spread out its neighbors' covariates are and on two-hop structure. No fixed summary we supply encodes neighbor spread, and a <span class="c-adapter">graph encoder learned through frozen TabPFN</span> cuts the error of the <span class="c-fixed">best fixed feature block</span> by 30 to 45%. <em>Right:</em> the same graphs and treatments, but the effect depends only on the one-hop neighbor mean, which the <span class="c-fixed">aggregate block</span> supplies directly. Here the fixed features win by a factor of two to three.</figcaption>
+  </figure>
+</div>
+
+<main>
+<div class="col">
+
+<p>Suppose a school runs an anti-conflict program and invites some students to join. Two questions follow right away. How much does an invitation change <em>the invited student's</em> behavior? And how much does it change the behavior of <em>their friends</em>, who were never invited? On a network, these are separate causal effects, and you cannot answer either one by treating students as independent rows in a spreadsheet.</p>
+
+<p>Tabular foundation models such as TabPFN have recently become very good outcome predictors. You give them a labelled table as context and they predict new rows in a single forward pass, with no training on your data. Several groups have also used them for causal inference, and they do well. But a tabular model sees rows, not graphs. If a student's outcome depends on their friends' invitations and their friends' characteristics, that information has to be <em>in the row</em>, or the model cannot use it.</p>
+
+<p>So the question this article explores is simple to state: <strong>how should we give a frozen tabular foundation model the graph?</strong> We will see that causal identification reduces the whole problem to choosing one per-node graph representation. The usual answer is to hand-craft it. Our proposal is to learn it by backpropagating through the frozen foundation model. Then we look at when learning is worth the extra cost.</p>
+
+<nav class="toc"><b>Contents</b>
+<ol>
+  <li><a href="#s1">Two things a network does to a causal estimate</a></li>
+  <li><a href="#s2">Everything reduces to one regression, once you choose $H$</a></li>
+  <li><a href="#s3">A foundation model as the regression, and the problem with fixed features</a></li>
+  <li><a href="#s4">Learning the graph features through the frozen model</a></li>
+  <li><a href="#s5">Four experiments, four questions</a></li>
+  <li><a href="#s6">What makes the adapter work, and what it costs</a></li>
+  <li><a href="#s7">Back to the school</a></li>
+  <li><a href="#s8">What we take away</a></li>
+</ol></nav>
+
+<!-- ============================================================ -->
+<h2 id="s1">1. Two things a network does to a causal estimate</h2>
+
+<p>The network plays two distinct roles, and it helps to keep them apart.</p>
+
+<p><strong>Confounding.</strong> Who gets treated may depend on network-derived quantities, such as who your friends are and what they are like, and those same quantities may affect the outcome. In the school, a teacher might be more likely to invite well-connected students, who may behave differently anyway. Call such a node-level graph summary $H_i$. If we ignore it, we compare treated and untreated students who differ in more than their treatment.</p>
+
+<p><strong>Interference.</strong> Your outcome may depend on your neighbors' treatments. This breaks the textbook assumption that each unit has just two potential outcomes. We summarize neighbors' treatments with an <em>exposure</em> $z_i$, here the share of $i$'s friends who were treated.<sup class="fn"><a href="#fn1" id="r1">1</a></sup></p>
+
+</div>
+<div class="wide">
+<figure>
+<svg viewBox="0 0 900 190" width="100%" role="img" aria-label="Two causal diagrams: network confounding and interference">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker></defs>
+  <text x="200" y="24" text-anchor="middle" font-size="16" font-weight="700">Network confounding</text>
+  <rect x="20" y="70" width="150" height="40" rx="5" fill="#e7f5ff" stroke="#1c7ed6"/>
+  <text x="95" y="95" text-anchor="middle" font-size="14">H<tspan font-size="10" dy="4">i</tspan><tspan dy="-4"> = h(i, G, X)</tspan></text>
+  <rect x="230" y="70" width="60" height="40" rx="5" fill="#f1f3f5" stroke="#555"/>
+  <text x="260" y="95" text-anchor="middle" font-size="14">A<tspan font-size="10" dy="4">i</tspan></text>
+  <rect x="340" y="70" width="60" height="40" rx="5" fill="#f1f3f5" stroke="#555"/>
+  <text x="370" y="95" text-anchor="middle" font-size="14">Y<tspan font-size="10" dy="4">i</tspan></text>
+  <line x1="170" y1="90" x2="228" y2="90" stroke="#333" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="290" y1="90" x2="338" y2="90" stroke="#333" stroke-width="1.6" marker-end="url(#ar)"/>
+  <path d="M120,110 Q250,175 365,112" fill="none" stroke="#333" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="200" y="182" text-anchor="middle" font-size="12" fill="#555">graph-derived covariates drive both treatment and outcome</text>
+
+  <text x="690" y="24" text-anchor="middle" font-size="16" font-weight="700">Interference</text>
+  <rect x="520" y="45" width="60" height="40" rx="5" fill="#f1f3f5" stroke="#555"/>
+  <text x="550" y="70" text-anchor="middle" font-size="14">A<tspan font-size="10" dy="4">i</tspan></text>
+  <rect x="510" y="115" width="80" height="40" rx="5" fill="#f1f3f5" stroke="#555"/>
+  <text x="550" y="140" text-anchor="middle" font-size="14">A<tspan font-size="10" dy="4">N(i)</tspan></text>
+  <rect x="650" y="115" width="80" height="40" rx="5" fill="#fff4e6" stroke="#d9480f"/>
+  <text x="690" y="140" text-anchor="middle" font-size="14">z<tspan font-size="10" dy="4">i</tspan><tspan dy="-4">(A)</tspan></text>
+  <rect x="800" y="45" width="60" height="40" rx="5" fill="#f1f3f5" stroke="#555"/>
+  <text x="830" y="70" text-anchor="middle" font-size="14">Y<tspan font-size="10" dy="4">i</tspan></text>
+  <line x1="580" y1="65" x2="798" y2="65" stroke="#333" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="590" y1="135" x2="648" y2="135" stroke="#333" stroke-width="1.6" marker-end="url(#ar)"/>
+  <line x1="730" y1="128" x2="800" y2="85" stroke="#333" stroke-width="1.6" marker-end="url(#ar)"/>
+  <text x="690" y="182" text-anchor="middle" font-size="12" fill="#555">neighbors' treatments reach the outcome through the exposure</text>
+</svg>
+<figcaption><b>The graph enters twice.</b> Left: a graph summary $H_i$ confounds own treatment $A_i$ and outcome $Y_i$. Right: neighbors' treatments $A_{N(i)}$ reach $Y_i$ through an exposure $z_i$. Our settings with interference contain both mechanisms at once.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>With interference, "the effect of treatment" splits in two:</p>
+<ul>
+  <li>The <strong>own effect</strong> $\tau_D$: switch node $i$'s treatment from 0 to 1 while everyone else follows some fixed policy.</li>
+  <li>The <strong>peer effect</strong> $\tau_S$: hold $i$'s own treatment fixed and raise the share of treated neighbors, for example from 20% to 70%.</li>
+</ul>
+
+<p>Formally, we let the other units be treated independently with probability $p$ (a Bernoulli policy), and define the node's mean outcome under $\operatorname{do}(A_i=a)$ and that policy as $\mu_i(a,p)$. Then $\tau_D = \mu_i(1,p)-\mu_i(0,p)$ and $\tau_S = \mu_i(a,p_1)-\mu_i(a,p_0)$.<sup class="fn"><a href="#fn2" id="r2">2</a></sup> We call both <em>heterogeneous</em> because they are allowed to differ from node to node.</p>
+
+<!-- ============================================================ -->
+<h2 id="s2">2. Everything reduces to one regression, once you choose $H$</h2>
+
+<p>On a single network we see one realization of everything, so we need some structure to learn from it. We assume four things:</p>
+<ol>
+  <li><strong>Neighborhood interference:</strong> only your own and your direct neighbors' treatments affect you.</li>
+  <li><strong>A shared mechanism:</strong> there is a per-node graph summary $H_i = h(i,G,X)$ such that two nodes with the same $(X_i,H_i)$ respond in the same way. This is what lets us pool across nodes.</li>
+  <li><strong>An exposure mapping:</strong> neighbors' treatments matter only through $z_i = g(A_{N(i)})$.</li>
+  <li><strong>No unmeasured confounding and positivity:</strong> treatment can depend on all covariates and the graph, but not on hidden factors that also drive outcomes. In addition, every own treatment and exposure level the policy can produce must actually occur among similar nodes.</li>
+</ol>
+
+<p>Under these assumptions, all the causal quantities above come from a single function:</p>
+
+$$
+\mu(a,p,x,h) \;=\; \sum_z \underbrace{\rho_{p}(z)}_{\substack{\text{how often the policy}\\ \text{produces exposure } z}} \;\cdot\; \underbrace{\mathbb{E}\!\left[Y_i \mid A_i=a,\; z_i=z,\; X_i=x,\; H_i=h\right]}_{Q(a,\,z,\,x,\,h):\ \text{an ordinary regression on observed data}}
+$$
+
+<p>The weights $\rho_p$ are known: if $z$ is the treated share, $d_i z_i$ is Binomial$(d_i,p)$ for a node of degree $d_i$. The regression $Q$ is the same function for every node. So the recipe is to <strong>fit one outcome model on rows $(X_i, H_i, A_i, z_i) \to Y_i$, pooled over all nodes, and query it counterfactually</strong>. The own effect changes $A_i$ at fixed $z_i$, and the peer effect changes $z_i$ at fixed $A_i$.<sup class="fn"><a href="#fn3" id="r3">3</a></sup></p>
+
+<p>Notice what the theorem does <em>not</em> say: it says nothing about what $H_i$ is. It only says that some summary exists for which the pooling works. Choosing $H_i$ is the open design decision, and the rest of this article is about it.</p>
+
+<div class="takeaway">Identification turns a network causal question into a supervised regression. The open question is which graph representation $H_i$ goes into that regression.</div>
+
+<!-- ============================================================ -->
+<h2 id="s3">3. A foundation model as the regression, and the problem with fixed features</h2>
+
+<p>For $Q$ we use TabPFN (version 3) <span class="cite">[Hollmann et al., 2025; Grinsztajn et al., 2026]</span>. It is a transformer pretrained offline on millions of synthetic tables. At inference it reads the labelled rows of our nodes as context, then predicts unlabelled query rows in one forward pass, with no gradient updates to its weights. Used this way it is an <em>S-learner</em>: a single model with treatment as an input column, queried twice with the treatment switched.</p>
+
+<pre><code># one fitted TabPFN, queried at counterfactual inputs
+tau_own  = Q(X, H, A=1, z=z_observed) - Q(X, H, A=0, z=z_observed)
+tau_peer = Q(X, H, A=0, z=0.7)        - Q(X, H, A=0, z=0.2)</code></pre>
+
+<p>TabPFN's pretraining prior knows nothing about graphs, so the network has to come in through $H_i$ and $z_i$. The standard approach, used by several recent graph-to-tabular methods, is to append <strong>prescribed graph features</strong> to each row. We use the following blocks:</p>
+<ul>
+  <li><strong>raw:</strong> $X_i$ only, with no graph information;</li>
+  <li><strong>aggregate:</strong> $X_i$ plus the neighbor mean $\bar X_i$;</li>
+  <li><strong>aggsumlog:</strong> $X_i$, a log-compressed neighbor sum, and $\log(1+d_i)$;</li>
+  <li><strong>diffusion:</strong> $X_i, (PX)_i, (P^2X)_i, (P^3X)_i$ with $P$ the row-normalized adjacency, i.e. one-, two-, and three-hop neighbor means.</li>
+</ul>
+
+<p>These features cost nothing to compute and need no training. Their weakness is that each block decides in advance which graph statistic the decoder may use. If the outcome depends on a statistic the block omits, more data will not fix it. Here is the simplest example we know:</p>
+
+<figure>
+<img src="figures/toy_dispersion.png" alt="Two nodes whose neighbors have the same mean covariate but very different spread.">
+<figcaption><b>Means cannot see spread.</b> Illustration with made-up values. Nodes $u$ and $v$ have identical neighbor means, so every mean-based block (aggregate, diffusion) gives them the same graph features. If the effect of treatment depends on how <em>polarized</em> a node's friends are, a model fed only means cannot tell $u$ from $v$.</figcaption>
+</figure>
+
+<p>Multi-hop means do not help here either, because the mean of a spread is not the spread of means. In general $P\tanh(Xw) \neq \tanh(PXw)$, and neighbor variance is not a function of $PX$ at all.</p>
+
+<!-- ============================================================ -->
+<h2 id="s4">4. Learning the graph features through the frozen model</h2>
+
+<p>If we do not know which graph statistic matters, we can learn it. The obvious way is to train a graph neural network end to end with its own output head, and that is what classical network-causal estimators do. We take a different route: keep TabPFN as the outcome model, frozen, and train only a small graph encoder <em>in front of it</em>, using gradients that flow back through TabPFN's in-context prediction.</p>
+
+</div>
+<div class="wide">
+<figure>
+<svg viewBox="0 0 940 230" width="100%" role="img" aria-label="Graph adapter pipeline">
+  <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+  <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d9480f"/></marker></defs>
+  <rect x="10" y="70" width="120" height="56" rx="6" fill="#f1f3f5" stroke="#555"/>
+  <text x="70" y="94" text-anchor="middle" font-size="14">graph G,</text>
+  <text x="70" y="113" text-anchor="middle" font-size="14">covariates X</text>
+  <rect x="170" y="62" width="160" height="72" rx="6" fill="#fff4e6" stroke="#d9480f" stroke-width="2"/>
+  <text x="250" y="88" text-anchor="middle" font-size="14" font-weight="700" fill="#d9480f">graph encoder φθ</text>
+  <text x="250" y="107" text-anchor="middle" font-size="12">(PNA; trainable,</text>
+  <text x="250" y="123" text-anchor="middle" font-size="12">~220k parameters)</text>
+  <rect x="370" y="70" width="170" height="56" rx="6" fill="#fff" stroke="#555"/>
+  <text x="455" y="94" text-anchor="middle" font-size="14">row for node i:</text>
+  <text x="455" y="114" text-anchor="middle" font-size="14">[ X, h, A, z ]</text>
+  <rect x="580" y="62" width="160" height="72" rx="6" fill="#dee2e6" stroke="#495057" stroke-width="2"/>
+  <text x="660" y="90" text-anchor="middle" font-size="14" font-weight="700">TabPFN</text>
+  <text x="660" y="110" text-anchor="middle" font-size="12">frozen, in-context</text>
+  <text x="660" y="125" text-anchor="middle" font-size="12">(weights never change)</text>
+  <rect x="780" y="70" width="140" height="56" rx="6" fill="#fff" stroke="#555"/>
+  <text x="850" y="94" text-anchor="middle" font-size="14">outcome surface</text>
+  <text x="850" y="114" text-anchor="middle" font-size="14">Ŷ(a, z)</text>
+  <line x1="130" y1="98" x2="168" y2="98" stroke="#333" stroke-width="1.6" marker-end="url(#ar2)"/>
+  <line x1="330" y1="98" x2="368" y2="98" stroke="#333" stroke-width="1.6" marker-end="url(#ar2)"/>
+  <line x1="540" y1="98" x2="578" y2="98" stroke="#333" stroke-width="1.6" marker-end="url(#ar2)"/>
+  <line x1="740" y1="98" x2="778" y2="98" stroke="#333" stroke-width="1.6" marker-end="url(#ar2)"/>
+  <text x="455" y="30" text-anchor="middle" font-size="12" fill="#555">z = share of treated neighbors</text>
+  <text x="455" y="45" text-anchor="middle" font-size="12" fill="#555">(fixed, excludes node i itself)</text>
+  <line x1="455" y1="50" x2="455" y2="68" stroke="#333" stroke-width="1.3" marker-end="url(#ar2)"/>
+  <text x="660" y="30" text-anchor="middle" font-size="12" fill="#555">labelled context rows</text>
+  <line x1="660" y1="36" x2="660" y2="60" stroke="#333" stroke-width="1.3" marker-end="url(#ar2)"/>
+  <path d="M660,136 Q470,215 255,138" fill="none" stroke="#d9480f" stroke-width="1.8" stroke-dasharray="6,4" marker-end="url(#ar3)"/>
+  <text x="460" y="205" text-anchor="middle" font-size="13" fill="#d9480f">gradient of factual loss + balance penalty, to θ only</text>
+</svg>
+<figcaption><b>Only the encoder learns.</b> The encoder turns the graph and covariates into a per-node vector $h_i$, which takes the place of the hand-built graph features in TabPFN's rows. The training signal is TabPFN's error at predicting <em>observed</em> outcomes from a context of other observed nodes. The exposure $z_i$ stays an explicit, fixed input, so "change $A_i$" and "change $z_i$" remain clean interventions.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>Why route the gradient through TabPFN rather than through a fresh MLP head? TabPFN is already a strong, well-regularized learner of small tabular functions. If the encoder is trained to produce features <em>that TabPFN can use</em>, the foundation model's prior decides which graph information is worth extracting. We test whether this matters in <a href="#s6">Section 6</a>, and it matters a lot.</p>
+
+<h3>The objective</h3>
+
+<p>At each update we sample a context of up to 700 labelled nodes and a query batch of up to 256 other labelled nodes. TabPFN conditions on the context rows and predicts the queries:</p>
+
+$$
+\min_\theta \;
+\underbrace{\frac{1}{|Q_r|}\sum_{i\in Q_r}\Big[\tilde Y_i - f_{\rm PFN}\big(u_i(\theta);\, \{(u_j(\theta),\tilde Y_j)\}_{j\in C_r}\big)\Big]^2}_{\text{factual error of frozen TabPFN on held-out query nodes}}
+\;+\;
+\lambda\,\underbrace{\operatorname{MMD}^2\big(\{h_i\}_{A_i=1},\, \{h_i\}_{A_i=0}\big)}_{\text{treated vs. control gap in the learned features}}
+$$
+
+<p>Here $u_i(\theta) = [X_i,\ \operatorname{LN}(\phi_\theta(G,X)_i),\ A_i,\ z_i]$ and LN is a layer normalization without learned scale. Gradients reach $\theta$ through <em>both</em> the context rows and the query rows. The second term is the representation-balancing idea from CFR <span class="cite">[Shalit et al., 2017]</span>. Because $h_i$ depends only on covariates and topology, a treated-versus-control gap in $h$ means the representation still predicts who got treated, and we penalize that gap with $\lambda=3$. (Spoiler: this term turned out to matter less than we expected.)</p>
+
+<p>The training step, condensed from our implementation (illustrative, not runnable on its own):</p>
+
+<pre><code>opt = torch.optim.Adam(encoder.parameters(), lr=1e-3)    # TabPFN params are not in here
+for step in range(2000):
+    ctx = rng.choice(train_pool, 700, replace=False)
+    qry = rng.choice(train_pool, 256, replace=False)
+    h   = F.layer_norm(encoder(adj, X), (k,))            # learned graph features
+    row = lambda idx: torch.cat([X[idx], h[idx], A[idx, None], z[idx, None]], dim=1)
+    tabpfn.fit_with_differentiable_input(row(ctx), Y[ctx])   # in-context "fit": no weight update
+    loss = ((tabpfn_predict(row(qry)) - Y[qry]) ** 2).mean()
+    loss = loss + 3.0 * mmd2(h[qry][A[qry] == 1], h[qry][A[qry] == 0])
+    opt.zero_grad(); loss.backward()
+    torch.nn.utils.clip_grad_norm_(encoder.parameters(), 1.0); opt.step()</code></pre>
+
+<p>Three practical details matter:</p>
+<ul>
+  <li><strong>Warm start.</strong> Before the loop, 200 steps pull the encoder output toward the top principal components of the diffusion features, so training starts from a sensible representation.</li>
+  <li><strong>Selection.</strong> We hold out 20% of the labelled nodes and keep the checkpoint with the lowest validation loss.</li>
+  <li><strong>Refit.</strong> After training, we freeze the encoder and give an ordinary TabPFN (with its default ensemble) <em>all</em> labelled rows as context. This refit model answers every counterfactual query.</li>
+</ul>
+
+<p>For the encoder we tried four standard message-passing architectures: GCN, GAT, GIN, and PNA <span class="cite">[Corso et al., 2020]</span>. PNA turns out to be the important one. It aggregates neighbor messages with mean, min, max, and standard deviation, so it can represent neighbor spread directly. GCN, GAT, and GIN are built around averages or sums.</p>
+
+<!-- ============================================================ -->
+<h2 id="s5">5. Four experiments, four questions</h2>
+
+<p>To score heterogeneous effects we need the true effect of every node, which real data never provides. So we use <strong>semi-synthetic</strong> data: real social graphs (BlogCatalog, 5,196 nodes; Flickr, 7,575 nodes) with real covariates derived from user text, and simulated treatments and outcomes. In every realization, 80% of nodes are labelled and 20% are held out for testing. All methods see the full graph, covariates, and treatments, but never test outcomes. The metric is PEHE, the root-mean-squared error of per-node effect estimates on test nodes:</p>
+
+$$\operatorname{PEHE} = \sqrt{\tfrac{1}{n_{\rm test}}\textstyle\sum_{i\in\text{test}} (\hat\tau_i - \tau_i)^2}.$$
+
+<p>We compare against three groups: TabPFN with each fixed feature block; CausalPFN <span class="cite">[Balazadeh et al., 2025]</span>, a foundation model pretrained specifically for causal effects, given the same blocks; and dedicated network-causal neural estimators (NetDeconfounder, NetEstimator, RRNet) plus the classic TARNet and CFR. We also include GraphPFN, a graph foundation model, queried counterfactually.<sup class="fn"><a href="#fn4" id="r4">4</a></sup></p>
+
+<h3>Experiment 1: When the network only confounds, does graph information help?</h3>
+
+<p>We start with the established benchmark of <span class="cite">[Guo et al., 2020]</span>: ten released realizations per setting, in which a node's own and its neighbors' topics drive both treatment and outcome. The parameter $\kappa$ sets how strongly the <em>neighbors'</em> topics confound. Neighbors' treatments do not affect outcomes here, so there is no interference, only network confounding.</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/exp1_relative.png" alt="Relative PEHE of methods across confounding strength on BlogCatalog and Flickr.">
+<figcaption><b>Graph features roughly halve the error, and the stronger the network confounding, the more they help.</b> Each line shows a method's PEHE divided by that of <span class="c-raw">TabPFN with raw covariates</span> in the same setting, so lower is better and 1.0 means "no better than ignoring the graph". We normalize because absolute PEHE grows strongly with $\kappa$. Means over ten realizations.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>Three things stand out.</p>
+
+<p><strong>Graph information is essential.</strong> Adding a fixed aggregate or diffusion block to TabPFN cuts its error by 35 to 55%. Raw TabPFN loses to NetDeconfounder in every setting. The best graph-aware TabPFN variants beat it in every setting.</p>
+
+<p><strong>The learned adapter helps, but it is not uniformly the best.</strong> Against the aggregate and diffusion blocks, the best adapter (GCN or PNA) is 15 to 29% better in every setting. But the degree-aware <span class="c-fixed">aggsumlog</span> block is a harder baseline. On BlogCatalog it is the best method overall (PEHE 2.88, 3.31, 5.24 vs. the best adapter's 3.00, 3.47, 6.11). On Flickr the PNA adapter beats it (3.80, 5.19, 8.91 vs. 4.30, 5.74, 9.75). The GAT and GIN adapters are worse than the simple blocks everywhere.<sup class="fn"><a href="#fn5" id="r5">5</a></sup></p>
+
+<p><strong>The gain comes from graph features <em>combined with</em> TabPFN.</strong> One might suspect that the features do all the work. To check, we gave identical inputs to ridge regression, histogram gradient boosting, and XGBoost:</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/exp1_input_matched.png" alt="PEHE of four predictors with four feature blocks, at kappa = 2.">
+<figcaption><b>Same features, different predictor: only TabPFN benefits.</b> Experiment 1 at the strongest confounding ($\kappa=2$); means over ten realizations. Ridge barely changes across feature blocks, and both tree ensembles do <em>best</em> with raw features. Only TabPFN improves sharply when graph features are added. The other $\kappa$ values look the same.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>We find this a little surprising, and we do not have a full explanation. One possibility is that the tree models overfit the extra, highly correlated aggregate columns, while TabPFN's prior handles them gracefully.</p>
+
+<div class="takeaway">Under network confounding, graph features are essential and pair unusually well with TabPFN. A learned adapter is competitive with the best fixed block, but a good hand-built block can match or beat it.</div>
+
+<h3>Experiment 2: With a constant peer effect, does anything beat a simple neighbor mean?</h3>
+
+<p>Now we add interference. Following <span class="cite">[Jiang &amp; Sun, 2022]</span>, treatments are random but their probabilities depend on own and neighbors' covariates. Outcomes are linear in own treatment and exposure:</p>
+
+$$Y_i(a,z) = b_i + 0.5\,\bar b_i + a + z + 0.1\,\epsilon_i,$$
+
+<p>so the own effect is exactly 1 and the peer effect (exposure 0.2 → 0.7) is exactly 0.5 for every node. This is a calibration check: can each method recover two constants from confounded network data?</p>
+
+<p>The answer is in the top row of the next figure. Every TabPFN variant with an exposure input sits in the lower-left corner. Its individual PEHE (about .008 to .009) is below that of every network-causal baseline, and most baselines are two to five times higher. The adapters and the fixed blocks are within about .005 of each other. That is what we would expect: the outcome depends on a one-hop mean, which the aggregate block already supplies, so a learned representation has nothing to add.</p>
+
+<p>Two exceptions are worth naming. CFR comes closest among the baselines and has the nominally lowest peer PEHE on Flickr (.0118 vs. .0127 for aggregate TabPFN), but the paired five-realization interval for the difference includes zero. CausalPFN is the weakest method for the individual effect here, worse even than raw TabPFN. Its causal pretraining did not transfer to this graph setting.</p>
+
+<h3>Experiment 3: When effects depend on structure that fixed features omit</h3>
+
+<p>Experiment 2 has constant effects, so it cannot tell us whether a learned representation helps with heterogeneous ones. Experiment 3 keeps everything the same (graphs, covariates, treatment assignment, exposure, splits, seeds) and changes only how effects vary across nodes. Each node's own-effect and peer-effect slopes combine three graph functionals that one-hop means do not capture:</p>
+
+$$
+\omega_i = .20\,\underbrace{\operatorname{std}\big[\tanh(2w_o^\top X_i)\big]}_{\text{own nonlinearity}}
++ .28\,\underbrace{\operatorname{std}\big[\operatorname{sd}_{j\in N(i)}(w_d^\top X_j)\big]}_{\text{neighbor dispersion}}
++ .22\,\underbrace{\operatorname{std}\big[\overline{\overline{w_2^\top X}}_i\big]}_{\text{two-hop mean}}
+$$
+
+<p>The middle term is the toy example from Section 3 made real. To be clear, we designed this DGP to contain a statistic that the fixed blocks miss. The experiment tests whether a learned encoder can <em>find</em> that statistic from factual outcomes alone. It does not show that real-world effects look like this.</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/scatter_exp2_exp3.png" alt="Scatter plots of individual vs. peer PEHE for all methods in Experiments 2 and 3.">
+<figcaption><b>With constant effects every TabPFN variant ties; with dispersion-sensitive effects the PNA adapter separates from the pack.</b> Each point is a method; horizontal is individual-effect PEHE, vertical is peer-effect PEHE, both on log scales, means over five realizations, so the lower-left corner is best. Top row: in Experiment 2, the <span class="c-fixed">fixed-feature</span> and <span class="c-adapter">adapter</span> variants overlap. Bottom row: in Experiment 3, the <span class="c-adapter">PNA adapter</span> moves clearly left of everything else; the other adapters (light orange) stay with the fixed blocks. The black × is an oracle given the true DGP components, shown only as a ceiling. Methods with no peer estimate (raw TabPFN, CausalPFN) are omitted.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>In Experiment 3 the PNA adapter has the lowest individual PEHE on both graphs (.083 and .086, against .120 and .158 for diffusion). It also has the lowest peer PEHE on Flickr (.086 vs. .124). In all three cases, the paired 95% interval for the difference from diffusion excludes zero: individual $[-.067,-.008]$ on BlogCatalog and $[-.092,-.052]$ on Flickr, peer $[-.056,-.020]$ on Flickr. On BlogCatalog peer PEHE, PNA and diffusion tie ($[-.033,.034]$).</p>
+
+<p>Just as telling is what does <em>not</em> help. The GCN, GAT, and GIN adapters trail fixed diffusion in every column. Learning a representation is not enough on its own. The encoder must be <em>able to express</em> the missing statistic, and only PNA's standard-deviation aggregator can express neighbor spread directly.</p>
+
+<figure>
+<img src="figures/ladder_exp3.png" alt="Individual PEHE decreasing from raw to oracle representations in Experiment 3.">
+<figcaption><b>A representation ladder.</b> Experiment 3 individual PEHE as the graph representation gets richer, means over five realizations. Adding degree to the one-hop mean does nothing, so degree is not the missing ingredient. Multi-hop means help somewhat. The <span class="c-adapter">PNA adapter</span> helps much more. The oracle, which is handed the true DGP components, shows how much headroom is left.</figcaption>
+</figure>
+
+<p>The PEHE numbers are averages. To check that PNA really recovers node-level heterogeneity, and does not just shift the average effect, we plot estimates against the truth for every test node in one realization:</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/node_level_flickr.png" alt="True vs estimated effects per test node for diffusion and PNA on Flickr.">
+<figcaption><b>Fixed features shrink peer effects toward the average; PNA keeps their spread.</b> Every held-out node of one Flickr realization (seed 0, 1,515 nodes); the dashed line is perfect recovery. With <span class="c-fixed">diffusion features</span> (blue), the peer-effect cloud is flatter than the diagonal: the model cannot tell which nodes have larger peer effects, so it predicts values near the mean. The <span class="c-adapter">PNA adapter</span> (orange) follows the diagonal more closely for both effects.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>Does this hold on other graphs? We repeated Experiment 3 on a citation graph (Cora) and a co-purchase graph (Amazon-Computers). These differ substantially from the social graphs in size, density, degree tail, and how similar neighbors' features are:</p>
+
+<table>
+<thead><tr><th>Graph</th><th>Nodes</th><th>Fixed (ind.)</th><th>PNA (ind.)</th><th>Oracle (ind.)</th><th>Fixed (peer)</th><th>PNA (peer)</th></tr></thead>
+<tbody>
+<tr><td>Cora (citation)</td><td>2,708</td><td>.189</td><td class="c-adapter">.151</td><td>.051</td><td>.124</td><td class="c-adapter">.104</td></tr>
+<tr><td>BlogCatalog (social)</td><td>5,196</td><td>.120</td><td class="c-adapter">.082</td><td>.026</td><td>.117</td><td>.117</td></tr>
+<tr><td>Flickr (social)</td><td>7,575</td><td>.158</td><td class="c-adapter">.086</td><td>.031</td><td>.124</td><td class="c-adapter">.086</td></tr>
+<tr><td>Amazon-Computers (co-purchase)</td><td>13,752</td><td>.136</td><td class="c-adapter">.083</td><td>.035</td><td>.157</td><td class="c-adapter">.083</td></tr>
+</tbody></table>
+<p style="font-size:.85em;color:#555">Experiment 3 PEHE, means over five realizations. "Fixed" is the best fixed block, which was diffusion in every column. Individual-effect gains have paired intervals excluding zero on all four graphs.</p>
+
+<p>The pattern holds: PNA improves individual-effect error on every graph, and peer-effect error on three of four, with a tie on BlogCatalog.</p>
+
+<h3>Experiment 4: The control. What if the fixed features are exactly right?</h3>
+
+<p>Experiment 3 was designed for the adapter to win. A fair test needs the opposite case too. Experiment 4 keeps the same graphs, treatments, and exposure, but makes both effect slopes depend only on own covariates and the <em>one-hop neighbor mean</em>, which is exactly what the aggregate block provides. The slopes still vary substantially (SD about .3 to .4 across nodes), so this is a genuine heterogeneity test.</p>
+
+<p>The result is the right panel of the hero figure. Fixed aggregation wins clearly: TabPFN with aggregate features has individual PEHE .038 and .058, against .115 and .114 for the PNA adapter, and it also has the lowest peer PEHE. CausalPFN with aggregate features is better still for the individual effect (.029 and .035), its best showing in our study. No learned adapter comes close, although PNA remains the best of the four encoders. Graph information still matters a great deal: raw TabPFN and the network-causal baselines sit at .22 to .29.</p>
+
+<div class="takeaway">Experiments 3 and 4 tell one story: a learned graph representation pays off when the response depends on a statistic the fixed features cannot express, and the encoder can express it. When the fixed features already contain the right statistic, learning costs accuracy.</div>
+
+<!-- ============================================================ -->
+<h2 id="s6">6. What makes the adapter work, and what it costs</h2>
+
+<h3>The frozen decoder is doing real work during training</h3>
+
+<p>Is the gain just "a PNA embedding"? We tested this by changing one component at a time in Experiment 3:</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/ablation.png" alt="Ablation bar chart for the PNA adapter.">
+<figcaption><b>What the encoder is trained through matters most; the regularizers matter little.</b> Individual-effect PEHE in Experiment 3, means over five realizations; the dotted line marks the full method. Top three bars: training the same PNA encoder through a plain MLP head (then still predicting with refit TabPFN) roughly <em>triples</em> the error. Replacing the final TabPFN with HistGB on the same learned features also hurts a lot. Bottom (orange) bars: removing MMD or the warm start, shrinking the representation, or shrinking the training context changes PEHE by at most about .013, in either direction.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>Several of these results surprised us. The MMD balance penalty, motivated by the CFR literature, is close to irrelevant. On Flickr, removing it is nominally <em>better</em> for peer PEHE (.079 vs. .087). A 128-row training context works as well as a 700-row one, and on BlogCatalog slightly better. Only two of these small changes are statistically distinguishable from zero: removing the warm start hurts on BlogCatalog, and the six-dimensional representation hurts on Flickr.</p>
+
+<p>What clearly matters is the pairing. The encoder has to be trained <em>through TabPFN</em>, and predictions have to come from TabPFN. Refitting with all labelled nodes as context also helps. It beats both the single-member training decoder (bar 3) and averaging several decoders that each see a random 700-node subset, for both estimands on both graphs.</p>
+
+<h3>You need enough labels to learn the encoder</h3>
+
+<p>Fixed features with a frozen TabPFN have nothing to train. The adapter does, and it learns only from labelled nodes. In many network applications outcomes are the expensive part, so we reran Experiment 3 with outcomes observed for only 5% to 80% of nodes:</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/label_budget.png" alt="PEHE as a function of label share for four methods.">
+<figcaption><b>Fixed features win when labels are scarce; the adapter wins once there are enough.</b> PEHE against the share of nodes with an observed outcome (nested labelled sets within each realization; same test nodes throughout); means ± SD over five realizations. With 5 to 10% labels, <span class="c-fixed">fixed diffusion features</span> are best. The curves cross around 20%, and from 40% on the <span class="c-adapter">PNA adapter</span> is clearly best on Flickr and for individual effects on BlogCatalog. HistGB and ridge on the same diffusion features are worse than TabPFN throughout. Ridge stays flat because a linear model cannot fit this DGP.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>On BlogCatalog peer effects, diffusion and PNA stay comparable from 20% labels upward, consistent with the tie at full labels. In practice, with very few labelled outcomes, the free fixed features are the better choice.</p>
+
+<h3>Other stress tests</h3>
+
+<p><strong>Treatment overlap.</strong> We made treatment assignment progressively more deterministic, to the point where 71% of nodes have propensity outside $[.1,.9]$. Error generally rises as overlap falls, more for peer effects than for individual ones. The PNA adapter degrades gradually and has the lowest PEHE in every overlap regime on both graphs, with one exception: peer PEHE on BlogCatalog at full overlap, where aggregate features are marginally better.</p>
+
+<p><strong>Unknown exposure mapping.</strong> So far we assumed that neighbors' treatments matter through the treated share. We also tried learning that mapping with a second, small set encoder over neighbors' treatments, with peer effects computed by averaging over simulated neighbor allocations. This came within about .01 to .02 of the known-exposure PNA adapter across four graphs. Most of the remaining gap comes from the covariate encoder, not from learning the exposure. When the prescribed exposure is exactly right, as in Experiment 4, it is clearly better.</p>
+
+<h3>What it costs</h3>
+
+<p>The adapter is not free. On one H100 GPU, frozen diffusion plus TabPFN is ready in about one second. The PNA adapter trains about 220k encoder parameters for 2,000 updates, which takes about five minutes (305 s on BlogCatalog, 326 s on Flickr), and uses roughly twice the peak GPU memory (2.3 to 2.8 GB vs. about 1.1 GB). Prediction cost is about the same (5 to 6.5 s for all counterfactual queries), since both use the same frozen TabPFN. Freezing the decoder avoids fine-tuning a foundation model, but each new graph still needs its own encoder fit.</p>
+
+<!-- ============================================================ -->
+<h2 id="s7">7. Back to the school</h2>
+
+<p>Simulations let us score per-node effects, but real treatments and outcomes are the real test. We return to the opening example, a field experiment by <span class="cite">[Paluck, Shepherd &amp; Aronow, 2016]</span> in New Jersey middle schools. In 28 treatment schools, an eligible pool of students was split into blocks, and exactly half of each block was invited to an anti-conflict program. We use 11,932 students and the 68,005 friendship ties they reported. The treatment is invitation, the exposure is the share of a student's friends who were invited, and the outcome is whether the student was seen wearing the program's orange wristband. There are 78 pre-treatment covariates.</p>
+
+<p>The design randomizes different things for different students, so we fit each effect where it is randomized. The own effect is fitted among eligible students, who were invited with probability ½. The peer effect is fitted among never-eligible students, whose chance of having an invited friend we compute by re-running the block randomization. All predictions are out-of-fold from five-fold cross-fitting.</p>
+
+<p><strong>How do you score effects you never observe?</strong> Because the assignment probability $p$ is known, the transformed outcome $Y_i^* = Y_i (D_i - p)/\{p(1-p)\}$ is an unbiased (very noisy) estimate of each person's effect. The mean of $(Y_i^* - \hat\tau_i)^2$ on held-out students therefore equals PEHE plus a constant that is the same for every method. This is called the τ-risk <span class="cite">[Athey &amp; Imbens, 2016]</span>. Lower is better, but only differences between methods are meaningful.</p>
+
+<table>
+<thead><tr><th>Method</th><th>Own-effect τ-risk</th><th>Peer-effect τ-risk</th></tr></thead>
+<tbody>
+<tr><td>TabPFN + diffusion</td><td>.9440 (.0015)</td><td>.8739 (.0013)</td></tr>
+<tr class="ours"><td>TabPFN + PNA adapter</td><td>.9423 (.0014)</td><td>.8731 (.0010)</td></tr>
+<tr><td>CausalPFN + diffusion</td><td>.9451 (.0010)</td><td>–</td></tr>
+<tr><td>GraphPFN</td><td>.9425 (.0035)</td><td>.8740 (.0013)</td></tr>
+<tr><td>NetDeconfounder</td><td>.9520 (.0036)</td><td>.8736 (.0012)</td></tr>
+<tr><td>NetEstimator</td><td>.9548 (.0048)</td><td>.8739 (.0013)</td></tr>
+<tr><td>RRNet</td><td>.9498 (.0026)</td><td>.8735 (.0012)</td></tr>
+</tbody></table>
+<p style="font-size:.85em;color:#555">Held-out τ-risk; in parentheses, the school-bootstrap SE of each method's difference from a constant predictor set to the design-based average effect.</p>
+
+<p>The PNA adapter has the lowest τ-risk for both effects. We want to be candid about how much this shows. The gaps among the top methods (.0002 between PNA and GraphPFN for the own effect, under .001 for every method on the peer effect) are smaller than the standard errors. The peer-effect column barely separates any method from the others. We read this as "competitive, with no evidence that it is worse", not as a decisive win. The clearer result is that the network-causal baselines do worse on the own effect.</p>
+
+</div>
+<div class="wide">
+<figure>
+<img src="figures/paluck_effects.png" alt="Densities of predicted own and peer effects in the school experiment.">
+<figcaption><b>A large, nearly uniform own effect and a small, skewed peer effect.</b> Distribution of the PNA adapter's out-of-fold predicted effects on the probability of wearing the wristband (dashed: mean). Left: an invitation raises it by about 15 points for almost every eligible student. Right: a friend's invitation raises it by about one point on average, with most students barely affected and a minority predicted to respond more.</figcaption>
+</figure>
+</div>
+<div class="col">
+
+<p>The predicted own effects are positive and tightly concentrated: 90% of them lie between .11 and .20, and they barely differ by gender, grade, teacher-rated influence, or number of friends. The program's direct effect appears large and close to homogeneous, and the remaining spread is too small to check against the design. Predicted peer effects are smaller for students with more friends (correlation −.25 with log degree). That is what the exposure definition implies: one invited friend is a smaller share of a larger friend group. We also note that all methods, ours included, underestimate the peer effect relative to the design-based estimate.</p>
+
+<!-- ============================================================ -->
+<h2 id="s8">8. What we take away</h2>
+
+<p>Causal identification under network interference reduces to one pooled regression, so a frozen tabular foundation model can serve as the outcome learner, and the open question becomes which graph representation goes into its rows. Hand-built summaries are free and are the right choice when they contain the statistic that drives the response, or when labelled outcomes are scarce. A graph encoder trained <em>through</em> the frozen model helps when the response depends on structure those summaries cannot express. That requires an encoder that can express it (in our experiments, only PNA) and enough labels to fit it.</p>
+
+<p>Several questions remain open. Our simulations are transductive (one graph, partially labelled), use five or ten realizations each, and test a small set of exposure mappings and response mechanisms. We have not tested transfer to unseen graphs. Good factual prediction does not establish the no-unmeasured-confounding and positivity assumptions needed to read the contrasts causally; those remain substantive and untestable in observational use. In the school experiment the sample is too small to detect individual-level heterogeneity. Finally, the oracle gap in Experiment 3 says that better representations exist, and we do not yet know how to find them without a hint about what to look for.</p>
+
+<hr style="border:none;border-top:1px solid var(--rule);margin:48px 0 24px">
+
+<h3>Footnotes</h3>
+<ol class="footnotes">
+  <li id="fn1">This is the standard exposure mapping of <span class="cite">[Aronow &amp; Samii, 2017]</span>. It excludes node $i$'s own treatment. This keeps the two interventions separate: "change $A_i$" leaves $z_i$ unchanged, and vice versa. <a href="#r1">↩</a></li>
+  <li id="fn2">These are policy-relevant estimands in the style of <span class="cite">[Hudgens &amp; Halloran, 2008]</span>. The own effect switches $i$'s treatment while others follow a Bernoulli($p$) policy; the peer effect raises others' treatment probability from $p_0$ to $p_1$. In our experiments $(p_0,p_1)=(.2,.7)$. Both are conditional on all covariates and average over the policy and outcome noise. <a href="#r2">↩</a></li>
+  <li id="fn3">Strictly, the policy mean averages $Q$ over the exposure distribution $\rho_p$. Querying at the single point $z=p$ is exact when $Q$ is linear in $z$, as in all our simulators; otherwise it is an approximation. The full theorem, with integrability conditions and a proof, is in our paper. <a href="#r3">↩</a></li>
+  <li id="fn4">NetEstimator and RRNet are reimplemented under our protocol to match their published structure; they are not reproductions of published numbers. In the interference experiments, NetDeconfounder, TARNet, and CFR use their released interference variants, which take $z_i$ as an input. Raw TabPFN has no exposure input, and CausalPFN returns an effect rather than an outcome surface, so neither can produce a peer estimate. In Experiment 1, the foundation models receive a 100-dimensional SVD of the sparse word covariates, and the neural baselines receive the full covariates. <a href="#r4">↩</a></li>
+  <li id="fn5">The standard deviations across Experiment 1's ten realizations are large (e.g. 3.00 ± 1.48 for GCN on BlogCatalog, κ=.5) because realizations differ in scale. Comparisons between methods should therefore be read as paired, within-realization differences rather than by overlapping SD bars. <a href="#r5">↩</a></li>
+</ol>
+
+<h3>Reproducibility</h3>
+<p style="font-size:.9em">Code for all experiments, data-generating processes, baselines, and figures accompanies our paper. Every number and plotted value in this article comes from our result tables or the underlying result files. The semi-synthetic benchmarks use public graph data (the BlogCatalog and Flickr releases of Guo et al., Cora, and Amazon-Computers). The school network data are available from ICPSR under terms that prohibit redistribution, so only aggregate predictions are shown here.</p>
+
+<h3>References</h3>
+<div class="refs">
+<p>Athey, S. &amp; Imbens, G. (2016). Recursive partitioning for heterogeneous causal effects. <em>PNAS</em>, 113(27).</p>
+<p>Aronow, P. M. &amp; Samii, C. (2017). Estimating average causal effects under general interference. <em>Annals of Applied Statistics</em>, 11(4).</p>
+<p>Balazadeh Meresht, V., et al. (2025). CausalPFN: Amortized causal effect estimation via in-context learning. <em>NeurIPS</em>.</p>
+<p>Corso, G., Cavalleri, L., Beaini, D., Liò, P. &amp; Veličković, P. (2020). Principal neighbourhood aggregation for graph nets. <em>NeurIPS</em>.</p>
+<p>Eremeev, D., Platonov, O., Bazhenov, G., Babenko, A. &amp; Prokhorenkova, L. (2026). GraphPFN: A prior-data fitted graph foundation model. <em>ICML</em>.</p>
+<p>Grinsztajn, L., et al. (2026). TabPFN-3: Technical report.</p>
+<p>Guo, R., Li, J. &amp; Liu, H. (2020). Learning individual causal effects from networked observational data. <em>WSDM</em>.</p>
+<p>Hollmann, N., et al. (2025). Accurate predictions on small data with a tabular foundation model. <em>Nature</em>, 637.</p>
+<p>Hudgens, M. G. &amp; Halloran, M. E. (2008). Toward causal inference with interference. <em>JASA</em>, 103(482).</p>
+<p>Jiang, S. &amp; Sun, Y. (2022). Estimating causal effects on networked observational data via representation learning. <em>CIKM</em>.</p>
+<p>Paluck, E. L., Shepherd, H. &amp; Aronow, P. M. (2016). Changing climates of conflict: A social network experiment in 56 schools. <em>PNAS</em>, 113(3).</p>
+<p>Paluck, E. L., Shepherd, H. R. &amp; Aronow, P. (2020). Changing Climates of Conflict: A Social Network Experiment in 56 Schools, New Jersey, 2012–2013. ICPSR data archive.</p>
+<p>Shalit, U., Johansson, F. D. &amp; Sontag, D. (2017). Estimating individual treatment effect: generalization bounds and algorithms. <em>ICML</em>.</p>
+</div>
+
+</div>
+</main>
+</body>
+</html>
